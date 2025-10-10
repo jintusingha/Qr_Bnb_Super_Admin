@@ -12,6 +12,9 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+
+        // 💡 CRITICAL FIX: Add the JetBrains Maven repository here
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 
@@ -25,6 +28,9 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
+
+        // 💡 CRITICAL FIX: Add the JetBrains Maven repository here
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 
