@@ -26,6 +26,8 @@ kotlin {
     }
     
     sourceSets {
+        val commonMain by getting {
+            resources.srcDirs("src/commonMain/resources")}
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -42,6 +44,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.koin.core)
+            implementation(compose.components.resources)
 
             implementation(libs.koin.compose)
 

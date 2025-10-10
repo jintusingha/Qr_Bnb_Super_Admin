@@ -38,6 +38,7 @@ class LoginViewModel(
 
                 _state.update { it.copy(isLoading = false, passwordInput = "") }
                 Logger.d("LoginViewModel", "Login successful: ${user.email}")
+
             } catch (e: InvalidCredentialsException) {
                 _state.update { it.copy(isLoading = false) }
                 Logger.d("LoginViewModel", e.message ?: "Invalid credentials")

@@ -23,19 +23,20 @@ import androidx.compose.ui.input.key.Key.Companion.R
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.example.qrbnb_superadmin.presentation.screen.LoginScreen
+import com.example.qrbnb_superadmin.presentation.screen.QRBnBSuperadminLoginScreen
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import qr_bnb_super_admin.composeapp.generated.resources.Res
 import qr_bnb_super_admin.composeapp.generated.resources.compose_multiplatform
-import qr_bnb_super_admin.composeapp.generated.resources.image
+
 
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        LoginScreen()
+        QRBnBSuperadminLoginScreen()
 
 
     }
