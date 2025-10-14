@@ -48,7 +48,12 @@ kotlin {
 //            implementation("io.insert-koin:koin-androidx-compose:3.5.0") // or latest version
 //            implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
 //            implementation("io.insert-koin:koin-compose-viewmodel:3.6.0-Beta2")
-
+//            implementation(compose.material3)
+//
+//
+//            // Dependency for Material Icons (Icons.Filled, Icons.Outlined, etc.)
+//            implementation("org.jetbrains.compose.material3:material3-icons-extended")
+            implementation("org.jetbrains.compose.material:material-icons-extended:1.7.1")
 
             implementation(libs.koin.compose)
 

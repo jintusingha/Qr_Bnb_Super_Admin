@@ -2,6 +2,7 @@ package com.example.qrbnb_superadmin
 
 import android.app.Application
 import com.example.qrbnb_superadmin.di.appModule
+import com.example.qrbnb_superadmin.di.clientModule
 import com.example.qrbnb_superadmin.di.platformModule
 // The imports for the Koin Android extensions are critical:
 import org.koin.core.context.startKoin
@@ -24,7 +25,7 @@ class SuperadminApplication : Application() {
             androidContext(this@SuperadminApplication)
 
             // 3. Load your shared module
-            modules(appModule, platformModule)
+            modules(appModule, platformModule, clientModule)
         }
     }
 }

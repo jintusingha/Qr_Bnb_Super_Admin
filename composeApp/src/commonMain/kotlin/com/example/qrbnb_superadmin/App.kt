@@ -22,6 +22,7 @@ import androidx.compose.ui.input.key.Key.Companion.R
 
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.example.qrbnb_superadmin.presentation.screen.ClientsOverviewScreen
 import com.example.qrbnb_superadmin.presentation.screen.LoginScreen
 import com.example.qrbnb_superadmin.presentation.screen.QRBnBSuperadminLoginScreen
 import org.jetbrains.compose.resources.painterResource
@@ -36,7 +37,7 @@ import qr_bnb_super_admin.composeapp.generated.resources.compose_multiplatform
 @Preview
 fun App() {
     MaterialTheme {
-        QRBnBSuperadminLoginScreen()
+        ClientsOverviewScreen()
 
 
     }
