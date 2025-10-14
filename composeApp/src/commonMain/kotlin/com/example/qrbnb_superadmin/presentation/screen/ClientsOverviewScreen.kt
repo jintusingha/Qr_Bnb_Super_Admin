@@ -15,10 +15,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -28,6 +30,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -36,6 +40,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.qrbnb_superadmin.domain.entity.Client
@@ -64,63 +69,56 @@ fun ClientsOverviewScreen(
             when {
                 state.isLoading -> LoadingIndicator()
                 state.error != null -> ErrorMessage(state.error)
-                else -> ClientsContent(state)
+                else -> ClientsContent(state, viewModel::onSearchTermChange) // Pass the update function
             }
         }
     }
 }
 
-
+// --- Top Bar ---
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ClientsTopBar() {
     TopAppBar(
         title = { Text("Clients Overview", style = MaterialTheme.typography.headlineMedium) },
         colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
-
     )
 }
 
-
+// --- Main Content Display ---
 @Composable
-fun ClientsContent(state: ClientsOverviewState) {
+fun ClientsContent(
+    state: ClientsOverviewState,
+    onSearchTermChange: (String) -> Unit
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         item {
-
+            // Overview Cards (Total Clients & Total Menus Live)
             state.overview?.let {
                 OverviewCardsRow(it)
             }
         }
 
         item {
-
+            // Active Subscriptions Card
             state.overview?.let {
                 ActiveSubscriptionsCard(it.activeSubscriptions)
             }
         }
 
         item {
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp)
-                    .background(Color(0xFFF0F0F0), RoundedCornerShape(8.dp)),
-                contentAlignment = Alignment.CenterStart
-            ) {
-                Text(
-                    text = "🔎 Search clients",
-                    modifier = Modifier.padding(start = 16.dp),
-                    color = Color.Gray
-                )
-            }
+            // Search Input (NOW FUNCTIONAL)
+            SearchInput(
+                searchTerm = state.searchTerm,
+                onSearchTermChange = onSearchTermChange
+            )
         }
 
         item {
-
+            // Status Dropdown (Minimal placeholder)
             Row(
                 modifier = Modifier
                     .background(Color.Transparent, RoundedCornerShape(4.dp))
@@ -130,7 +128,7 @@ fun ClientsContent(state: ClientsOverviewState) {
             ) {
                 Text("Status", style = MaterialTheme.typography.bodyLarge)
                 Icon(
-                    imageVector = Icons.Filled.KeyboardArrowRight,
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
                     contentDescription = "Status Dropdown",
                     modifier = Modifier.size(16.dp)
                 )
@@ -138,23 +136,50 @@ fun ClientsContent(state: ClientsOverviewState) {
             Spacer(Modifier.height(8.dp))
         }
 
-
-        items(state.clients) { client ->
+        // List of Clients (NOW USES FILTERED LIST)
+        items(state.filteredClients) { client ->
             ClientListItem(client) {
-
+                // Handle client click
             }
         }
 
-
+        // Add padding at the bottom for the FAB
         item { Spacer(Modifier.height(80.dp)) }
     }
 }
 
+// --- Search Input Component ---
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SearchInput(searchTerm: String, onSearchTermChange: (String) -> Unit) {
+    TextField(
+        value = searchTerm,
+        onValueChange = onSearchTermChange,
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(8.dp),
+        leadingIcon = {
+            Icon(Icons.Default.Search, contentDescription = "Search")
+        },
+        placeholder = { Text("Search clients") },
+        colors = TextFieldDefaults.colors( // FIX 1: Renamed from textFieldColors to colors
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent,
+            // FIX 2: Using M3 specific properties for container color
+            focusedContainerColor = Color(0xFFF0F0F0),
+            unfocusedContainerColor = Color(0xFFF0F0F0)
+        ),
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search)
+    )
+    Spacer(Modifier.height(16.dp))
+}
 
+
+// --- Overview Cards Components (Rest are unchanged) ---
 
 @Composable
 fun OverviewCardsRow(overview: ClientOverview) {
-    Column {
+    Column { // Use a Column for vertical layout first, then a Row inside
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
@@ -262,7 +287,7 @@ fun AddNewClientFAB() {
     }
 }
 
-
+// --- State Handlers ---
 
 @Composable
 fun LoadingIndicator() {
@@ -284,12 +309,11 @@ fun ErrorMessage(error: String?) {
     }
 }
 
-
+// --- Preview ---
 
 @Preview(showBackground = true)
 @Composable
 private fun PreviewClientsOverviewScreen() {
-
     val dummyState = ClientsOverviewState(
         isLoading = false,
         overview = ClientOverview(120, 85, 102),
@@ -298,9 +322,16 @@ private fun PreviewClientsOverviewScreen() {
             Client(id = "67890", name = "Ethan Bennett"),
             Client(id = "24680", name = "Sophia Hayes"),
             Client(id = "13579", name = "Noah Parker"),
-        )
+        ),
+        filteredClients = listOf(
+            Client(id = "12345", name = "Olivia Carter"),
+            Client(id = "67890", name = "Ethan Bennett"),
+        ),
+        searchTerm = "O"
     )
     Column(modifier = Modifier.padding(16.dp)) {
-        ClientsContent(state = dummyState)
+        // Note: For a real preview, you'd need to mock the ViewModel or use the content directly
+        SearchInput(searchTerm = dummyState.searchTerm, onSearchTermChange = {})
+        ClientsContent(state = dummyState, onSearchTermChange = {})
     }
 }
