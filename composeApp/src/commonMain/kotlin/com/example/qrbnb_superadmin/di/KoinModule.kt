@@ -2,7 +2,11 @@ package com.example.qrbnb_superadmin.di
 
 
 
-import com.example.qrbnb_superadmin.data.repository.SuperadminDummyRepository
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.qrbnb_superadmin.data.remote.FakeSuperadminApi
+import com.example.qrbnb_superadmin.data.remote.SuperadminApi
+
+import com.example.qrbnb_superadmin.data.repository.SuperadminRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.SuperadminRepository
 import com.example.qrbnb_superadmin.domain.usecase.LoginUseCase
 import com.example.qrbnb_superadmin.presentation.viewmodel.LoginViewModel
@@ -11,12 +15,22 @@ import org.koin.dsl.module
 // This module groups all the definitions for the Login feature and its dependencies.
 val appModule = module {
 
+
+    single<SuperadminApi> {
+        //  Replace this line with 'RealSuperadminApi(get())' when the backend is ready.
+        FakeSuperadminApi()
+    }
+
+
+
+
+
     // --- Data/Domain Layer Definitions ---
 
     // 1. Repository: Defined as a SINGLETON (single).
     // The same instance is reused across the entire app.
     single<SuperadminRepository> {
-        SuperadminDummyRepository()
+        SuperadminRepositoryImpl(api=get())
     }
 
     // 2. Use Case: Defined as a FACTORY.
@@ -30,7 +44,8 @@ val appModule = module {
     // 3. ViewModel: Defined as a FACTORY.
     // We want a new, fresh ViewModel instance every time the screen asks for one.
     factory {
-        LoginViewModel(loginUseCase = get()) // 'get()' automatically finds the LoginUseCase
+        LoginViewModel(loginUseCase = get(),
+            toastManager = get())
     }
 
 }
@@ -38,5 +53,6 @@ val appModule = module {
 // The core function to start Koin
 fun initKoin() = org.koin.core.context.startKoin {
     // Load all defined modules
-    modules(appModule)
+    modules(appModule,platformModule)
 }
+

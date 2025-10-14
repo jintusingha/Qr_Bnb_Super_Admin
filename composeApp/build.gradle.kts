@@ -45,6 +45,10 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.koin.core)
             implementation(compose.components.resources)
+//            implementation("io.insert-koin:koin-androidx-compose:3.5.0") // or latest version
+//            implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+//            implementation("io.insert-koin:koin-compose-viewmodel:3.6.0-Beta2")
+
 
             implementation(libs.koin.compose)
 

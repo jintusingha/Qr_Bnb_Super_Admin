@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.qrbnb_superadmin.presentation.state.LoginState
 import com.example.qrbnb_superadmin.ui.CustomLabelColor
@@ -35,6 +36,7 @@ fun LoginFormSection(
         value = state.passwordInput,
         onValueChange = onPasswordChanged,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        visualTransformation = PasswordVisualTransformation()
     )
     Spacer(modifier = Modifier.height(10.dp))
 

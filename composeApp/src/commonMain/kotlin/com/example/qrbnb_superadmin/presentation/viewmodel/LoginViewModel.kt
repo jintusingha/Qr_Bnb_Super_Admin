@@ -6,6 +6,7 @@ import com.example.qrbnb_superadmin.domain.exception.InvalidCredentialsException
 import com.example.qrbnb_superadmin.domain.usecase.LoginUseCase
 import com.example.qrbnb_superadmin.logging.Logger
 import com.example.qrbnb_superadmin.presentation.state.LoginState
+import com.example.qrbnb_superadmin.toast.ToastManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,6 +15,7 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val loginUseCase: LoginUseCase,
+    private val toastManager: ToastManager
 ) : ViewModel() {
     private val _state = MutableStateFlow(LoginState())
     val state: StateFlow<LoginState> = _state.asStateFlow()
@@ -35,13 +37,16 @@ class LoginViewModel(
         viewModelScope.launch {
             try {
                 val user = loginUseCase(email, password)
+                toastManager.show("Login Successful! for user :${user.name}")
 
                 _state.update { it.copy(isLoading = false, passwordInput = "") }
                 Logger.d("LoginViewModel", "Login successful: ${user.email}")
 
             } catch (e: InvalidCredentialsException) {
+
                 _state.update { it.copy(isLoading = false) }
-                Logger.d("LoginViewModel", e.message ?: "Invalid credentials")
+                toastManager.show(e.message)
+                Logger.d("LoginViewModel", e.message)
             } catch (e: Exception) {
                 _state.update { it.copy(isLoading = false) }
             }

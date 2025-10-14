@@ -1,5 +1,5 @@
 package com.example.qrbnb_superadmin.domain.exception
 
 class InvalidCredentialsException(
-    message: String = "Invalid credentials provided."
+    override val message: String
 ) : Exception(message)
