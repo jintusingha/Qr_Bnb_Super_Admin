@@ -74,3 +74,79 @@ fun  Loginbtn_style(): TextStyle{
 
     )
 }
+
+@Composable
+fun top_Bar_middleText(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W700,         // font-weight: 700
+        fontSize = 18.sp,                     // font-size: 22px
+        lineHeight = 23.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+@Composable
+fun  client_card_title(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W500,         // font-weight: 700
+        fontSize = 16.sp,                     // font-size: 22px
+        lineHeight = 24.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+
+@Composable
+fun  status_text_14px(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W400,         // font-weight: 700
+        fontSize = 14.sp,                     // font-size: 22px
+        lineHeight = 21.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+@Composable
+fun  client_list_text_style(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W500,         // font-weight: 700
+        fontSize = 16.sp,                     // font-size: 22px
+        lineHeight = 24.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+
+@Composable
+fun  client_id_style(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W400,         // font-weight: 700
+        fontSize = 14.sp,                     // font-size: 22px
+        lineHeight = 21.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+
+@Composable
+fun  add_new_client_floating_btn_text(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W700,         // font-weight: 700
+        fontSize = 16.sp,                     // font-size: 22px
+        lineHeight = 24.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
