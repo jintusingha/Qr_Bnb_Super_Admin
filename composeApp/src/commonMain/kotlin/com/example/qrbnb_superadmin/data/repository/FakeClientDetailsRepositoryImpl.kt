@@ -7,10 +7,16 @@ import com.example.qrbnb_superadmin.domain.entity.ClientDetails
 import com.example.qrbnb_superadmin.domain.entity.ClientInfo
 import com.example.qrbnb_superadmin.domain.entity.TimelineEvent
 import com.example.qrbnb_superadmin.domain.repository.ClientDetailsRepository
+import kotlinx.coroutines.delay
 
 class FakeClientDetailsRepositoryImpl : ClientDetailsRepository {
-    override suspend fun getClientDetails(): ClientDetails =
-        ClientDetails(
+
+
+    override suspend fun getClientDetails(): ClientDetails {
+
+        delay(500)
+
+        return ClientDetails(
             client =
                 ClientInfo(
                     clientId = 67890,
@@ -48,4 +54,5 @@ class FakeClientDetailsRepositoryImpl : ClientDetailsRepository {
                     ClientAction("Export Client Data", "export_client_data", true),
                 ),
         )
+    }
 }
