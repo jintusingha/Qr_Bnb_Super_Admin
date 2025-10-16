@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonDefaults.buttonColors
@@ -22,22 +23,27 @@ import com.example.qrbnb_superadmin.ui.login_btn_background
 @Composable
 fun PrimaryActionButton(
     text: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    backgroundColor:Color,
+    textColor: Color = loginButton
+
 ) {
     Button(
         onClick = onClick,
+
         modifier = Modifier
             .fillMaxWidth()
             .widthIn(min = 84.dp, max = 480.dp)
             .height(40.dp),
         shape = RoundedCornerShape(20.dp),
         contentPadding = PaddingValues(horizontal = 16.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = login_btn_background)
+        colors = ButtonDefaults.buttonColors(containerColor = backgroundColor),
+
     ) {
         Text(
             text = text,
             style = Loginbtn_style(),
-            color = loginButton
+            color = textColor
         )
     }
 }

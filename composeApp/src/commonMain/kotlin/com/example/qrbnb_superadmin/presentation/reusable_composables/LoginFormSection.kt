@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.qrbnb_superadmin.presentation.state.LoginState
 import com.example.qrbnb_superadmin.ui.CustomLabelColor
 import com.example.qrbnb_superadmin.ui.jakarta_regular_14px
+import com.example.qrbnb_superadmin.ui.login_btn_background
 
 @Composable
 fun LoginFormSection(
@@ -55,5 +56,7 @@ fun LoginFormSection(
     PrimaryActionButton(
         "Login",
         onLoginClicked,
+        backgroundColor = login_btn_background
+
     )
 }

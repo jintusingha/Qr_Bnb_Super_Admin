@@ -118,7 +118,7 @@ fun  client_list_text_style(): TextStyle{
         fontFamily = plusJakartaSans(), // Your custom font
         fontWeight = FontWeight.W500,         // font-weight: 700
         fontSize = 16.sp,                     // font-size: 22px
-        lineHeight = 24.sp,                   // line-height: 28px
+        lineHeight = 25.sp,                   // line-height: 28px
         letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
         textAlign = TextAlign.Center
 
@@ -145,6 +145,58 @@ fun  add_new_client_floating_btn_text(): TextStyle{
         fontWeight = FontWeight.W700,         // font-weight: 700
         fontSize = 16.sp,                     // font-size: 22px
         lineHeight = 24.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+
+@Composable
+fun  client_Name(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(),
+        fontWeight = FontWeight.W700,
+        fontSize = 22.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp,
+        textAlign = TextAlign.Center
+
+    )
+}
+
+@Composable
+fun  textstyle_14_size_21_lineheight(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W400,         // font-weight: 700
+        fontSize = 14.sp,                     // font-size: 22px
+        lineHeight = 21.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+
+@Composable
+fun  textstyle_16_size_21_lineheight(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W500,         // font-weight: 700
+        fontSize = 16.sp,                     // font-size: 22px
+        lineHeight = 24.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+
+@Composable
+fun  activity_overview_values(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W700,         // font-weight: 700
+        fontSize = 24.sp,                     // font-size: 22px
+        lineHeight = 30.sp,                   // line-height: 28px
         letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
         textAlign = TextAlign.Center
 

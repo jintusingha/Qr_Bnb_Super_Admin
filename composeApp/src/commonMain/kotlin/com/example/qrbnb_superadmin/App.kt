@@ -40,7 +40,8 @@ import qr_bnb_super_admin.composeapp.generated.resources.compose_multiplatform
 fun App() {
     MaterialTheme {
 //        ClientsOverviewScreen(onClientClick = {}, onAddClientClick = {})
-        ClientDetailsScreen()
+        ClientDetailsScreen(onNavigateBack = {})
+//        QRBnBSuperadminLoginScreen()
 
 
     }

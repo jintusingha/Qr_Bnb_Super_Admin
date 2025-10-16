@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.qrbnb_superadmin.ui.activity_overview_values
 import com.example.qrbnb_superadmin.ui.client_card_title
 
 @Composable
@@ -51,8 +52,8 @@ fun StatCard(
             Spacer(Modifier.height(8.dp))
             Text(
                 text = value,
-                style = MaterialTheme.typography.headlineLarge,
-                fontWeight = FontWeight.Bold,
+                style = activity_overview_values(),
+
                 color = MaterialTheme.colorScheme.onSurface
             )
         }
