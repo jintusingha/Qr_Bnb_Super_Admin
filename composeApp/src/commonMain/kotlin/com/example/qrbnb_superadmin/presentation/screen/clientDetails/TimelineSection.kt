@@ -23,7 +23,8 @@ import com.example.qrbnb_superadmin.domain.entity.TimelineEvent
 import com.example.qrbnb_superadmin.ui.body16Regular
 import com.example.qrbnb_superadmin.ui.calender_icon_tint_color
 import com.example.qrbnb_superadmin.ui.date_text_color
-import com.example.qrbnb_superadmin.ui.textstyle_16_size_21_lineheight
+import com.example.qrbnb_superadmin.ui.textstyle_16_size_24_lineheight
+
 import org.jetbrains.compose.resources.painterResource
 import qr_bnb_super_admin.composeapp.generated.resources.Res
 import qr_bnb_super_admin.composeapp.generated.resources.calender
@@ -64,7 +65,7 @@ fun DateLogItem(label: String, date: String, icon: ImageVector, description: Str
         Column {
             Text(
                 text = label,
-                style = textstyle_16_size_21_lineheight()
+                style = textstyle_16_size_24_lineheight()
             )
             Text(
                 text = date,

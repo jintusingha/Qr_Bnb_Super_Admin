@@ -7,6 +7,8 @@ import com.example.qrbnb_superadmin.domain.entity.FormSchema
 import com.example.qrbnb_superadmin.domain.entity.Option
 import com.example.qrbnb_superadmin.domain.entity.ValidationRule
 
+
+
 fun FormSchemaResponse.toDomain(): FormSchema {
     val d = this.data
     return FormSchema(
@@ -26,7 +28,8 @@ fun FormSchemaResponse.toDomain(): FormSchema {
                 visibleIf = formFieldDto.visibleIf,
                 options = formFieldDto.options?.map { opt ->
                     Option(opt.label, opt.value)
-                }
+                },
+                description = formFieldDto.description
             )
         },
         actions = d.actions.map { formActionDto ->

@@ -17,6 +17,7 @@ data class FormField(
     val validation: ValidationRule? = null,
     val visibleIf: Map<String, Boolean>? = null,
     val defaultValue: Boolean? = null,
+    val description: String? = null,
 )
 
 data class Option(

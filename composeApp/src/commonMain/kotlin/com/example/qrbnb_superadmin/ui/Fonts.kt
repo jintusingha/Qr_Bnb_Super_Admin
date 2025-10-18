@@ -178,7 +178,7 @@ fun  textstyle_14_size_21_lineheight(): TextStyle{
 }
 
 @Composable
-fun  textstyle_16_size_21_lineheight(): TextStyle{
+fun  textstyle_16_size_24_lineheight(): TextStyle{
     return TextStyle(
         fontFamily = plusJakartaSans(), // Your custom font
         fontWeight = FontWeight.W500,         // font-weight: 700
@@ -197,6 +197,32 @@ fun  activity_overview_values(): TextStyle{
         fontWeight = FontWeight.W700,         // font-weight: 700
         fontSize = 24.sp,                     // font-size: 22px
         lineHeight = 30.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+
+@Composable
+fun  style_16_24_w500(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W500,         // font-weight: 700
+        fontSize = 16.sp,                     // font-size: 22px
+        lineHeight = 24.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+
+@Composable
+fun  style_16_24_w700(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W700,         // font-weight: 700
+        fontSize = 16.sp,                     // font-size: 22px
+        lineHeight = 24.sp,                   // line-height: 28px
         letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
         textAlign = TextAlign.Center
 

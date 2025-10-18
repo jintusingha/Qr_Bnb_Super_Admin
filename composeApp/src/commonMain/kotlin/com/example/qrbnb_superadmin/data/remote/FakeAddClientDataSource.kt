@@ -3,17 +3,19 @@ package com.example.qrbnb_superadmin.data.remote
 import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormAction
 import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormData
 import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormField
+
 import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormSchemaResponse
 import com.example.qrbnb_superadmin.data.remote.addNewClientDto.Option
 import com.example.qrbnb_superadmin.data.remote.addNewClientDto.ValidationRule
+
 import kotlinx.coroutines.delay
 
 class FakeAddClientDataSource : AddNewClientDataSource {
     override suspend fun getAddClientFormSchema(): FormSchemaResponse {
-        // Simulate network delay
+
         delay(500)
 
-        // Return the hardcoded JSON response structure (DTOs)
+
         return FormSchemaResponse(
             success = true,
             data = FormData(
