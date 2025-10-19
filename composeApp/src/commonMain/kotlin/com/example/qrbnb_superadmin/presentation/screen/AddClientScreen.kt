@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -17,6 +16,8 @@ import com.example.qrbnb_superadmin.presentation.reusable_composables.CustomTopA
 import com.example.qrbnb_superadmin.presentation.screen.addnewclient.AddClientFormContent
 import com.example.qrbnb_superadmin.presentation.screen.addnewclient.ErrorScreen
 import com.example.qrbnb_superadmin.presentation.screen.addnewclient.LoadingScreen
+import com.example.qrbnb_superadmin.presentation.screen.addnewclientformsubmission.SubmissionErrorDialog
+import com.example.qrbnb_superadmin.presentation.screen.addnewclientformsubmission.SuccessDialog
 import com.example.qrbnb_superadmin.presentation.state.ClientFormState
 import com.example.qrbnb_superadmin.presentation.viewmodel.ClientFormViewModel
 import org.jetbrains.compose.resources.painterResource
@@ -26,9 +27,8 @@ import qr_bnb_super_admin.composeapp.generated.resources.leftArrowIcon
 
 @Composable
 fun AddClientScreen(
-    viewModel: ClientFormViewModel= koinInject(),
+    viewModel: ClientFormViewModel = koinInject(),
     onBackClick: () -> Unit,
-    onSaveClick: (Map<String, Any>) -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -39,25 +39,18 @@ fun AddClientScreen(
                 else -> "Add New Client"
             }
 
-
             CustomTopAppBar(
                 title = title,
                 navigationIcon = {
-
-                    IconButton(onClick = {}){
-
-                        Icon(painter = painterResource(Res.drawable.leftArrowIcon),
-
+                    IconButton(onClick = onBackClick) {
+                        Icon(
+                            painter = painterResource(Res.drawable.leftArrowIcon),
                             contentDescription = "LeftArrow",
-
-                            modifier = Modifier.size(24.dp))
-
+                            modifier = Modifier.size(24.dp)
+                        )
                     }
-
                 },
-                actions = {
-
-                }
+                actions = {}
             )
         }
     ) { paddingValues ->
@@ -67,15 +60,41 @@ fun AddClientScreen(
                 .fillMaxSize()
         ) {
             when (uiState) {
-                is ClientFormState.Loading -> LoadingScreen()
+                is ClientFormState.Loading -> {
+                    LoadingScreen()
+                }
+
                 is ClientFormState.Success -> {
                     val formSchema = (uiState as ClientFormState.Success).formSchema
                     AddClientFormContent(
                         formSchema = formSchema,
-                        onSaveClick = onSaveClick,
+                        onSaveClick = { formValues ->
+                            viewModel.submitForm(formValues)
+                        },
                         onCancelClick = onBackClick
                     )
                 }
+
+                is ClientFormState.SubmissionSuccess -> {
+                    val message = (uiState as ClientFormState.SubmissionSuccess).message
+                    SuccessDialog(
+                        message = message,
+                        onDismiss = {
+                            onBackClick()
+                        }
+                    )
+                }
+
+                is ClientFormState.SubmissionError -> {
+                    val errors = (uiState as ClientFormState.SubmissionError).errors
+                    SubmissionErrorDialog(
+                        errors = errors,
+                        onDismiss = {
+                            viewModel.resetForm()
+                        }
+                    )
+                }
+
                 is ClientFormState.Error -> {
                     val message = (uiState as ClientFormState.Error).message
                     ErrorScreen(message = message, onBackClick = onBackClick)

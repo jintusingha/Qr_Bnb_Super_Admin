@@ -29,36 +29,20 @@ fun AddClientFormContent(
 ) {
     val formValues = remember { mutableStateMapOf<String, Any>() }
 
-
     Column(
-        modifier =
-            Modifier
-                .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
     ) {
         Column(
-            modifier =
-                Modifier
-                    .weight(1f)
-                    .verticalScroll(rememberScrollState())
-                    .padding(16.dp),
+            modifier = Modifier
+                .weight(1f)
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
         ) {
-            // Display form description if it exists
-//            if (formSchema.description.isNotEmpty()) {
-//                Text(
-//                    text = formSchema.description,
-//                    style = MaterialTheme.typography.bodySmall,
-//                    color = Color.Gray,
-//                    modifier = Modifier.paddingBottom(16.dp)
-//                )
-//            }
-
             formSchema.fields.forEach { field ->
-
                 FormFieldItem(
                     field = field,
                     formValues = formValues,
                     onValueChange = { value ->
-
                         formValues[field.id] = value
                     },
                 )
@@ -68,19 +52,17 @@ fun AddClientFormContent(
         }
 
         Column(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             formSchema.actions.forEach { action ->
-
                 FormActionButton(
                     action = action,
                     onClick = {
                         if (action.type == "submit") {
-                            onSaveClick(formValues)
+                            onSaveClick(formValues.toMap())
                         } else {
                             onCancelClick()
                         }

@@ -46,8 +46,8 @@ fun App() {
 
         AddClientScreen(
 
-            onBackClick ={},
-            onSaveClick = {}
+            onBackClick ={}
+
         )
 
 

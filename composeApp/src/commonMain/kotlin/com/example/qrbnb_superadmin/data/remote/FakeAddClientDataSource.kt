@@ -1,11 +1,15 @@
 package com.example.qrbnb_superadmin.data.remote
 
+import com.example.qrbnb_superadmin.data.remote.addNewClientDto.AddClientResponseDto
+import com.example.qrbnb_superadmin.data.remote.addNewClientDto.ClientDataDto
 import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormAction
 import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormData
+import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormErrorDto
 import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormField
 
 import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormSchemaResponse
 import com.example.qrbnb_superadmin.data.remote.addNewClientDto.Option
+import com.example.qrbnb_superadmin.data.remote.addNewClientDto.ResponseMetaDto
 import com.example.qrbnb_superadmin.data.remote.addNewClientDto.ValidationRule
 
 import kotlinx.coroutines.delay
@@ -100,4 +104,51 @@ class FakeAddClientDataSource : AddNewClientDataSource {
             )
         )
     }
+
+    override suspend fun submitAddClientForm(formValues: Map<String, Any>): AddClientResponseDto {
+        delay(1000)
+
+        val errors = mutableListOf<FormErrorDto>()
+
+
+        val email = formValues["email"] as? String ?: ""
+        if (!isValidEmail(email)) {
+            errors.add(FormErrorDto("email", "Email is invalid or already exists"))
+        }
+
+
+        val planType = formValues["planType"] as? String
+        if (planType.isNullOrEmpty()) {
+            errors.add(FormErrorDto("planType", "Plan type must be selected"))
+        }
+
+
+        if (errors.isNotEmpty()) {
+            return AddClientResponseDto(
+                success = false,
+                message = "Validation failed",
+                meta = ResponseMetaDto(
+                    formId = "add_client",
+                    entityType = "client"
+                ),
+                errors = errors
+            )
+        }
+
+
+        return AddClientResponseDto(
+            success = true,
+            message = "Form processed successfully",
+            data = ClientDataDto(
+                entityId = 10293,
+                status = "Active",
+                createdAt = "2025-10-17T15:20:00Z"
+            )
+        )
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return email.matches(Regex("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"))
+    }
 }
+
