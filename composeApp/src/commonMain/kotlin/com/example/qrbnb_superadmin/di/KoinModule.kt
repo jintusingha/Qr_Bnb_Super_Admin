@@ -53,6 +53,6 @@ val appModule = module {
 // The core function to start Koin
 fun initKoin() = org.koin.core.context.startKoin {
     // Load all defined modules
-    modules(appModule,platformModule,clientModule,ClientDetailsScreenModule,AddNewClientScreenModule)
+    modules(appModule,platformModule,clientModule,ClientDetailsScreenModule,AddNewClientScreenModule,OrderDetailsScreenModule)
 }
 

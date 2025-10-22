@@ -1,5 +1,6 @@
 package com.example.qrbnb_superadmin
 
+import OrderDetailsScreen
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,6 +28,7 @@ import com.example.qrbnb_superadmin.presentation.screen.ClientDetailsScreen
 import com.example.qrbnb_superadmin.presentation.screen.ClientsOverviewScreen
 
 import com.example.qrbnb_superadmin.presentation.screen.LoginScreen
+
 import com.example.qrbnb_superadmin.presentation.screen.QRBnBSuperadminLoginScreen
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -44,12 +46,12 @@ fun App() {
 //        ClientDetailsScreen(onNavigateBack = {})
 //        QRBnBSuperadminLoginScreen()
 
-        AddClientScreen(
-
-            onBackClick ={}
-
-        )
-
+//        AddClientScreen(
+//
+//            onBackClick ={}
+//
+//        )
+        OrderDetailsScreen(onBackClick = {})
 
     }
 }

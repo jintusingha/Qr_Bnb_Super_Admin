@@ -22,4 +22,7 @@ val client_details_activate_delete_export_client_data_text_color=Color(0xFF17121
 val add_new_client_placeholder_text_color= Color(0xFF8C5E5E)
 val add_new_client_switch_description= Color(0xFF8C5E5E)
 
+val title_header_black=Color(0xFF170F0F)
+val title_reddish_brown= Color(0xFF8C5E5E)
+
 

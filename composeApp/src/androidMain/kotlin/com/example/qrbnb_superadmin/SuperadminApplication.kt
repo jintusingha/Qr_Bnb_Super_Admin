@@ -3,6 +3,7 @@ package com.example.qrbnb_superadmin
 import android.app.Application
 import com.example.qrbnb_superadmin.di.AddNewClientScreenModule
 import com.example.qrbnb_superadmin.di.ClientDetailsScreenModule
+import com.example.qrbnb_superadmin.di.OrderDetailsScreenModule
 import com.example.qrbnb_superadmin.di.appModule
 import com.example.qrbnb_superadmin.di.clientModule
 import com.example.qrbnb_superadmin.di.platformModule
@@ -27,7 +28,9 @@ class SuperadminApplication : Application() {
             androidContext(this@SuperadminApplication)
 
             // 3. Load your shared module
-            modules(appModule, platformModule, clientModule, ClientDetailsScreenModule,AddNewClientScreenModule)
+            modules(appModule, platformModule, clientModule, ClientDetailsScreenModule,AddNewClientScreenModule,
+                OrderDetailsScreenModule
+            )
         }
     }
 }
