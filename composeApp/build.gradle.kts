@@ -33,6 +33,8 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
 
+
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -49,6 +51,7 @@ kotlin {
 //            implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
 //            implementation("io.insert-koin:koin-compose-viewmodel:3.6.0-Beta2")
 //            implementation(compose.material3)
+
 //
 //
 //            // Dependency for Material Icons (Icons.Filled, Icons.Outlined, etc.)
@@ -56,6 +59,10 @@ kotlin {
             implementation("org.jetbrains.compose.material:material-icons-extended:1.7.1")
 
             implementation(libs.koin.compose)
+            implementation("io.coil-kt.coil3:coil-compose:3.0.0-rc02")
+            implementation("io.coil-kt.coil3:coil-network-ktor3:3.0.0-rc02")
+
+
 
         }
         commonTest.dependencies {

@@ -10,6 +10,7 @@ import com.example.qrbnb_superadmin.data.repository.SuperadminRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.SuperadminRepository
 import com.example.qrbnb_superadmin.domain.usecase.LoginUseCase
 import com.example.qrbnb_superadmin.presentation.viewmodel.LoginViewModel
+import com.example.qrbnb_superadmin.presentation.viewmodel.OrdersOverviewViewModel
 import org.koin.dsl.module
 
 // This module groups all the definitions for the Login feature and its dependencies.
@@ -53,6 +54,8 @@ val appModule = module {
 // The core function to start Koin
 fun initKoin() = org.koin.core.context.startKoin {
     // Load all defined modules
-    modules(appModule,platformModule,clientModule,ClientDetailsScreenModule,AddNewClientScreenModule,OrderDetailsScreenModule)
+    modules(appModule,platformModule,clientModule,ClientDetailsScreenModule,
+        AddNewClientScreenModule,OrderDetailsScreenModule, OrdersOverviewModule
+    )
 }
 

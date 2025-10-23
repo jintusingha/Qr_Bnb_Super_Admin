@@ -10,6 +10,7 @@ import org.jetbrains.compose.resources.Font
 
 import qr_bnb_super_admin.composeapp.generated.resources.Res
 import qr_bnb_super_admin.composeapp.generated.resources.plusjakartasans_bold
+import qr_bnb_super_admin.composeapp.generated.resources.plusjakartasans_medium
 import qr_bnb_super_admin.composeapp.generated.resources.plusjakartasans_regular
 
 
@@ -19,7 +20,8 @@ fun plusJakartaSans(): FontFamily {
         // The Font() constructor is a Composable function.
         Font(Res.font.plusjakartasans_bold, FontWeight.W700),
 
-        Font(Res.font.plusjakartasans_regular, FontWeight.W400)
+        Font(Res.font.plusjakartasans_regular, FontWeight.W400),
+        Font(Res.font.plusjakartasans_medium,FontWeight.W500)
     )
 }
 
@@ -266,4 +268,21 @@ fun  style_14_21_400(): TextStyle{
         textAlign = TextAlign.Center
 
     )
+
+
 }
+
+@Composable
+fun  style_14_21_500(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W500,         // font-weight: 700
+        fontSize = 14.sp,                     // font-size: 22px
+        lineHeight = 21.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+
+
