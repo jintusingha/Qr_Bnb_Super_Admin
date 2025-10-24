@@ -135,7 +135,6 @@ fun ClientsOverviewScreen(
                     Modifier
                         .fillMaxWidth()
                         .weight(1f),
-
                 contentPadding = PaddingValues(bottom = 80.dp),
             ) {
                 if (state.isLoading) {

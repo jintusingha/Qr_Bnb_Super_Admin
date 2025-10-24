@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.qrbnb_superadmin.presentation.reusable_composables.AppTopBar
 import com.example.qrbnb_superadmin.presentation.reusable_composables.LoginFormSection
 import com.example.qrbnb_superadmin.presentation.reusable_composables.PanelFooterText
@@ -25,8 +26,18 @@ import org.koin.mp.KoinPlatform.getKoin
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun QRBnBSuperadminLoginScreen(viewModel: LoginViewModel = koinInject()) {
+fun QRBnBSuperadminLoginScreen(
+    viewModel: LoginViewModel = koinInject(),
+    onLoginSuccess: () -> Unit,
+) {
     val state by viewModel.state.collectAsState()
+
+    LaunchedEffect(state.shouldNavigateAway){
+        if(state.shouldNavigateAway){
+            onLoginSuccess()
+            viewModel.onNavigationHandled()
+        }
+    }
 
     Scaffold(
         topBar = {

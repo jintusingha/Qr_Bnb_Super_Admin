@@ -72,7 +72,7 @@ kotlin {
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.1")
             implementation("io.ktor:ktor-client-logging:3.0.1")
 
-
+            implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
 
         }
         commonTest.dependencies {

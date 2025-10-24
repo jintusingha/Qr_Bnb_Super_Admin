@@ -32,14 +32,14 @@ class LoginViewModel(
         val email = _state.value.emailInput
         val password = _state.value.passwordInput
 
-        _state.update { it.copy(isLoading = true) }
+        _state.update { it.copy(isLoading = true, shouldNavigateAway = false) }
 
         viewModelScope.launch {
             try {
                 val user = loginUseCase(email, password)
                 toastManager.show("Login Successful! for user :${user.email}")
 
-                _state.update { it.copy(isLoading = false, passwordInput = "") }
+                _state.update { it.copy(isLoading = false, passwordInput = "", shouldNavigateAway = true) }
                 Logger.d("LoginViewModel", "Login successful: ${user.email}")
 
             } catch (e: InvalidCredentialsException) {
@@ -51,5 +51,8 @@ class LoginViewModel(
                 _state.update { it.copy(isLoading = false) }
             }
         }
+    }
+    fun onNavigationHandled() {
+        _state.update { it.copy(shouldNavigateAway = false) }
     }
 }

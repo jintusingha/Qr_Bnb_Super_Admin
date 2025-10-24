@@ -7,6 +7,7 @@ import com.example.qrbnb_superadmin.data.remote.SuperadminApi
 import com.example.qrbnb_superadmin.data.repository.SuperadminRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.SuperadminRepository
 import com.example.qrbnb_superadmin.domain.usecase.LoginUseCase
+import com.example.qrbnb_superadmin.navigation.AuthStatusChecker
 import com.example.qrbnb_superadmin.presentation.viewmodel.LoginViewModel
 import com.example.qrbnb_superadmin.presentation.viewmodel.OrdersOverviewViewModel
 import io.ktor.client.HttpClient
@@ -49,9 +50,14 @@ val appModule =
         single<SuperadminRepository> {
             SuperadminRepositoryImpl(api = get())
         }
+        single{
+            AuthStatusChecker(tokenStorage = get())
+
+        }
 
         factory {
-            LoginUseCase(repository = get()) // 'get()' automatically finds the SuperadminRepository
+            LoginUseCase(repository = get(),
+                tokenStorage = get()) // 'get()' automatically finds the SuperadminRepository
         }
 
         factory {
