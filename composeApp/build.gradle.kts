@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -14,7 +15,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosArm64(),
         iosSimulatorArm64()
@@ -24,7 +25,7 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         val commonMain by getting {
             resources.srcDirs("src/commonMain/resources")}
@@ -32,6 +33,7 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
+            implementation("io.ktor:ktor-client-android:3.0.1")
 
 
 
@@ -51,6 +53,7 @@ kotlin {
 //            implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
 //            implementation("io.insert-koin:koin-compose-viewmodel:3.6.0-Beta2")
 //            implementation(compose.material3)
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
 //
 //
@@ -61,6 +64,13 @@ kotlin {
             implementation(libs.koin.compose)
             implementation("io.coil-kt.coil3:coil-compose:3.0.0-rc02")
             implementation("io.coil-kt.coil3:coil-network-ktor3:3.0.0-rc02")
+
+
+            // ktor dependencies
+            implementation("io.ktor:ktor-client-core:3.0.1")
+            implementation("io.ktor:ktor-client-content-negotiation:3.0.1")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.1")
+            implementation("io.ktor:ktor-client-logging:3.0.1")
 
 
 

@@ -18,7 +18,7 @@ class FakeSuperadminApi : SuperadminApi {
                 data =
                     LoginDataDto(
                         userId = "01",
-                        name = "suman",
+
                         email = request.email,
                         role = "SUPERADMIN",
                         accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",

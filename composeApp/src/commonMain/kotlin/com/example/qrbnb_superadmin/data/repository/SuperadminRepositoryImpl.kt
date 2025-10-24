@@ -21,8 +21,8 @@ class SuperadminRepositoryImpl(
             return User(
                 id = response.data.userId,
                 email = response.data.email,
-                authToken = response.data.accessToken,
-                name=response.data.name
+                authToken = response.data.accessToken
+
             )
         } else {
             if (response.errorCode == "AUTH_INVALID_CREDENTIALS") {

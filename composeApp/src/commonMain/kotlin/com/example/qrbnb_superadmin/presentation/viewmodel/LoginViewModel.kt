@@ -37,7 +37,7 @@ class LoginViewModel(
         viewModelScope.launch {
             try {
                 val user = loginUseCase(email, password)
-                toastManager.show("Login Successful! for user :${user.name}")
+                toastManager.show("Login Successful! for user :${user.email}")
 
                 _state.update { it.copy(isLoading = false, passwordInput = "") }
                 Logger.d("LoginViewModel", "Login successful: ${user.email}")
