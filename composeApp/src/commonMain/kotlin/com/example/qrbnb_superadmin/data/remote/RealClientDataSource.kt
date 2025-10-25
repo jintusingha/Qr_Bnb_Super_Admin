@@ -1,6 +1,6 @@
 package com.example.qrbnb_superadmin.data.remote
 
-import com.example.qrbnb_superadmin.data.remote.clientsoverviewDto.ClientsResponseDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.ClientsResponseDto
 import com.example.qrbnb_superadmin.logging.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

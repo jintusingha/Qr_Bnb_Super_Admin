@@ -41,7 +41,7 @@ fun App() {
 
             val authStatusChecker= koinInject<AuthStatusChecker>()
 ////        ClientsOverviewScreen(onClientClick = {}, onAddClientClick = {})
-////        ClientDetailsScreen(onNavigateBack = {})
+//        ClientDetailsScreen(onNavigateBack = {})
 //        QRBnBSuperadminLoginScreen()
 //
 ////        AddClientScreen(

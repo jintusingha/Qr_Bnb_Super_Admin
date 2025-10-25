@@ -2,25 +2,19 @@ package com.example.qrbnb_superadmin.data
 
 import android.content.Context
 
-
-class AndroidTokenStorage (context: Context): TokenStorage{
-    private val prefs=context.getSharedPreferences("superadminprefs",Context.MODE_PRIVATE)
-    private val Token_Key="ACCESS_TOKEN"
-
+class AndroidTokenStorage(
+    context: Context,
+) : TokenStorage {
+    private val prefs = context.getSharedPreferences("superadminprefs", Context.MODE_PRIVATE)
+    private val tokenKey = "ACCESS_TOKEN"
 
     override fun saveToken(token: String) {
-        prefs.edit().putString(Token_Key,token).apply()
-
+        prefs.edit().putString(tokenKey, token).apply()
     }
 
-    override fun getToken(): String? {
-        return prefs.getString(Token_Key,null)
-
-    }
+    override fun getToken(): String? = prefs.getString(tokenKey, null)
 
     override fun clearToken() {
-        prefs.edit().remove(Token_Key).apply()
-
+        prefs.edit().remove(tokenKey).apply()
     }
-
 }

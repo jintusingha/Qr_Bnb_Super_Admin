@@ -1,7 +1,7 @@
 package com.example.qrbnb_superadmin.data.remote
 
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.AddClientResponseDto
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormSchemaResponse
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.AddClientResponseDto
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormSchemaResponse
 
 interface AddNewClientDataSource {
     suspend fun getAddClientFormSchema(): FormSchemaResponse

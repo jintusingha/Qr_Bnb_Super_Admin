@@ -1,16 +1,16 @@
 package com.example.qrbnb_superadmin.data.remote
 
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.AddClientResponseDto
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.ClientDataDto
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormAction
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormData
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormErrorDto
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormField
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.AddClientResponseDto
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.ClientDataDto
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormAction
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormData
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormErrorDto
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormField
 
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormSchemaResponse
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.Option
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.ResponseMetaDto
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.ValidationRule
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormSchemaResponse
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.Option
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.ResponseMetaDto
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.ValidationRule
 
 import kotlinx.coroutines.delay
 

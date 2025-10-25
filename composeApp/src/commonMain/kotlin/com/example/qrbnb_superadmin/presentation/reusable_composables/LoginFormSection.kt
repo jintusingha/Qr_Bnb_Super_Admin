@@ -56,7 +56,8 @@ fun LoginFormSection(
     PrimaryActionButton(
         "Login",
         onLoginClicked,
-        backgroundColor = login_btn_background
+        backgroundColor = login_btn_background,
+        isLoading = state.isLoading
 
     )
 }

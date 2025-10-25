@@ -42,6 +42,7 @@ fun CustomInputField(
             focusedBorderColor = Color.Transparent,
             unfocusedBorderColor = Color.Transparent,
             disabledBorderColor = Color.Transparent,
+            cursorColor = Color(0xFFFF5757)
         ),
         shape = RoundedCornerShape(12.dp)
     )

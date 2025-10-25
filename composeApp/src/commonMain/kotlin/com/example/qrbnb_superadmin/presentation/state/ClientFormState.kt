@@ -1,6 +1,6 @@
 package com.example.qrbnb_superadmin.presentation.state
 
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormErrorDto
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormErrorDto
 import com.example.qrbnb_superadmin.domain.entity.FormSchema
 
 sealed interface ClientFormState {

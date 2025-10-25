@@ -1,10 +1,9 @@
 package com.example.qrbnb_superadmin.data.mapper
 
-import com.example.qrbnb_superadmin.data.remote.clientsoverviewDto.ClientDto
-import com.example.qrbnb_superadmin.data.remote.clientsoverviewDto.SummaryDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.ClientDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.SummaryDto
 import com.example.qrbnb_superadmin.domain.entity.Client
 import com.example.qrbnb_superadmin.domain.entity.ClientOverview
-import io.ktor.client.utils.EmptyContent.status
 
 fun ClientDto.toClient(): Client {
     return Client(

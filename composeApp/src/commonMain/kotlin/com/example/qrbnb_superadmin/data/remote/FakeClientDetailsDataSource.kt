@@ -1,24 +1,19 @@
-package com.example.qrbnb_superadmin.data.repository
+package com.example.qrbnb_superadmin.data.remote
 
-import com.example.qrbnb_superadmin.domain.entity.ActivityOverview
-import com.example.qrbnb_superadmin.domain.entity.Client
-import com.example.qrbnb_superadmin.domain.entity.ClientAction
-import com.example.qrbnb_superadmin.domain.entity.ClientDetails
-import com.example.qrbnb_superadmin.domain.entity.ClientInfo
-import com.example.qrbnb_superadmin.domain.entity.TimelineEvent
-import com.example.qrbnb_superadmin.domain.repository.ClientDetailsRepository
+import com.example.qrbnb_superadmin.data.remote.model.clientsDetailsDto.ActivityOverviewDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsDetailsDto.ClientActionDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsDetailsDto.ClientDetailsDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsDetailsDto.ClientInfoDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsDetailsDto.TimelineEventDto
 import kotlinx.coroutines.delay
 
-class FakeClientDetailsRepositoryImpl : ClientDetailsRepository {
+class FakeClientDetailsDataSource : ClientDetailsDataSource {
+    override suspend fun getClientDetails(): ClientDetailsDto {
+        delay(1000)
 
-
-    override suspend fun getClientDetails(): ClientDetails {
-
-        delay(500)
-
-        return ClientDetails(
+        return ClientDetailsDto(
             client =
-                ClientInfo(
+                ClientInfoDto(
                     clientId = 67890,
                     name = "Ethan Carter",
                     email = "ethan.carter@email.com",
@@ -28,7 +23,7 @@ class FakeClientDetailsRepositoryImpl : ClientDetailsRepository {
                     subscriptionStatus = "Active",
                 ),
             activityOverview =
-                ActivityOverview(
+                ActivityOverviewDto(
                     ordersPlaced = 120,
                     itemsCreated = 350,
                     categoriesCount = 15,
@@ -36,12 +31,12 @@ class FakeClientDetailsRepositoryImpl : ClientDetailsRepository {
                 ),
             timeline =
                 listOf(
-                    TimelineEvent(
+                    TimelineEventDto(
                         title = "Client Created",
-                        date = "2023-01-15",
+                        date = "2023-01-1",
                         description = "Account successfully registered",
                     ),
-                    TimelineEvent(
+                    TimelineEventDto(
                         title = "Last Menu Update",
                         date = "2024-03-10",
                         description = "Client’s menu was last modified",
@@ -49,9 +44,9 @@ class FakeClientDetailsRepositoryImpl : ClientDetailsRepository {
                 ),
             actions =
                 listOf(
-                    ClientAction("Activate", "activate_client", true),
-                    ClientAction("Delete", "delete_client", true),
-                    ClientAction("Export Client Data", "export_client_data", true),
+                    ClientActionDto("Activate", "activate_client", true),
+                    ClientActionDto("Delete", "delete_client", true),
+                    ClientActionDto("Export Client Data", "export_client_data", true),
                 ),
         )
     }

@@ -24,13 +24,13 @@ import com.example.qrbnb_superadmin.ui.login_btn_background
 fun PrimaryActionButton(
     text: String,
     onClick: () -> Unit,
-    backgroundColor:Color,
-    textColor: Color = loginButton
-
+    backgroundColor: Color,
+    textColor: Color = loginButton,
+    isLoading: Boolean = false
 ) {
     Button(
         onClick = onClick,
-
+        enabled = !isLoading,
         modifier = Modifier
             .fillMaxWidth()
             .widthIn(min = 84.dp, max = 480.dp)
@@ -38,12 +38,21 @@ fun PrimaryActionButton(
         shape = RoundedCornerShape(20.dp),
         contentPadding = PaddingValues(horizontal = 16.dp),
         colors = ButtonDefaults.buttonColors(containerColor = backgroundColor),
-
     ) {
-        Text(
-            text = text,
-            style = Loginbtn_style(),
-            color = textColor
-        )
+        if (isLoading) {
+
+            androidx.compose.material3.CircularProgressIndicator(
+                color = Color.White,
+                strokeWidth = 2.dp,
+                modifier = Modifier.height(20.dp)
+            )
+        } else {
+
+            Text(
+                text = text,
+                style = Loginbtn_style(),
+                color = textColor
+            )
+        }
     }
 }

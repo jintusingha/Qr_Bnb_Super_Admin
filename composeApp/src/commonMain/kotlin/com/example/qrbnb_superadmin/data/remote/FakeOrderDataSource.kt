@@ -1,16 +1,16 @@
 package com.example.qrbnb_superadmin.data.remote
 
-import com.example.qrbnb_superadmin.data.remote.orderdetailsdto.CustomerDetails
-import com.example.qrbnb_superadmin.data.remote.orderdetailsdto.MetadataItem
-import com.example.qrbnb_superadmin.data.remote.orderdetailsdto.OrderAction
-import com.example.qrbnb_superadmin.data.remote.orderdetailsdto.OrderDetailsData
-import com.example.qrbnb_superadmin.data.remote.orderdetailsdto.OrderDetailsResponse
-import com.example.qrbnb_superadmin.data.remote.orderdetailsdto.OrderItem
-import com.example.qrbnb_superadmin.data.remote.orderdetailsdto.OrderStatusEventDto
+import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.CustomerDetails
+import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.MetadataItem
+import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderAction
+import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderDetailsData
+import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderDetailsResponse
+import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderItem
+import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderStatusEventDto
 
-import com.example.qrbnb_superadmin.data.remote.orderdetailsdto.OrderSummary
-import com.example.qrbnb_superadmin.data.remote.orderdetailsdto.OrderTotals
-import com.example.qrbnb_superadmin.data.remote.orderdetailsdto.RestaurantDetails
+import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderSummary
+import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderTotals
+import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.RestaurantDetails
 import kotlinx.coroutines.delay
 
 

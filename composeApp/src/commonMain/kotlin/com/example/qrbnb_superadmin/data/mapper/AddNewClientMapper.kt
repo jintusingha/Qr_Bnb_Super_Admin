@@ -1,6 +1,6 @@
 package com.example.qrbnb_superadmin.data.mapper
 
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.FormSchemaResponse
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormSchemaResponse
 import com.example.qrbnb_superadmin.domain.entity.FormAction
 import com.example.qrbnb_superadmin.domain.entity.FormField
 import com.example.qrbnb_superadmin.domain.entity.FormSchema

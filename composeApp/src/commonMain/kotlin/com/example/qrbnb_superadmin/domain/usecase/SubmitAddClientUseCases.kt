@@ -1,6 +1,6 @@
 package com.example.qrbnb_superadmin.domain.usecase
 
-import com.example.qrbnb_superadmin.data.remote.addNewClientDto.AddClientResponseDto
+import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.AddClientResponseDto
 import com.example.qrbnb_superadmin.domain.repository.NewClientRepository
 
 class SubmitAddClientFormUseCase(

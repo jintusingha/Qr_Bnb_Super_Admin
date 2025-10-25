@@ -1,4 +1,4 @@
-package com.example.qrbnb_superadmin.data.remote.addNewClientDto
+package com.example.qrbnb_superadmin.data.remote.model.addNewClientDto
 
 data class AddClientResponseDto(
     val success: Boolean,

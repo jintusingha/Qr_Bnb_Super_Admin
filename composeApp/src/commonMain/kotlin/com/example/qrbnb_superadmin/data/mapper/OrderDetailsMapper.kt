@@ -1,6 +1,6 @@
 package com.example.qrbnb_superadmin.data.mapper
 
-import com.example.qrbnb_superadmin.data.remote.orderdetailsdto.OrderDetailsData
+import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderDetailsData
 import com.example.qrbnb_superadmin.domain.entity.*
 
 fun OrderDetailsData.toDomain(): OrderDetails =

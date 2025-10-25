@@ -1,4 +1,4 @@
-package com.example.qrbnb_superadmin.data.remote.ordersoverviewDto
+package com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto
 
 import kotlinx.serialization.Serializable
 

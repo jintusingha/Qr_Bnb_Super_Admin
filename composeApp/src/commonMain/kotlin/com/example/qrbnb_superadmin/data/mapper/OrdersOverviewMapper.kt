@@ -1,6 +1,14 @@
 package com.example.qrbnb_superadmin.data.mapper
 
-import com.example.qrbnb_superadmin.data.remote.ordersoverviewDto.*
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.ActionDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.ClientDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.ClientPerformanceDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.FiltersDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.GroupByOptionDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrderSummaryDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrdersOverviewDataDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrdersOverviewResponseDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrdersTrendDto
 import com.example.qrbnb_superadmin.domain.entity.*
 
 // ==========================

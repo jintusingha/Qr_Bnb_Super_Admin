@@ -1,16 +1,16 @@
 package com.example.qrbnb_superadmin.data.remote
 
-import com.example.qrbnb_superadmin.data.remote.ordersoverviewDto.ActionDto
-import com.example.qrbnb_superadmin.data.remote.ordersoverviewDto.ChartDataDto
-import com.example.qrbnb_superadmin.data.remote.ordersoverviewDto.ClientDto
-import com.example.qrbnb_superadmin.data.remote.ordersoverviewDto.ClientPerformanceDto
-import com.example.qrbnb_superadmin.data.remote.ordersoverviewDto.FiltersDto
-import com.example.qrbnb_superadmin.data.remote.ordersoverviewDto.GroupByOptionDto
-import com.example.qrbnb_superadmin.data.remote.ordersoverviewDto.OrderSummaryDto
-import com.example.qrbnb_superadmin.data.remote.ordersoverviewDto.OrdersOverviewDataDto
-import com.example.qrbnb_superadmin.data.remote.ordersoverviewDto.OrdersOverviewResponseDto
-import com.example.qrbnb_superadmin.data.remote.ordersoverviewDto.OrdersTrendDto
-import com.example.qrbnb_superadmin.data.remote.ordersoverviewDto.TrendComparisonDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.ActionDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.ChartDataDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.ClientDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.ClientPerformanceDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.FiltersDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.GroupByOptionDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrderSummaryDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrdersOverviewDataDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrdersOverviewResponseDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrdersTrendDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.TrendComparisonDto
 
 class OrdersOverviewDummyDataSource : OrdersOverviewDataSource {
     override suspend fun getOrdersOverviewData(): OrdersOverviewResponseDto {

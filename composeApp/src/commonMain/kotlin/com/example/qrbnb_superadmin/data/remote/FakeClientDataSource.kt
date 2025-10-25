@@ -1,11 +1,11 @@
 package com.example.qrbnb_superadmin.data.remote
 
-import com.example.qrbnb_superadmin.data.remote.clientsoverviewDto.ClientDto
-import com.example.qrbnb_superadmin.data.remote.clientsoverviewDto.ClientsDataDto
-import com.example.qrbnb_superadmin.data.remote.clientsoverviewDto.ClientsResponseDto
-import com.example.qrbnb_superadmin.data.remote.clientsoverviewDto.FiltersDto
-import com.example.qrbnb_superadmin.data.remote.clientsoverviewDto.PaginationDto
-import com.example.qrbnb_superadmin.data.remote.clientsoverviewDto.SummaryDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.ClientDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.ClientsDataDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.ClientsResponseDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.FiltersDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.PaginationDto
+import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.SummaryDto
 import kotlinx.coroutines.delay
 
 class FakeClientDataSource : ClientDataSource {

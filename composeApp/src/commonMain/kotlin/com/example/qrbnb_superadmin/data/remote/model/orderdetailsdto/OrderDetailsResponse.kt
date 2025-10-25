@@ -1,4 +1,4 @@
-package com.example.qrbnb_superadmin.data.remote.orderdetailsdto
+package com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto
 
 
 data class OrderDetailsResponse(
