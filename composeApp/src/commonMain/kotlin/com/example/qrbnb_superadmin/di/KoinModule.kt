@@ -1,6 +1,8 @@
 package com.example.qrbnb_superadmin.di
 
+import androidx.compose.ui.input.key.Key.Companion.T
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.qrbnb_superadmin.data.TokenStorage
 import com.example.qrbnb_superadmin.data.remote.FakeSuperadminApi
 import com.example.qrbnb_superadmin.data.remote.RealSuperadminApi
 import com.example.qrbnb_superadmin.data.remote.SuperadminApi
@@ -10,21 +12,57 @@ import com.example.qrbnb_superadmin.domain.usecase.LoginUseCase
 import com.example.qrbnb_superadmin.navigation.AuthStatusChecker
 import com.example.qrbnb_superadmin.presentation.viewmodel.LoginViewModel
 import com.example.qrbnb_superadmin.presentation.viewmodel.OrdersOverviewViewModel
+import com.example.qrbnb_superadmin.toast.ToastManager
 import io.ktor.client.HttpClient
+import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.utils.EmptyContent.headers
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
+
+val PRE_LOGIN_CLIENT = named("preLoginClient")
+val POST_LOGIN_CLIENT = named("postLoginClient")
 
 // This module groups all the definitions for the Login feature and its dependencies.
 val appModule =
     module {
+        single(POST_LOGIN_CLIENT) {
 
+            val tokenStorage: TokenStorage = get()
 
+            HttpClient {
+                install(ContentNegotiation) {
+                    json(
+                        Json {
+                            ignoreUnknownKeys = true
+                            isLenient = true
+                        },
+                    )
+                }
+                install(Logging) { level = LogLevel.BODY }
+                expectSuccess = true
 
-        single {
+                install(io.ktor.client.plugins.auth.Auth) {
+
+                    bearer {
+                        loadTokens {
+
+                            tokenStorage.getToken()?.let { accessToken ->
+
+                                io.ktor.client.plugins.auth.providers
+                                    .BearerTokens(accessToken, "")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        single(PRE_LOGIN_CLIENT) {
             HttpClient {
                 install(ContentNegotiation) {
                     json(
@@ -42,22 +80,23 @@ val appModule =
         }
 
         single<SuperadminApi> {
-            //  Replace this line with 'RealSuperadminApi(get())' when the backend is ready.
+
 //        FakeSuperadminApi()
-            RealSuperadminApi(httpClient = get())
+            RealSuperadminApi(httpClient = get(PRE_LOGIN_CLIENT))
         }
 
         single<SuperadminRepository> {
             SuperadminRepositoryImpl(api = get())
         }
-        single{
+        single {
             AuthStatusChecker(tokenStorage = get())
-
         }
 
         factory {
-            LoginUseCase(repository = get(),
-                tokenStorage = get()) // 'get()' automatically finds the SuperadminRepository
+            LoginUseCase(
+                repository = get(),
+                tokenStorage = get(),
+            ) // 'get()' automatically finds the SuperadminRepository
         }
 
         factory {

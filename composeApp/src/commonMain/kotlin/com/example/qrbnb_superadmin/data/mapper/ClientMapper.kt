@@ -4,12 +4,13 @@ import com.example.qrbnb_superadmin.data.remote.clientsoverviewDto.ClientDto
 import com.example.qrbnb_superadmin.data.remote.clientsoverviewDto.SummaryDto
 import com.example.qrbnb_superadmin.domain.entity.Client
 import com.example.qrbnb_superadmin.domain.entity.ClientOverview
+import io.ktor.client.utils.EmptyContent.status
 
 fun ClientDto.toClient(): Client {
     return Client(
         id = clientId.toString(),
-        name = clientName,
-        status = status
+        name = contactName,
+
     )
 }
 

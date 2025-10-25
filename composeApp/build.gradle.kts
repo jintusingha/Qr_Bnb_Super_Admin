@@ -71,6 +71,7 @@ kotlin {
             implementation("io.ktor:ktor-client-content-negotiation:3.0.1")
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.1")
             implementation("io.ktor:ktor-client-logging:3.0.1")
+            implementation("io.ktor:ktor-client-auth:3.0.1")
 
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
 

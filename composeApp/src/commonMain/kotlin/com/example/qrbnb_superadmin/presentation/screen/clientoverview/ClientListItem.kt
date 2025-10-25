@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import com.example.qrbnb_superadmin.domain.entity.Client
 import com.example.qrbnb_superadmin.presentation.state.ClientsOverviewState
 import com.example.qrbnb_superadmin.ui.client_id_style
@@ -36,7 +37,9 @@ fun ClientListItem(
             Text(
                 text = "Client ID: ${client.id}",
                 style = client_id_style(),
-                color = client_id_text_color
+                color = client_id_text_color,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         },
         trailingContent = {

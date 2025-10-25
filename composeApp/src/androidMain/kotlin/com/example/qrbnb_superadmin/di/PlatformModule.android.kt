@@ -9,5 +9,7 @@ import org.koin.dsl.module
 
 actual val platformModule = module {
     single<ToastManager> { AndroidToastManager(get()) }
-    single<TokenStorage>{ AndroidTokenStorage(context = androidContext()) }
+    single<TokenStorage>{ AndroidTokenStorage(get()) }
 }
+
+// we can also use in place of this context = androidcontext() directly get() since koin will automatically give us that

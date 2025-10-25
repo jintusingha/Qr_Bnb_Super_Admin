@@ -26,44 +26,29 @@ class FakeClientDataSource : ClientDataSource {
                 ),
                 clients = listOf(
                     ClientDto(
-                        clientId = 12345,
-                        clientName = "Olivia Carter",
-                        status = "Active",
-                        subscription = "Premium",
-                        menusLive = 5,
-                        lastActive = "2025-10-11T14:30:00Z"
+                        clientId = "12345",
+                        contactName =  "Olivia Carter"
                     ),
                     ClientDto(
-                        clientId = 67890,
-                        clientName = "Ethan Bennett",
-                        status = "Active",
-                        subscription = "Standard",
-                        menusLive = 3,
-                        lastActive = "2025-10-12T09:15:00Z"
+                        clientId = "67890",
+                        contactName = "Ethan Bennett",
+
+
                     ),
                     ClientDto(
-                        clientId = 24680,
-                        clientName = "Sophia Hayes",
-                        status = "Inactive",
-                        subscription = "Free",
-                        menusLive = 0,
-                        lastActive = "2025-09-29T18:45:00Z"
+                        clientId = "24680",
+                        contactName = "Sophia Hayes",
+
                     ),
                     ClientDto(
-                        clientId = 13579,
-                        clientName = "Noah Parker",
-                        status = "Active",
-                        subscription = "Premium",
-                        menusLive = 8,
-                        lastActive = "2025-10-10T16:00:00Z"
+                        clientId = "13579",
+                        contactName = "Noah Parker",
+
                     ),
                     ClientDto(
-                        clientId = 97531,
-                        clientName = "Ava Thompson",
-                        status = "Pending",
-                        subscription = "Trial",
-                        menusLive = 1,
-                        lastActive = null
+                        clientId = "97531",
+                        contactName  = "Ava Thompson",
+
                     ),
 
 
