@@ -4,5 +4,5 @@ import com.example.qrbnb_superadmin.domain.entity.ClientDetails
 
 
 interface ClientDetailsRepository {
-    suspend fun getClientDetails(): ClientDetails
+    suspend fun getClientDetails(clientId:String): ClientDetails
 }

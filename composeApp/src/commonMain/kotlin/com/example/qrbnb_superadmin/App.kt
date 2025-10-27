@@ -44,11 +44,11 @@ fun App() {
 //        ClientDetailsScreen(onNavigateBack = {})
 //        QRBnBSuperadminLoginScreen()
 //
-////        AddClientScreen(
-////
-////            onBackClick ={}
-////
-////        )
+//        AddClientScreen(
+//
+//            onBackClick ={}
+//
+//        )
 ////        OrderDetailsScreen(onBackClick = {})
 ////        OrdersOverviewScreen(onBackClick = {})
             AppNavHost(authStatusChecker =authStatusChecker)

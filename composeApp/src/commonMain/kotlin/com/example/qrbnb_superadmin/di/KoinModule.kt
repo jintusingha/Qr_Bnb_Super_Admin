@@ -1,24 +1,18 @@
 package com.example.qrbnb_superadmin.di
 
-import androidx.compose.ui.input.key.Key.Companion.T
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.qrbnb_superadmin.data.TokenStorage
-import com.example.qrbnb_superadmin.data.remote.FakeSuperadminApi
-import com.example.qrbnb_superadmin.data.remote.RealSuperadminApi
-import com.example.qrbnb_superadmin.data.remote.SuperadminApi
+import com.example.qrbnb_superadmin.data.remote.service.RealSuperadminApi
+import com.example.qrbnb_superadmin.data.remote.service.SuperadminApi
 import com.example.qrbnb_superadmin.data.repository.SuperadminRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.SuperadminRepository
 import com.example.qrbnb_superadmin.domain.usecase.LoginUseCase
 import com.example.qrbnb_superadmin.navigation.AuthStatusChecker
 import com.example.qrbnb_superadmin.presentation.viewmodel.LoginViewModel
-import com.example.qrbnb_superadmin.presentation.viewmodel.OrdersOverviewViewModel
-import com.example.qrbnb_superadmin.toast.ToastManager
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.utils.EmptyContent.headers
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.koin.core.qualifier.named

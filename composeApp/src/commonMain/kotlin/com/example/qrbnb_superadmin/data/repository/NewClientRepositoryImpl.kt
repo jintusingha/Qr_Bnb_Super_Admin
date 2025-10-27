@@ -1,7 +1,7 @@
 package com.example.qrbnb_superadmin.data.repository
 
 import com.example.qrbnb_superadmin.data.mapper.toDomain
-import com.example.qrbnb_superadmin.data.remote.AddNewClientDataSource
+import com.example.qrbnb_superadmin.data.remote.service.AddNewClientDataSource
 import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.AddClientResponseDto
 import com.example.qrbnb_superadmin.domain.entity.FormSchema
 import com.example.qrbnb_superadmin.domain.repository.NewClientRepository

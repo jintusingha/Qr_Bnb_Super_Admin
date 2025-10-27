@@ -1,7 +1,7 @@
 package com.example.qrbnb_superadmin.data.repository
 
-import com.example.qrbnb_superadmin.data.remote.LoginRequest
-import com.example.qrbnb_superadmin.data.remote.SuperadminApi
+import com.example.qrbnb_superadmin.data.remote.service.LoginRequest
+import com.example.qrbnb_superadmin.data.remote.service.SuperadminApi
 import com.example.qrbnb_superadmin.domain.entity.User
 import com.example.qrbnb_superadmin.domain.exception.InvalidCredentialsException
 import com.example.qrbnb_superadmin.domain.repository.SuperadminRepository

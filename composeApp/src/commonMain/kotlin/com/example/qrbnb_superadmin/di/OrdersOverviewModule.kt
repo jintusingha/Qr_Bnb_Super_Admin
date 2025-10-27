@@ -1,8 +1,8 @@
 package com.example.qrbnb_superadmin.di
 
 import androidx.lifecycle.ViewModelProvider
-import com.example.qrbnb_superadmin.data.remote.OrdersOverviewDataSource
-import com.example.qrbnb_superadmin.data.remote.OrdersOverviewDummyDataSource
+import com.example.qrbnb_superadmin.data.remote.service.OrdersOverviewDataSource
+import com.example.qrbnb_superadmin.data.remote.service.OrdersOverviewDummyDataSource
 import com.example.qrbnb_superadmin.data.repository.OrdersOverviewRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.OrdersOverviewRepository
 import com.example.qrbnb_superadmin.domain.usecase.GetOrdersOverviewUseCase

@@ -1,4 +1,4 @@
-package com.example.qrbnb_superadmin.data.remote
+package com.example.qrbnb_superadmin.data.remote.service
 
 import kotlinx.serialization.Serializable
 

@@ -1,4 +1,4 @@
-package com.example.qrbnb_superadmin.data.remote
+package com.example.qrbnb_superadmin.data.remote.service
 
 import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.ClientDto
 import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.ClientsDataDto
@@ -27,33 +27,32 @@ class FakeClientDataSource : ClientDataSource {
                 clients = listOf(
                     ClientDto(
                         clientId = "12345",
-                        contactName =  "Olivia Carter"
+                        contactName = "Olivia Carter"
                     ),
                     ClientDto(
                         clientId = "67890",
                         contactName = "Ethan Bennett",
 
 
-                    ),
+                        ),
                     ClientDto(
                         clientId = "24680",
                         contactName = "Sophia Hayes",
 
-                    ),
+                        ),
                     ClientDto(
                         clientId = "13579",
                         contactName = "Noah Parker",
 
-                    ),
+                        ),
                     ClientDto(
                         clientId = "97531",
-                        contactName  = "Ava Thompson",
+                        contactName = "Ava Thompson",
+
+                        ),
+
 
                     ),
-
-
-
-                ),
                 pagination = PaginationDto(
                     page = 1,
                     pageSize = 20,

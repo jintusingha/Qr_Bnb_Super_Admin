@@ -1,4 +1,4 @@
-package com.example.qrbnb_superadmin.data.remote
+package com.example.qrbnb_superadmin.data.remote.service
 
 import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.AddClientResponseDto
 import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.ClientDataDto
@@ -6,12 +6,10 @@ import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormAction
 import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormData
 import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormErrorDto
 import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormField
-
 import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.FormSchemaResponse
 import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.Option
 import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.ResponseMetaDto
 import com.example.qrbnb_superadmin.data.remote.model.addNewClientDto.ValidationRule
-
 import kotlinx.coroutines.delay
 
 class FakeAddClientDataSource : AddNewClientDataSource {
@@ -151,4 +149,3 @@ class FakeAddClientDataSource : AddNewClientDataSource {
         return email.matches(Regex("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"))
     }
 }
-

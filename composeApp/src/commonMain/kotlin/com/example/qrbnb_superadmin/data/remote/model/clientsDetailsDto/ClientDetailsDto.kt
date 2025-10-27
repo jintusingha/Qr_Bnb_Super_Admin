@@ -1,37 +1,55 @@
 package com.example.qrbnb_superadmin.data.remote.model.clientsDetailsDto
 
-data class ClientDetailsDto(
-    val client: ClientInfoDto,
-    val activityOverview: ActivityOverviewDto,
-    val timeline: List<TimelineEventDto>,
-    val actions: List<ClientActionDto>,
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class ClientDetailsResponseDto(
+    val success: Boolean,
+    val message: String,
+    val data: ClientDetailsDto
 )
 
+
+@Serializable
+data class ClientDetailsDto(
+    val clientId: String,
+    val profile: ClientInfoDto,
+    val activity: ActivityOverviewDto,
+    val timeline: List<TimelineEventDto>,
+    val actions: ClientActionsDto
+)
+
+
+@Serializable
 data class ClientInfoDto(
-    val clientId: Int,
+    val avatarUrl: String,
     val name: String,
     val email: String,
     val phone: String,
-    val avatarUrl: String,
     val registrationDate: String,
-    val subscriptionStatus: String,
+    val subscriptionStatus: String
 )
 
+
+@Serializable
 data class ActivityOverviewDto(
     val ordersPlaced: Int,
     val itemsCreated: Int,
     val categoriesCount: Int,
-    val lastLogin: String,
+    val lastLogin: String
 )
 
+
+@Serializable
 data class TimelineEventDto(
-    val title: String,
-    val date: String,
-    val description: String,
+    val label: String,
+    val date: String
 )
 
-data class ClientActionDto(
-    val label: String,
-    val action: String,
-    val enabled: Boolean,
+
+@Serializable
+data class ClientActionsDto(
+    val canActivate: Boolean,
+    val canDelete: Boolean,
+    val canExport: Boolean
 )

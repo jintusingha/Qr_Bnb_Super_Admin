@@ -1,7 +1,7 @@
 package com.example.qrbnb_superadmin.data.repository
 
 import com.example.qrbnb_superadmin.data.mapper.toDomain
-import com.example.qrbnb_superadmin.data.remote.OrdersOverviewDataSource
+import com.example.qrbnb_superadmin.data.remote.service.OrdersOverviewDataSource
 import com.example.qrbnb_superadmin.domain.entity.OrdersOverview
 import com.example.qrbnb_superadmin.domain.repository.OrdersOverviewRepository
 

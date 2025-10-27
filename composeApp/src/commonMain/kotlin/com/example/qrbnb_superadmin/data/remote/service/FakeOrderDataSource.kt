@@ -1,5 +1,6 @@
-package com.example.qrbnb_superadmin.data.remote
+package com.example.qrbnb_superadmin.data.remote.service
 
+import com.example.qrbnb_superadmin.data.remote.service.OrderDataSource
 import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.CustomerDetails
 import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.MetadataItem
 import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderAction
@@ -7,12 +8,10 @@ import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderDetai
 import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderDetailsResponse
 import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderItem
 import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderStatusEventDto
-
 import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderSummary
 import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderTotals
 import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.RestaurantDetails
 import kotlinx.coroutines.delay
-
 
 class FakeOrderDataSource : OrderDataSource {
 

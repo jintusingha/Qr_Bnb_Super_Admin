@@ -30,6 +30,7 @@ import com.example.qrbnb_superadmin.presentation.viewmodel.ClientDetailsViewMode
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
+import org.koin.core.parameter.parametersOf
 import qr_bnb_super_admin.composeapp.generated.resources.MeatBallsMenuIcon
 import qr_bnb_super_admin.composeapp.generated.resources.Res
 import qr_bnb_super_admin.composeapp.generated.resources.leftArrowIcon
@@ -37,12 +38,13 @@ import qr_bnb_super_admin.composeapp.generated.resources.leftArrowIcon
 
 @Composable
 fun ClientDetailsScreen(
-    viewModel: ClientDetailsViewModel = koinInject(),
+    clientId:String,
+    viewModel: ClientDetailsViewModel = koinInject(parameters = { parametersOf(clientId) }),
     onNavigateBack: () -> Unit,
 ) {
     val state by viewModel.state.collectAsState()
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(clientId) {
         viewModel.fetchClientDetails()
     }
 
@@ -56,7 +58,7 @@ fun ClientDetailsScreen(
 
                 navigationIcon = {
 
-                    IconButton(onClick = {}){
+                    IconButton(onClick = onNavigateBack){
 
                         Icon(painter = painterResource(Res.drawable.leftArrowIcon),
 

@@ -1,7 +1,7 @@
 package com.example.qrbnb_superadmin.di
 
-import com.example.qrbnb_superadmin.data.remote.AddNewClientDataSource
-import com.example.qrbnb_superadmin.data.remote.FakeAddClientDataSource
+import com.example.qrbnb_superadmin.data.remote.service.AddNewClientDataSource
+import com.example.qrbnb_superadmin.data.remote.service.FakeAddClientDataSource
 
 import com.example.qrbnb_superadmin.data.repository.NewClientRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.NewClientRepository

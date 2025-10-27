@@ -1,10 +1,10 @@
 package com.example.qrbnb_superadmin.di
 
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.qrbnb_superadmin.data.remote.ClientDataSource
-import com.example.qrbnb_superadmin.data.remote.FakeClientDataSource
+import com.example.qrbnb_superadmin.data.remote.service.ClientDataSource
+import com.example.qrbnb_superadmin.data.remote.service.FakeClientDataSource
 
-import com.example.qrbnb_superadmin.data.remote.RealClientDataSource
+import com.example.qrbnb_superadmin.data.remote.service.RealClientDataSource
 import com.example.qrbnb_superadmin.data.repository.ClientRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.ClientRepository
 import com.example.qrbnb_superadmin.domain.usecase.GetClientsOverviewUseCase

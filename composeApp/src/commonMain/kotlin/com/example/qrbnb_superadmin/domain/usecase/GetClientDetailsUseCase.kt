@@ -6,8 +6,8 @@ import com.example.qrbnb_superadmin.domain.repository.ClientRepository
 
 
 class GetClientDetailsUseCase(private val repository: ClientDetailsRepository){
-    suspend operator fun invoke(): ClientDetails{
-        return repository.getClientDetails()
+    suspend operator fun invoke(clientId:String): ClientDetails{
+        return repository.getClientDetails(clientId)
 
     }
 }

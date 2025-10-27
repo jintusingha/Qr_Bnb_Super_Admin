@@ -1,7 +1,7 @@
 package com.example.qrbnb_superadmin.di
 
-import com.example.qrbnb_superadmin.data.remote.FakeOrderDataSource
-import com.example.qrbnb_superadmin.data.remote.OrderDataSource
+import com.example.qrbnb_superadmin.data.remote.service.FakeOrderDataSource
+import com.example.qrbnb_superadmin.data.remote.service.OrderDataSource
 import com.example.qrbnb_superadmin.data.repository.OrderRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.OrderRepository
 import com.example.qrbnb_superadmin.domain.usecase.GetOrderDetailsUseCase

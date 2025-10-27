@@ -2,7 +2,7 @@ package com.example.qrbnb_superadmin.data.repository
 
 import com.example.qrbnb_superadmin.data.mapper.toClient
 import com.example.qrbnb_superadmin.data.mapper.toClientOverview
-import com.example.qrbnb_superadmin.data.remote.ClientDataSource
+import com.example.qrbnb_superadmin.data.remote.service.ClientDataSource
 import com.example.qrbnb_superadmin.domain.entity.Client
 import com.example.qrbnb_superadmin.domain.entity.ClientOverview
 import com.example.qrbnb_superadmin.domain.repository.ClientRepository

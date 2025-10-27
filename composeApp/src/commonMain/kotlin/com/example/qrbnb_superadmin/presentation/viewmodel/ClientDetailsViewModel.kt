@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class ClientDetailsViewModel(
+    private val clientId:String,
     private val getClientDetailsUseCase: GetClientDetailsUseCase
 ) : ViewModel() {
 
@@ -19,7 +20,7 @@ class ClientDetailsViewModel(
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true, error = null)
             try {
-                val details = getClientDetailsUseCase()
+                val details = getClientDetailsUseCase(clientId)
                 _state.value = _state.value.copy(clientDetails = details)
             } catch (e: Exception) {
                 _state.value = _state.value.copy(error = e.message ?: "Unknown Error")
