@@ -6,6 +6,9 @@ object ScreenRoutes{
     const val CLIENT_OVERVIEW="client_overview_route"
     const val CLIENT_DETAILS="client_details/{clientId}"
     const val CLIENT_ADD="client_add_route"
+    const val ORDERS_OVERVIEW="orders_overview"
+
+
 
     fun clientDetailsPath(clientId:String)="client_details/$clientId"
 }

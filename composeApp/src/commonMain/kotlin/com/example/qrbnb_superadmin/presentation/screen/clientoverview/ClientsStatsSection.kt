@@ -15,6 +15,7 @@ import com.example.qrbnb_superadmin.domain.entity.ClientOverview
 @Composable
 fun ClientsStatsSection(
     overview: ClientOverview?,
+    onTotalClientsClick:()->Unit,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.padding(horizontal = 16.dp)) {
@@ -26,7 +27,9 @@ fun ClientsStatsSection(
             StatCard(
                 title = "Total Clients",
                 value = overview?.totalClients.toString(),
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                onClick = onTotalClientsClick
+
             )
             StatCard(
                 title = "Total Menus Live",

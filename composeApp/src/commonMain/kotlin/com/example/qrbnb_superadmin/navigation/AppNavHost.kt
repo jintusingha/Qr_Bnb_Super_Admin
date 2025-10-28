@@ -1,5 +1,6 @@
 package com.example.qrbnb_superadmin.navigation
 
+import OrdersOverviewScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -36,7 +37,10 @@ fun AppNavHost(authStatusChecker: AuthStatusChecker) {
                 navController.navigate(ScreenRoutes.clientDetailsPath(clientId))
             }, onAddClientClick = {
                 navController.navigate(ScreenRoutes.CLIENT_ADD)
-            })
+            },
+                onTotalClientsClick = {
+                    navController.navigate(ScreenRoutes.ORDERS_OVERVIEW)
+                })
         }
         composable(
             route = ScreenRoutes.CLIENT_DETAILS,
@@ -55,6 +59,10 @@ fun AppNavHost(authStatusChecker: AuthStatusChecker) {
         }
         composable(ScreenRoutes.CLIENT_ADD){
             AddClientScreen(onBackClick = { navController.navigate(ScreenRoutes.CLIENT_OVERVIEW) })
+        }
+        composable(ScreenRoutes.ORDERS_OVERVIEW) {
+            OrdersOverviewScreen(onBackClick = {navController.navigate(ScreenRoutes.CLIENT_OVERVIEW)})
+
         }
     }
 }

@@ -52,6 +52,7 @@ fun ClientsOverviewScreen(
     viewModel: ClientsOverviewViewModel = koinInject(),
     onClientClick: (clientId: String) -> Unit,
     onAddClientClick: () -> Unit,
+    onTotalClientsClick:()->Unit
 ) {
     val state by viewModel.state.collectAsState()
 
@@ -121,7 +122,7 @@ fun ClientsOverviewScreen(
             )
             Spacer(Modifier.height(8.dp))
 
-            ClientsStatsSection(overview = state.overview)
+            ClientsStatsSection(overview = state.overview,onTotalClientsClick=onTotalClientsClick)
             Spacer(Modifier.height(16.dp))
 
             ClientsSearchAndFilter(
