@@ -96,7 +96,6 @@ fun OrdersOverviewScreen(
 
             when (state) {
                 is OrdersOverviewState.Loading -> {
-                    // Show a loading indicator while data is being fetched
                     Column(
                         modifier = Modifier.fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally,
@@ -108,7 +107,6 @@ fun OrdersOverviewScreen(
                 }
 
                 is OrdersOverviewState.Error -> {
-                    // Show an error message
                     Column(Modifier.padding(16.dp)) {
                         Text(
                             text = "Error: ${(state as OrdersOverviewState.Error).message}",
@@ -118,7 +116,6 @@ fun OrdersOverviewScreen(
                 }
 
                 is OrdersOverviewState.Success -> {
-                    // Data is ready, safely extract the OrderSummary (Key Metrics)
                     val data = (state as OrdersOverviewState.Success).data.data
                     DashboardContent(data)
                 }

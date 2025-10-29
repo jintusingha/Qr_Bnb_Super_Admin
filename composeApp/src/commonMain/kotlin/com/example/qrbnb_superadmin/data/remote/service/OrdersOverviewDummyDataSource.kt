@@ -1,111 +1,73 @@
 package com.example.qrbnb_superadmin.data.remote.service
 
-import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.ActionDto
-import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.ChartDataDto
-import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.ClientDto
 import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.ClientPerformanceDto
-import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.FiltersDto
-import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.GroupByOptionDto
 import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrderSummaryDto
 import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrdersOverviewDataDto
 import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrdersOverviewResponseDto
 import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrdersTrendDto
-import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.TrendComparisonDto
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.TrendDataDto
 
 class OrdersOverviewDummyDataSource : OrdersOverviewDataSource {
     override suspend fun getOrdersOverviewData(): OrdersOverviewResponseDto {
-        val summaryDto =
-            OrderSummaryDto(
-                totalOrders = 1234,
-                totalRevenue = 5678,
-                activeClients = 345,
-                topSellingCategory = "Coffee",
-            )
+        val summaryDto = OrderSummaryDto(
+            totalOrders = 1985,
+            totalRevenue = 5319,
+            activeClients = 498,
+            topCategory = "Grocery"
+        )
 
-        val trendComparisonDto =
-            TrendComparisonDto(
-                period = "Last 30 Days",
-                percentageChange = 12,
-                trend = "up",
-            )
+        val trendPoints = listOf(
+            TrendDataDto(month = "Jan", orders = 242),
+            TrendDataDto(month = "Feb", orders = 277),
+            TrendDataDto(month = "Mar", orders = 287),
+            TrendDataDto(month = "Apr", orders = 261),
+            TrendDataDto(month = "May", orders = 388),
+            TrendDataDto(month = "Jun", orders = 315)
+        )
 
-        val chartDataDto =
-            ChartDataDto(
-                xAxis = listOf("Jan", "Feb", "Mar", "Apr", "May", "Jun"),
-                yAxis = listOf(200, 230, 260, 220, 290, 270),
-            )
+        val ordersTrendDto = OrdersTrendDto(
+            period = "6m",
+            growthPercent = +20,
+            trendData = trendPoints
+        )
 
-        val ordersTrendDto =
-            OrdersTrendDto(
-                label = "Orders Over Time",
-                comparison = trendComparisonDto,
-                chart = chartDataDto,
-            )
-
-        val clientDtos =
-            listOf(
-                ClientDto(
-                    id = "c_001",
-                    name = "Sophia",
-                    avatarUrl = "https://cdn.qrbnb.io/avatars/sophia.png",
-                    ordersCount = 12,
-                    lastOrderAgo = "2h ago",
-                    revenue = 120,
-                ),
-                ClientDto(
-                    id = "c_002",
-                    name = "Ethan",
-                    avatarUrl = "https://cdn.qrbnb.io/avatars/ethan.png",
-                    ordersCount = 8,
-                    lastOrderAgo = "3h ago",
-                    revenue = 80,
-                ),
-                ClientDto(
-                    id = "c_003",
-                    name = "Olivia",
-                    avatarUrl = "https://cdn.qrbnb.io/avatars/olivia.png",
-                    ordersCount = 15,
-                    lastOrderAgo = "1h ago",
-                    revenue = 150,
-                ),
-            )
-
-        val clientPerformanceDto =
+        val clientPerformanceList = listOf(
             ClientPerformanceDto(
-                sortOptions = listOf("Revenue", "Orders", "Last Order"),
-                defaultSort = "Revenue",
-                clients = clientDtos,
+                id = "2b8a5cd0-d329-48a2-b4e7-0d8002b4b51e",
+                name = "Sophia",
+                avatar = "https://api.dicebear.com/7.x/adventurer/svg?seed=Sophia",
+                orders = 11,
+                revenue = 195,
+                lastOrderAgo = "2h"
+            ),
+            ClientPerformanceDto(
+                id = "2e263732-7687-4b1a-9b61-a2cd8a76b238",
+                name = "Ethan",
+                avatar = "https://api.dicebear.com/7.x/adventurer/svg?seed=Ethan",
+                orders = 12,
+                revenue = 141,
+                lastOrderAgo = "4h"
+            ),
+            ClientPerformanceDto(
+                id = "dd2c0c4e-7272-406e-a173-10676f428e54",
+                name = "Olivia",
+                avatar = "https://api.dicebear.com/7.x/adventurer/svg?seed=Olivia",
+                orders = 12,
+                revenue = 127,
+                lastOrderAgo = "4h"
             )
+        )
 
-        val dataDto =
-            OrdersOverviewDataDto(
-                summary = summaryDto,
-                ordersTrend = ordersTrendDto,
-                filters =
-                    FiltersDto(
-                        timeframe = listOf("Last 7 Days", "Last 30 Days", "Last 90 Days"),
-                        groupBy =
-                            listOf(
-                                GroupByOptionDto(id = "client", label = "Client"),
-                                GroupByOptionDto(id = "category", label = "Category"),
-                                GroupByOptionDto(id = "item", label = "Item"),
-                            ),
-                        defaultGroupBy = "client",
-                    ),
-                clientPerformance = clientPerformanceDto,
-                actions =
-                    listOf(
-                        ActionDto(
-                            id = "addOrder",
-                            label = "Add New Order",
-                            icon = "plus",
-                            type = "button",
-                            endpoint = "/api/superadmin/orders/new",
-                            method = "GET",
-                        ),
-                    ),
-            )
+        val dataDto = OrdersOverviewDataDto(
+            summary = summaryDto,
+            ordersTrend = ordersTrendDto,
+            clientPerformance = clientPerformanceList
+        )
 
-        return OrdersOverviewResponseDto(success = true, data = dataDto)
+        return OrdersOverviewResponseDto(
+            success = true,
+            message = "Mock Orders Overview (staging/local)",
+            data = dataDto
+        )
     }
 }

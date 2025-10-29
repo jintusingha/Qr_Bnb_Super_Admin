@@ -12,12 +12,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.qrbnb_superadmin.domain.entity.OrderSummary
+import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderSummary
+import com.example.qrbnb_superadmin.domain.entity.Summary
+
 
 import com.example.qrbnb_superadmin.presentation.screen.clientoverview.StatCard
 
 @Composable
-fun OrderStatsSection(keyMetrics: OrderSummary, modifier: Modifier = Modifier) {
+fun OrderStatsSection(keyMetrics: Summary, modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
         // Row 1: Total Orders and Total Revenue
         Row(
@@ -51,7 +53,7 @@ fun OrderStatsSection(keyMetrics: OrderSummary, modifier: Modifier = Modifier) {
             )
             StatCard(
                 title = "Top-Selling Category",
-                value = keyMetrics.topSellingCategory,
+                value = keyMetrics.topCategory,
                 modifier = Modifier.weight(1f).fillMaxHeight()
             )
         }

@@ -284,5 +284,16 @@ fun  style_14_21_500(): TextStyle{
 
     )
 }
+@Composable
+fun  style_13_20_700(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W700,         // font-weight: 700
+        fontSize = 13.sp,                     // font-size: 22px
+        lineHeight = 20.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
 
+    )
+}
 

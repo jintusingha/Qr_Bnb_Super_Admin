@@ -10,44 +10,28 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-
-class OrdersOverviewViewModel(private val getOrdersOverviewUseCase: GetOrdersOverviewUseCase): ViewModel() {
-
-
-    private val _state= MutableStateFlow<OrdersOverviewState>(OrdersOverviewState.Loading)
+class OrdersOverviewViewModel(
+    private val getOrdersOverviewUseCase: GetOrdersOverviewUseCase,
+) : ViewModel() {
+    private val _state = MutableStateFlow<OrdersOverviewState>(OrdersOverviewState.Loading)
     val state: StateFlow<OrdersOverviewState> = _state.asStateFlow()
 
-    init{
+    init {
         loadData()
     }
 
-
-    fun loadData(){
-
-        _state.value= OrdersOverviewState.Loading
+    fun loadData() {
+        _state.value = OrdersOverviewState.Loading
         viewModelScope.launch {
             try {
-                val domainData=getOrdersOverviewUseCase()
-                _state.value= OrdersOverviewState.Success(domainData)
-            }
-            catch (e: Exception){
-                _state.value= OrdersOverviewState.Error(
-                    message = "An unknown error occurred while loading data"
-                )
+                val domainData = getOrdersOverviewUseCase()
+                _state.value = OrdersOverviewState.Success(domainData)
+            } catch (e: Exception) {
+                _state.value =
+                    OrdersOverviewState.Error(
+                        message = "An unknown error occurred while loading data",
+                    )
             }
         }
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }

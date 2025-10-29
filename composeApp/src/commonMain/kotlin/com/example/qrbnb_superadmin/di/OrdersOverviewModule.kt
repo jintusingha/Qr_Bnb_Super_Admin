@@ -3,6 +3,7 @@ package com.example.qrbnb_superadmin.di
 import androidx.lifecycle.ViewModelProvider
 import com.example.qrbnb_superadmin.data.remote.service.OrdersOverviewDataSource
 import com.example.qrbnb_superadmin.data.remote.service.OrdersOverviewDummyDataSource
+import com.example.qrbnb_superadmin.data.remote.service.RealOrdersOverviewDataSource
 import com.example.qrbnb_superadmin.data.repository.OrdersOverviewRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.OrdersOverviewRepository
 import com.example.qrbnb_superadmin.domain.usecase.GetOrdersOverviewUseCase
@@ -13,7 +14,8 @@ val OrdersOverviewModule =
     module {
 
         single<OrdersOverviewDataSource> {
-            OrdersOverviewDummyDataSource()
+//            OrdersOverviewDummyDataSource()
+            RealOrdersOverviewDataSource(httpClient = get(POST_LOGIN_CLIENT))
         }
 
         single<OrdersOverviewRepository> {

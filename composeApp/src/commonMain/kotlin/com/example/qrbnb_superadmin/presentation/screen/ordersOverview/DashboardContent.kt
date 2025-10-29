@@ -9,18 +9,15 @@ import com.example.qrbnb_superadmin.domain.entity.OrdersOverviewData
 
 @Composable
 fun DashboardContent(data: OrdersOverviewData) {
-    // 1. Key Metrics Section
     OrderStatsSection(keyMetrics = data.summary)
 
     Spacer(Modifier.height(32.dp))
 
-    // 2. Orders Over Time Section
     OrdersOverTimeSection(ordersTrend = data.ordersTrend)
-//
+
     Spacer(Modifier.height(32.dp))
-//
-//    // 3. Client Performance Section
+
     ClientPerformanceSection(clientPerformance = data.clientPerformance)
 
-    Spacer(Modifier.height(100.dp)) // Extra space for the floating action button
+    Spacer(Modifier.height(100.dp))
 }
