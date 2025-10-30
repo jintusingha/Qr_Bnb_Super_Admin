@@ -296,4 +296,43 @@ fun  style_13_20_700(): TextStyle{
 
     )
 }
+@Composable
+fun  style_14_21_700(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W700,         // font-weight: 700
+        fontSize = 14.sp,                     // font-size: 22px
+        lineHeight = 21.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+@Composable
+fun  style_16_20_700(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W700,         // font-weight: 700
+        fontSize = 16.sp,                     // font-size: 22px
+        lineHeight = 20.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+        textAlign = TextAlign.Center
+
+    )
+}
+
+@Composable
+fun  style_14_21_400_Orders_screen(): TextStyle{
+    return TextStyle(
+        fontFamily = plusJakartaSans(), // Your custom font
+        fontWeight = FontWeight.W400,         // font-weight: 700
+        fontSize = 14.sp,                     // font-size: 22px
+        lineHeight = 21.sp,                   // line-height: 28px
+        letterSpacing = 0.sp,                 // letter-spacing: 0px (0.sp is the default)
+
+        // ✅ FIX: Change alignment to start (left)
+        textAlign = TextAlign.Start
+
+    )
+}
 

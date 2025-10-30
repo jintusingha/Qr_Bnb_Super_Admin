@@ -27,6 +27,7 @@ import com.example.qrbnb_superadmin.presentation.screen.AddClientScreen
 import com.example.qrbnb_superadmin.presentation.screen.ClientDetailsScreen
 import com.example.qrbnb_superadmin.presentation.screen.ClientsOverviewScreen
 import com.example.qrbnb_superadmin.presentation.screen.LoginScreen
+import com.example.qrbnb_superadmin.presentation.screen.OrdersScreen
 import com.example.qrbnb_superadmin.presentation.screen.QRBnBSuperadminLoginScreen
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -40,18 +41,19 @@ fun App() {
     MaterialTheme {
 
             val authStatusChecker= koinInject<AuthStatusChecker>()
-////        ClientsOverviewScreen(onClientClick = {}, onAddClientClick = {})
+//        ClientsOverviewScreen(onClientClick = {}, onAddClientClick = {}, onTotalClientsClick = {})
 //        ClientDetailsScreen(onNavigateBack = {})
 //        QRBnBSuperadminLoginScreen()
 //
 //        AddClientScreen(
 //
 //            onBackClick ={}
-//
+//w
 //        )
-////        OrderDetailsScreen(onBackClick = {})
+//        OrderDetailsScreen(onBackClick = {})
 //        OrdersOverviewScreen(onBackClick = {})
-            AppNavHost(authStatusChecker =authStatusChecker)
+//            AppNavHost(authStatusChecker =authStatusChecker)
+        OrdersScreen()
     }
 
 

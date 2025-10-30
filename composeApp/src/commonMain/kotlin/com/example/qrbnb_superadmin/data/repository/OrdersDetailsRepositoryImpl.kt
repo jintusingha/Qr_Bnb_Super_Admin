@@ -3,11 +3,11 @@ package com.example.qrbnb_superadmin.data.repository
 import com.example.qrbnb_superadmin.data.mapper.toDomain
 import com.example.qrbnb_superadmin.data.remote.service.OrderDataSource
 import com.example.qrbnb_superadmin.domain.entity.OrderDetails
-import com.example.qrbnb_superadmin.domain.repository.OrderRepository
+import com.example.qrbnb_superadmin.domain.repository.OrderDetailsRepository
 
-class OrderRepositoryImpl(
+class OrdersDetailsRepositoryImpl(
     private val dataSource: OrderDataSource // Injected dependency (real network or fake test)
-) : OrderRepository {
+) : OrderDetailsRepository {
 
     override suspend fun getOrderDetails(orderId: String): Result<OrderDetails> {
         return try {

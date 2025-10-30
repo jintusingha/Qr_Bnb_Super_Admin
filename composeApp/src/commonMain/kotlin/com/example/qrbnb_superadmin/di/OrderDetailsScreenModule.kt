@@ -2,8 +2,8 @@ package com.example.qrbnb_superadmin.di
 
 import com.example.qrbnb_superadmin.data.remote.service.FakeOrderDataSource
 import com.example.qrbnb_superadmin.data.remote.service.OrderDataSource
-import com.example.qrbnb_superadmin.data.repository.OrderRepositoryImpl
-import com.example.qrbnb_superadmin.domain.repository.OrderRepository
+import com.example.qrbnb_superadmin.data.repository.OrdersDetailsRepositoryImpl
+import com.example.qrbnb_superadmin.domain.repository.OrderDetailsRepository
 import com.example.qrbnb_superadmin.domain.usecase.GetOrderDetailsUseCase
 import com.example.qrbnb_superadmin.presentation.viewmodel.OrderDetailsViewModel
 import org.koin.dsl.module
@@ -19,8 +19,8 @@ val OrderDetailsScreenModule = module {
     // 2. Repository (The contract implementation)
     // It depends on the Data Source (get()) and the Mapper (toDomain function).
     // Note: If the mapper were a class, we would inject it here as well.
-    single<OrderRepository> {
-        OrderRepositoryImpl(dataSource = get())
+    single<OrderDetailsRepository> {
+        OrdersDetailsRepositoryImpl(dataSource = get())
     }
 
     // 3. Use Case (The business logic layer)

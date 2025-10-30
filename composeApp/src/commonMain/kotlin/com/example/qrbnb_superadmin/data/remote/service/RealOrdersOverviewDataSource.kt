@@ -1,6 +1,7 @@
 package com.example.qrbnb_superadmin.data.remote.service
 
 import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrdersOverviewResponseDto
+import com.example.qrbnb_superadmin.domain.entity.Client
 import com.example.qrbnb_superadmin.logging.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -29,6 +30,11 @@ class RealOrdersOverviewDataSource(
 
             if (response.status.isSuccess()) {
                 val ordersOverviewResponse = response.body<OrdersOverviewResponseDto>()
+                // <<<<-------the below is to check the client id ------>>>>>
+//                val clientlist=ordersOverviewResponse.data.clientPerformance
+//                clientlist.forEach { client ->
+//                    Logger.d("JUST CHECKING","CLIENT ID:${client.id},Name:${client.name}")
+//                }
                 Logger.d(TAG, "Successfully parsed Orders Overview data")
                 ordersOverviewResponse
             } else {

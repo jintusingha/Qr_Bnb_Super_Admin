@@ -2,6 +2,6 @@ package com.example.qrbnb_superadmin.domain.repository
 
 import com.example.qrbnb_superadmin.domain.entity.OrderDetails
 
-interface OrderRepository {
+interface OrderDetailsRepository {
     suspend fun getOrderDetails(orderId: String): Result<OrderDetails>
 }

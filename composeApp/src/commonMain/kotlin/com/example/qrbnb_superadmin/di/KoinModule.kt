@@ -113,5 +113,6 @@ fun initKoin() =
             AddNewClientScreenModule,
             OrderDetailsScreenModule,
             OrdersOverviewModule,
+            OrdersModule
         )
     }

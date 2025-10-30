@@ -25,5 +25,8 @@ val add_new_client_switch_description= Color(0xFF8C5E5E)
 val title_header_black=Color(0xFF170F0F)
 val title_reddish_brown= Color(0xFF8C5E5E)
 val sortBackground = Color(0xFFF5F0F0)
+val soft_reddish=Color(0xFF9E474A)
+val Black_color = Color(0xFF1C0D0D)
+
 
 

@@ -52,30 +52,31 @@ class RealAddNewClientDataSource(
         Logger.d(TAG, "Making POST request to submit client form to: $submitUrl")
 
         return try {
-
-            val payload = SubmitFormRequest(
-                formId = "add_client",
-                values = formValues.map { (key, value) ->
-                    FormValue(
-                        id = key,
-                        value = when (value) {
-                            is String -> JsonPrimitive(value)
-                            is Number -> JsonPrimitive(value)
-                            is Boolean -> JsonPrimitive(value)
-                            else -> JsonPrimitive(value.toString())
-                        }
-                    )
-                }
-            )
-
+            val payload =
+                SubmitFormRequest(
+                    formId = "add_client",
+                    values =
+                        formValues.map { (key, value) ->
+                            FormValue(
+                                id = key,
+                                value =
+                                    when (value) {
+                                        is String -> JsonPrimitive(value)
+                                        is Number -> JsonPrimitive(value)
+                                        is Boolean -> JsonPrimitive(value)
+                                        else -> JsonPrimitive(value.toString())
+                                    },
+                            )
+                        },
+                )
 
             Logger.d(TAG, "Submitting payload: ${Json.encodeToString(payload)}")
 
-
-            val response = httpClient.post(submitUrl) {
-                contentType(ContentType.Application.Json)
-                setBody(payload)
-            }
+            val response =
+                httpClient.post(submitUrl) {
+                    contentType(ContentType.Application.Json)
+                    setBody(payload)
+                }
 
             Logger.d(TAG, "Response status for form submission: ${response.status}")
             val bodyText = response.bodyAsText()
@@ -90,7 +91,7 @@ class RealAddNewClientDataSource(
                 val errorMessage =
                     "API call failed with status: ${response.status} for form submission"
                 Logger.e(TAG, errorMessage)
-                if (addClientResponse.success == true) {
+                if (addClientResponse.success) {
                     throw Exception(errorMessage)
                 }
                 addClientResponse
