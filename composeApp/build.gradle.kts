@@ -75,6 +75,8 @@ kotlin {
 
             implementation("org.jetbrains.androidx.navigation:navigation-compose:2.8.0-alpha10")
             implementation("com.patrykandpatrick.vico:compose-m3:1.13.1")
+            implementation("io.coil-kt.coil3:coil-svg:3.0.0")
+
 
 
 

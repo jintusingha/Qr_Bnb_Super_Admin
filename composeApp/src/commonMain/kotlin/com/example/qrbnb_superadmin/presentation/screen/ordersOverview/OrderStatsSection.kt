@@ -1,5 +1,6 @@
 package com.example.qrbnb_superadmin.presentation.screen.ordersOverview
 
+import StatCard
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -16,32 +17,32 @@ import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.OrderSumma
 import com.example.qrbnb_superadmin.domain.entity.Summary
 
 
-import com.example.qrbnb_superadmin.presentation.screen.clientoverview.StatCard
+
 
 @Composable
 fun OrderStatsSection(keyMetrics: Summary, modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
-        // Row 1: Total Orders and Total Revenue
+
         Row(
-            // Use IntrinsicSize.Min to ensure both cards share the same height as the tallest card
+
             modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Min),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             StatCard(
                 title = "Total Orders",
                 value = keyMetrics.totalOrders.toString(),
-                modifier = Modifier.weight(1f).fillMaxHeight() // Fill height of the Row
+                modifier = Modifier.weight(1f).fillMaxHeight()
             )
             StatCard(
                 title = "Total Revenue",
-                value = "$${keyMetrics.totalRevenue}", // Format with dollar sign
-                modifier = Modifier.weight(1f).fillMaxHeight() // Fill height of the Row
+                value = "$${keyMetrics.totalRevenue}",
+                modifier = Modifier.weight(1f).fillMaxHeight()
             )
         }
 
         Spacer(Modifier.height(16.dp))
 
-        // Row 2: Active Clients and Top-Selling Category
+
         Row(
             modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Min),
             horizontalArrangement = Arrangement.spacedBy(16.dp)

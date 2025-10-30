@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.example.qrbnb_superadmin.domain.entity.ClientPerformance
+import com.example.qrbnb_superadmin.logging.Logger
 import com.example.qrbnb_superadmin.ui.body16Regular
 import com.example.qrbnb_superadmin.ui.search_field_color
 import com.example.qrbnb_superadmin.ui.search_icon_placeholdertext
@@ -141,6 +142,7 @@ fun ClientListItem(client: ClientPerformance) {
                     .background(Color(0xFFE0E0E0)),
             contentAlignment = Alignment.Center,
         ) {
+            Logger.d("ClientAvatar", "Avatar URL for ${client.name}: ${client.avatar}")
             if (client.avatar.isNotEmpty()) {
                 AsyncImage(
                     model = client.avatar,

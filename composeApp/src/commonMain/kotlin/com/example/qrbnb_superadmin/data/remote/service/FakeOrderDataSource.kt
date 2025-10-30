@@ -16,11 +16,9 @@ import kotlinx.coroutines.delay
 class FakeOrderDataSource : OrderDataSource {
 
     override suspend fun fetchOrderDetails(orderId: String): OrderDetailsResponse {
-        // Simulate network delay
-        delay(500) // Delay for half a second
+        delay(500)
 
-        // If you needed to simulate different order IDs (e.g., error case), you could use a 'when' block:
-        // when (orderId) { ... }
+
 
         return OrderDetailsResponse(
             success = true,

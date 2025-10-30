@@ -56,7 +56,7 @@ fun OrdersOverTimeSection(
             )
         }
 
-        Spacer(Modifier.height(8.dp))
+//        Spacer(Modifier.height(8.dp))
 
         val growthColor = if (ordersTrend.growthPercent >= 0) Color(0xFF4CAF50) else Color(0xFFF44336)
         val growthSign = if (ordersTrend.growthPercent >= 0) "+" else ""
