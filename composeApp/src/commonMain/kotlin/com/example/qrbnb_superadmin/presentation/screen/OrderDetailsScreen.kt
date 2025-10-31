@@ -75,46 +75,33 @@ fun OrderDetailsScreen(
 fun SuccessContent(details: OrderDetails) {
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-        // Use a vertical arrangement for consistent spacing between sections
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = Modifier.fillMaxSize(),
     ) {
-        // 1. Order ID and Date
-        item { OrderHeaderSection(id = details.id, date = details.date) }
+        item { OrderHeaderSection(id = details.orderId, date = details.createdAt) }
 
-//        // 2. Restaurant Info
         item {
             ProfileInfoRow(
-                title = details.restaurant.name,
-                subtitle = details.restaurant.address,
-                // Pass logoUrl or resource ID here if you had an image loader
+                title = details.client.name,
+                subtitle = details.client.address,
             )
         }
-//
-        // 3. Customer Info
+
         item {
             ProfileInfoRow(
                 title = details.customer.name,
-                subtitle = "Phone: ${details.customer.phone}, ${details.customer.tableInfo}",
-
+                subtitle = "Phone: ${details.customer.phone}, ${details.customer.table}",
             )
         }
-//
-//        // Divider after main info section
+
         item { Divider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f)) }
-//
-//        // 4. Items Section
-        item { ItemsSection(items = details.items, currency = details.currency) }
-//
-//        // 5. Totals Summary
+
+        item { ItemsSection(items = details.items) }
+
         item { TotalsSummary(details = details) }
-//
-//        // 6. Timeline Section
+
         item { OrderStatusTimeline(events = details.timeline) }
-//
-//        // 7. Metadata Section
+
         item { MetadataSection(metadata = details.metadata) }
-//
-//
     }
 }

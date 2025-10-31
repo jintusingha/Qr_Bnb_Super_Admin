@@ -14,14 +14,14 @@ import com.example.qrbnb_superadmin.ui.style_16_24_w400
 import com.example.qrbnb_superadmin.ui.style_16_24_w500
 
 @Composable
- fun TotalRow(label: String, value: Double, currency: String) {
+ fun TotalRow(label: String, value: Double) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(text = label, style = style_16_24_w400())
         Text(
-            text="${currency} %.2f".format(value),
+            text="$%.2f".format(value),
             style = style_16_24_w500()
         )
 

@@ -1,7 +1,8 @@
 package com.example.qrbnb_superadmin.di
 
-import com.example.qrbnb_superadmin.data.remote.service.FakeOrderDataSource
+
 import com.example.qrbnb_superadmin.data.remote.service.OrderDataSource
+import com.example.qrbnb_superadmin.data.remote.service.RealOrderDataSource
 import com.example.qrbnb_superadmin.data.repository.OrdersDetailsRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.OrderDetailsRepository
 import com.example.qrbnb_superadmin.domain.usecase.GetOrderDetailsUseCase
@@ -13,7 +14,9 @@ val OrderDetailsScreenModule = module {
     // 1. Data Source (The implementation of the network contract)
     // We bind the interface to the Fake implementation for development/testing.
     single<OrderDataSource> {
-        FakeOrderDataSource()
+        RealOrderDataSource(httpClient = get(POST_LOGIN_CLIENT))
+
+//        FakeOrderDataSource()
     }
 
     // 2. Repository (The contract implementation)

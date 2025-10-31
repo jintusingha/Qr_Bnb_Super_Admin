@@ -19,10 +19,10 @@ import com.example.qrbnb_superadmin.ui.title_header_black
 import com.example.qrbnb_superadmin.ui.title_reddish_brown
 
 @Composable
- fun ItemRow(item: Item, currency: String) {
+fun ItemRow(item: Item) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Column(modifier = Modifier.weight(1f)) {
             Text(text = item.name, style = style_16_24_w500(), color = title_header_black)
@@ -30,18 +30,20 @@ import com.example.qrbnb_superadmin.ui.title_reddish_brown
             Text(
                 text = item.notes,
                 style = textstyle_14_size_21_lineheight(),
-                color = title_reddish_brown
+                color = title_reddish_brown,
             )
         }
         Column(horizontalAlignment = Alignment.End) {
+
             Text(
-                text = "${currency} %.2f".format(item.itemTotal),
-                style = textstyle_16_size_24_lineheight()
+//                text = item.subtotal.toString(),
+                text = "$%.2f".format(item.priceEach.toDouble()),
+                style = textstyle_16_size_24_lineheight(),
             )
             Text(
-                text = "${currency} %.2f Each".format(item.unitPrice),
+                text = "$%.2f Each".format(item.priceEach),
                 style = textstyle_14_size_21_lineheight(),
-                color = title_reddish_brown
+                color = title_reddish_brown,
             )
         }
     }

@@ -10,46 +10,39 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class OrderDetailsViewModel(
-
-    private val getOrderDetailsUseCase: GetOrderDetailsUseCase
+    private val getOrderDetailsUseCase: GetOrderDetailsUseCase,
 ) : ViewModel() {
-
-
     private val _uiState = MutableStateFlow(OrderDetailsUiState())
     val uiState: StateFlow<OrderDetailsUiState> = _uiState.asStateFlow()
 
-
-    private val TEST_ORDER_ID = "123456789"
+    private val TEST_ORDER_ID = "123"
 
     init {
 
         loadOrderDetails(TEST_ORDER_ID)
     }
 
-
     fun loadOrderDetails(orderId: String) {
-
         if (_uiState.value.isLoading) return
-
 
         _uiState.value = _uiState.value.copy(isLoading = true, error = null)
 
         viewModelScope.launch {
-
             getOrderDetailsUseCase(orderId)
                 .onSuccess { orderDetails ->
 
-                    _uiState.value = _uiState.value.copy(
-                        isLoading = false,
-                        details = orderDetails
-                    )
-                }
-                .onFailure { error ->
+                    _uiState.value =
+                        _uiState.value.copy(
+                            isLoading = false,
+                            details = orderDetails,
+                        )
+                }.onFailure { error ->
 
-                    _uiState.value = _uiState.value.copy(
-                        isLoading = false,
-                        error = error.message ?: "An unknown error occurred."
-                    )
+                    _uiState.value =
+                        _uiState.value.copy(
+                            isLoading = false,
+                            error = error.message ?: "An unknown error occurred.",
+                        )
                 }
         }
     }

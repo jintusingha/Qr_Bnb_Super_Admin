@@ -14,17 +14,18 @@ import com.example.qrbnb_superadmin.ui.style_16_24_w500
 import com.example.qrbnb_superadmin.ui.textstyle_16_size_24_lineheight
 
 @Composable
- fun SummaryRow(label: String, value: Double, currency: String) {
+fun SummaryRow(
+    label: String,
+    value: Double,
+) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(text = label, style = style_16_24_w400())
         Text(
-//            text = currency + "%.2f".format(value),
-            text="${currency} %.2f".format(value),
-            style = style_16_24_w500()
+            text = "$%.2f".format(value),
+            style = style_16_24_w500(),
         )
     }
 }
-

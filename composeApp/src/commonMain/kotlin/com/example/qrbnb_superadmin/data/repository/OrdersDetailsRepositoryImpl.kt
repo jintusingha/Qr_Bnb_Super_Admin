@@ -10,14 +10,16 @@ class OrdersDetailsRepositoryImpl(
 ) : OrderDetailsRepository {
     override suspend fun getOrderDetails(orderId: String): Result<OrderDetails> =
         try {
-            val response = dataSource.fetchOrderDetails(orderId)
+            val orderDetailsDto = dataSource.fetchOrderDetails(orderId)
 
-            if (response.success && response.data != null) {
-                Result.success(response.data.toDomain())
-            } else {
-                Result.failure(Exception("Could not load order details: API failed."))
-            }
+            val orderDetails = orderDetailsDto.toDomain()
+
+            // Return success result
+            Result.success(orderDetails)
         } catch (e: Exception) {
+            // Handle error and wrap it in Result
             Result.failure(e)
         }
+
+
 }

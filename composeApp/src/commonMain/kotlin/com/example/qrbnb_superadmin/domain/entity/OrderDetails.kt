@@ -2,57 +2,49 @@ package com.example.qrbnb_superadmin.domain.entity
 
 
 
-// Core Entity
-// Core domain entity
 data class OrderDetails(
-    val id: String,
-    val date: String,
-    val status: String,
-    val restaurant: Restaurant,
+    val orderId: String,
+    val createdAt: String,
+    val client: ClientOrderDetails,
     val customer: Customer,
     val items: List<Item>,
-    val subtotal: Double,
-    val total: Double,
-    val tax: Double,
-    val currency: String,
-    val timeline: List<OrderTimelineEvent>,
-    val metadata: List<MetadataPair>,
-    val actions: List<OrderActionDetails>
+    val summary: SummaryDomain,
+    val timeline: List<TimelineEventOrderDetails>,
+    val metadata: Metadata
 )
 
-data class Restaurant(
+data class ClientOrderDetails(
     val name: String,
-    val address: String,
-    val logoUrl: String
+    val address: String
 )
 
 data class Customer(
     val name: String,
     val phone: String,
-    val tableInfo: String
+    val table: String
 )
 
 data class Item(
     val name: String,
     val quantity: Int,
-    val unitPrice: Double,
-    val itemTotal: Double,
-    val notes: String
+    val priceEach: Double,
+    val notes: String,
+    val subtotal: Double
 )
 
-data class OrderTimelineEvent(
+data class SummaryDomain(
+    val subtotal: Double,
+    val taxes: Double,
+    val total: Double
+)
+
+data class TimelineEventOrderDetails(
     val status: String,
-    val time: String,
-    val timestamp: String
+    val time: String
 )
 
-data class MetadataPair(
-    val label: String,
-    val value: String
-)
-
-data class OrderActionDetails(
-    val id: String,
-    val label: String,
-    val endpoint: String
+data class Metadata(
+    val creator: String,
+    val paymentMethod: String,
+    val platform: String
 )
