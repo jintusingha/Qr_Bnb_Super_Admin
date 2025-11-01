@@ -31,10 +31,10 @@ class RealOrdersOverviewDataSource(
             if (response.status.isSuccess()) {
                 val ordersOverviewResponse = response.body<OrdersOverviewResponseDto>()
                 // <<<<-------the below is to check the client id ------>>>>>
-//                val clientlist=ordersOverviewResponse.data.clientPerformance
-//                clientlist.forEach { client ->
-//                    Logger.d("JUST CHECKING","CLIENT ID:${client.id},Name:${client.name}")
-//                }
+                val clientlist=ordersOverviewResponse.data.clientPerformance
+                clientlist.forEach { client ->
+                    Logger.d("JUST CHECKING","CLIENT ID:${client.id},Name:${client.name}")
+                }
                 Logger.d(TAG, "Successfully parsed Orders Overview data")
                 ordersOverviewResponse
             } else {

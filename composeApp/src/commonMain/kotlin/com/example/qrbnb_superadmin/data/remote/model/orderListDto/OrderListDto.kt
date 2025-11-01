@@ -1,4 +1,4 @@
-package com.example.qrbnb_superadmin.data.remote.model.ordersDto
+package com.example.qrbnb_superadmin.data.remote.model.orderListDto
 
 data class OrderScreenData(
     val orderStatuses: List<OrderStatusDto>,

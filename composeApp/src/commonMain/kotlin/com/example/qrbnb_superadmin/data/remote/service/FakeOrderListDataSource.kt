@@ -1,12 +1,12 @@
 package com.example.qrbnb_superadmin.data.remote.service
 
-import com.example.qrbnb_superadmin.data.remote.model.ordersDto.OrderListItemDto
-import com.example.qrbnb_superadmin.data.remote.model.ordersDto.OrderScreenData
-import com.example.qrbnb_superadmin.data.remote.model.ordersDto.OrderStatus
-import com.example.qrbnb_superadmin.data.remote.model.ordersDto.OrderStatusDto
+import com.example.qrbnb_superadmin.data.remote.model.orderListDto.OrderListItemDto
+import com.example.qrbnb_superadmin.data.remote.model.orderListDto.OrderScreenData
+import com.example.qrbnb_superadmin.data.remote.model.orderListDto.OrderStatus
+import com.example.qrbnb_superadmin.data.remote.model.orderListDto.OrderStatusDto
 import kotlinx.coroutines.delay
 
-class FakeOrdersDataSource (): OrdersDataSource {
+class FakeOrderListDataSource (): OrderListDataSource {
     override suspend fun getOrdersData(): OrderScreenData {
         delay(500)
 

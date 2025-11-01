@@ -1,6 +1,6 @@
 package com.example.qrbnb_superadmin.domain.entity
 
-import com.example.qrbnb_superadmin.data.remote.model.ordersDto.OrderStatus
+import com.example.qrbnb_superadmin.data.remote.model.orderListDto.OrderStatus
 
 data class OrdersResponse(
     val statusSummary: List<OrderStatusSummary>,
