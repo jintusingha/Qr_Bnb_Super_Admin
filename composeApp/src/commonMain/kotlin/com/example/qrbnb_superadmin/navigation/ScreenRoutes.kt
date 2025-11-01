@@ -1,14 +1,21 @@
 package com.example.qrbnb_superadmin.navigation
 
+sealed class ScreenRoutes(
+    val route: String,
+) {
+    object Login : ScreenRoutes("login_route")
 
-object ScreenRoutes{
-    const val LOGIN="login_route"
-    const val CLIENT_OVERVIEW="client_overview_route"
-    const val CLIENT_DETAILS="client_details/{clientId}"
-    const val CLIENT_ADD="client_add_route"
-    const val ORDERS_OVERVIEW="orders_overview"
+    object ClientOverview : ScreenRoutes("client_overview_route")
 
+    object ClientAdd : ScreenRoutes("client_add_route")
 
+    object OrdersOverview : ScreenRoutes("orders_overview_route")
 
-    fun clientDetailsPath(clientId:String)="client_details/$clientId"
+    data class ClientDetails(
+        val clientId: String,
+    ) : ScreenRoutes("client_details/$clientId") {
+        companion object {
+            const val ROUTE_WITH_ARGS = "client_details/{clientId}"
+        }
+    }
 }

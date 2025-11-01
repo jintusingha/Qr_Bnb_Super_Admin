@@ -22,28 +22,33 @@ fun AppNavHost(authStatusChecker: AuthStatusChecker) {
         navController = navController,
         startDestination = initialRoute,
     ) {
-        composable(ScreenRoutes.LOGIN) {
+        composable(ScreenRoutes.Login.route) {
             QRBnBSuperadminLoginScreen(
                 onLoginSuccess = {
-                    navController.navigate(ScreenRoutes.CLIENT_OVERVIEW) {
-                        popUpTo(ScreenRoutes.LOGIN) { inclusive = true }
+                    navController.navigate(ScreenRoutes.ClientOverview.route) {
+                        popUpTo(ScreenRoutes.Login.route) { inclusive = true }
                     }
                 },
             )
         }
-        composable(ScreenRoutes.CLIENT_OVERVIEW) {
-            ClientsOverviewScreen(onClientClick = { clientId ->
-                Logger.d("AppNavHost", "Navigating to details screen with ID: $clientId")
-                navController.navigate(ScreenRoutes.clientDetailsPath(clientId))
-            }, onAddClientClick = {
-                navController.navigate(ScreenRoutes.CLIENT_ADD)
-            },
+
+        composable(ScreenRoutes.ClientOverview.route) {
+            ClientsOverviewScreen(
+                onClientClick = { clientId ->
+                    Logger.d("AppNavHost", "Navigating to details screen with ID: $clientId")
+                    navController.navigate(ScreenRoutes.ClientDetails(clientId).route)
+                },
+                onAddClientClick = {
+                    navController.navigate(ScreenRoutes.ClientAdd.route)
+                },
                 onTotalClientsClick = {
-                    navController.navigate(ScreenRoutes.ORDERS_OVERVIEW)
-                })
+                    navController.navigate(ScreenRoutes.OrdersOverview.route)
+                },
+            )
         }
+
         composable(
-            route = ScreenRoutes.CLIENT_DETAILS,
+            route = ScreenRoutes.ClientDetails.ROUTE_WITH_ARGS,
             arguments =
                 listOf(
                     navArgument("clientId") { type = NavType.StringType },
@@ -57,12 +62,17 @@ fun AppNavHost(authStatusChecker: AuthStatusChecker) {
                 )
             }
         }
-        composable(ScreenRoutes.CLIENT_ADD){
-            AddClientScreen(onBackClick = { navController.navigate(ScreenRoutes.CLIENT_OVERVIEW) })
-        }
-        composable(ScreenRoutes.ORDERS_OVERVIEW) {
-            OrdersOverviewScreen(onBackClick = {navController.navigate(ScreenRoutes.CLIENT_OVERVIEW)})
 
+        composable(ScreenRoutes.ClientAdd.route) {
+            AddClientScreen(onBackClick = {
+                navController.navigate(ScreenRoutes.ClientOverview.route)
+            })
+        }
+
+        composable(ScreenRoutes.OrdersOverview.route) {
+            OrdersOverviewScreen(onBackClick = {
+                navController.navigate(ScreenRoutes.ClientOverview.route)
+            })
         }
     }
 }
