@@ -22,8 +22,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.qrbnb_superadmin.domain.entity.Order
-import com.example.qrbnb_superadmin.domain.entity.OrderStatusSummary
+
+import com.example.qrbnb_superadmin.domain.entity.OrderListItem
+import com.example.qrbnb_superadmin.domain.entity.OrderListSummary
+
 import com.example.qrbnb_superadmin.ui.body16Regular
 import com.example.qrbnb_superadmin.ui.search_field_color
 import com.example.qrbnb_superadmin.ui.search_icon_placeholdertext
@@ -34,8 +36,10 @@ import qr_bnb_super_admin.composeapp.generated.resources.searchicon
 
 @Composable
 fun OrdersContent(
-    statusSummary: List<OrderStatusSummary>,
-    orders: List<Order>,
+    summary: OrderListSummary,
+    orders: List<OrderListItem>,
+    selectedTab:String,
+    onTabSelected:(String)->Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier.fillMaxSize().padding(top = 8.dp)) {
@@ -79,7 +83,7 @@ fun OrdersContent(
             )
         }
 
-        StatusTabs(statusSummary = statusSummary)
+        StatusTabs(summary = summary,selectedTab=selectedTab,onTabSelected=onTabSelected)
 
         LazyColumn(
             modifier = Modifier.fillMaxSize(),

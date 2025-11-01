@@ -9,35 +9,42 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.qrbnb_superadmin.domain.entity.OrderStatusSummary
+import com.example.qrbnb_superadmin.domain.entity.OrderListSummary
+
 import com.example.qrbnb_superadmin.ui.style_14_21_700
 
 @Composable
 fun StatusTabs(
-    statusSummary: List<OrderStatusSummary>,
+    summary: OrderListSummary,
+    selectedTab: String,
+    onTabSelected: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val tabs = listOf(
+        "All" to (summary.new + summary.preparing + summary.ready + summary.delivered),
+        "New" to summary.new,
+        "Preparing" to summary.preparing,
+        "Ready" to summary.ready,
+        "Delivered" to summary.delivered,
+    )
+
     ScrollableTabRow(
-        selectedTabIndex = statusSummary.indexOfFirst { it.isCurrentSelection }.coerceAtLeast(0),
+        selectedTabIndex = tabs.indexOfFirst { it.first == selectedTab }.coerceAtLeast(0),
         modifier = modifier.fillMaxWidth(),
         edgePadding = 16.dp,
         divider = {},
         containerColor = Color.Transparent,
     ) {
-        statusSummary.forEach { summary ->
-            val textColor =
-                if (summary.isCurrentSelection) {
-                    Color(0xFF1C0D0D)
-                } else {
-                    Color(0xFF9E474A)
-                }
+        tabs.forEach { (label, count) ->
+            val selected = selectedTab == label
+            val textColor = if (selected) Color(0xFF1C0D0D) else Color(0xFF9E474A)
 
             Tab(
-                selected = summary.isCurrentSelection,
-                onClick = { /* TODO: Handle tab click */ },
+                selected = selected,
+                onClick = { onTabSelected(label) },
                 text = {
                     Text(
-                        text = "${summary.status.name.lowercase().replaceFirstChar { it.uppercase() }} (${summary.count})",
+                        text = "$label ($count)",
                         style = style_14_21_700(),
                         color = textColor,
                     )

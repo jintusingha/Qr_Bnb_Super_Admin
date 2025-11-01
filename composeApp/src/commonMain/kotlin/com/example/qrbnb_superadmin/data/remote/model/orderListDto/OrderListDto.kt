@@ -1,30 +1,47 @@
 package com.example.qrbnb_superadmin.data.remote.model.orderListDto
 
-data class OrderScreenData(
-    val orderStatuses: List<OrderStatusDto>,
-    val currentOrders: List<OrderListItemDto>,
-)
+import com.example.qrbnb_superadmin.data.remote.model.ordersoverviewDto.OrdersOverviewDataDto
+import kotlinx.serialization.Serializable
+import org.koin.core.logger.MESSAGE
 
-data class OrderStatusDto(
-    val status: String,
-    val count: Int,
-    val isSelected: Boolean,
+@Serializable
+data class OrderListResponseDto(
+    val success: Boolean,
+    val message: String,
+    val data:OrderListDataDto
 )
-
+@Serializable
+data class OrderListDataDto(
+    val summary:OrderListSummaryDto,
+    val orders:List<OrderListItemDto>
+)
+@Serializable
+data class OrderListSummaryDto(
+    val new: Int,
+    val preparing: Int,
+    val ready: Int,
+    val delivered: Int
+)
+@Serializable
 data class OrderListItemDto(
     val orderId: String,
+    val orderNumber: String,
+    val status: String,
     val timeAgo: String,
-    val location: String,
-    val guestName: String,
-    val totalItemsDescription: String,
-    val status: OrderStatus,
-    val imageUrl: String?,
+    val table: String,
+    val guest: OrderGuestDto,
+    val items: OrderItemsDto,
+    val thumbnail: String,
+    val actions: List<String>,
+    val clientId: String
+)
+@Serializable
+data class OrderGuestDto(
+    val name: String
 )
 
-enum class OrderStatus {
-    NEW,
-    PREPARING,
-    READY,
-    DELIVERED,
-    CANCELLED,
-}
+@Serializable
+data class OrderItemsDto(
+    val summary: String,
+    val count: Int
+)

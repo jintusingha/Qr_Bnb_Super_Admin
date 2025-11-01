@@ -18,4 +18,9 @@ sealed class ScreenRoutes(
             const val ROUTE_WITH_ARGS = "client_details/{clientId}"
         }
     }
+    data class Orders(val clientId: String) : ScreenRoutes("orders/$clientId") {
+        companion object {
+            const val ROUTE_WITH_ARGS = "orders/{clientId}"
+        }
+    }
 }

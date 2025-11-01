@@ -41,6 +41,7 @@ import qr_bnb_super_admin.composeapp.generated.resources.leftArrowIcon
 fun OrdersOverviewScreen(
     viewModel: OrdersOverviewViewModel = koinInject(),
     onBackClick: () -> Unit,
+    onClientClick: (String) -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val scrollState = rememberScrollState()
@@ -117,7 +118,7 @@ fun OrdersOverviewScreen(
 
                 is OrdersOverviewState.Success -> {
                     val data = (state as OrdersOverviewState.Success).data.data
-                    DashboardContent(data)
+                    DashboardContent(data,onClientClick = onClientClick)
                 }
             }
         }

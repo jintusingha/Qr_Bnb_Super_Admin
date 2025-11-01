@@ -2,6 +2,7 @@ package com.example.qrbnb_superadmin.presentation.screen.ordersOverview
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -52,6 +53,7 @@ import qr_bnb_super_admin.composeapp.generated.resources.searchicon
 fun ClientPerformanceSection(
     clientPerformance: List<ClientPerformance>,
     modifier: Modifier = Modifier,
+    onClientClick: (String) -> Unit
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
@@ -119,19 +121,20 @@ fun ClientPerformanceSection(
         // --- Client List ---
         Column(modifier = Modifier.padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             clientPerformance.forEach { client ->
-                ClientListItem(client = client)
+                ClientListItem(client = client,onClientClick = onClientClick)
             }
         }
     }
 }
 
 @Composable
-fun ClientListItem(client: ClientPerformance) {
+fun ClientListItem(client: ClientPerformance,onClientClick: (String) -> Unit) {
     Row(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .padding(vertical = 12.dp),
+                .padding(vertical = 12.dp)
+                .clickable { onClientClick(client.id) },
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(

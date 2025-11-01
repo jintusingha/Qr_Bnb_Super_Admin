@@ -1,8 +1,9 @@
 package com.example.qrbnb_superadmin.data.remote.service
 
-import com.example.qrbnb_superadmin.data.remote.model.orderListDto.OrderScreenData
+import com.example.qrbnb_superadmin.data.remote.model.orderListDto.OrderListResponseDto
+
 
 
 interface OrderListDataSource{
-    suspend fun getOrdersData(): OrderScreenData
+    suspend fun getOrderListData(clientId:String,status:String?=null): OrderListResponseDto
 }

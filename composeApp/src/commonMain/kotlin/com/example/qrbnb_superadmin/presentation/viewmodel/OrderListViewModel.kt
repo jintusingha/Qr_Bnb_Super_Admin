@@ -14,15 +14,13 @@ class OrderListViewModel(
     private val _state = MutableStateFlow<OrdersUiState>(OrdersUiState.Loading)
     val state: StateFlow<OrdersUiState> = _state
 
-    init{
-        loadOrders()
-    }
 
-    fun loadOrders() {
+
+    fun loadOrders(clientId:String,status:String?=null) {
         viewModelScope.launch {
             _state.value = OrdersUiState.Loading
             try {
-                val result = getOrdersUseCase()
+                val result = getOrdersUseCase(clientId,status)
                 _state.value =
                     OrdersUiState.Success(
                         ordersRes = result,

@@ -11,6 +11,7 @@ import com.example.qrbnb_superadmin.logging.Logger
 import com.example.qrbnb_superadmin.presentation.screen.AddClientScreen
 import com.example.qrbnb_superadmin.presentation.screen.ClientDetailsScreen
 import com.example.qrbnb_superadmin.presentation.screen.ClientsOverviewScreen
+import com.example.qrbnb_superadmin.presentation.screen.OrdersScreen
 import com.example.qrbnb_superadmin.presentation.screen.QRBnBSuperadminLoginScreen
 
 @Composable
@@ -72,7 +73,26 @@ fun AppNavHost(authStatusChecker: AuthStatusChecker) {
         composable(ScreenRoutes.OrdersOverview.route) {
             OrdersOverviewScreen(onBackClick = {
                 navController.navigate(ScreenRoutes.ClientOverview.route)
+            },onClientClick = { clientId ->
+                navController.navigate(ScreenRoutes.Orders(clientId).route)
             })
+        }
+
+        composable(
+            route = ScreenRoutes.Orders.ROUTE_WITH_ARGS,
+            arguments = listOf(
+                navArgument("clientId") { type = NavType.StringType },
+            ),
+        ) { backStackEntry ->
+            val clientId = backStackEntry.arguments?.getString("clientId")
+            if (clientId != null) {
+                OrdersScreen(
+                    clientId = clientId,
+                    onBackClick = {
+                        navController.navigate(ScreenRoutes.OrdersOverview.route)
+                    }
+                )
+            }
         }
     }
 }

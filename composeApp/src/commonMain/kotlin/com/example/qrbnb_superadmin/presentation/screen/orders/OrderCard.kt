@@ -31,7 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.example.qrbnb_superadmin.domain.entity.Order
+import com.example.qrbnb_superadmin.domain.entity.OrderListItem
 import com.example.qrbnb_superadmin.ui.Black_color
 import com.example.qrbnb_superadmin.ui.soft_reddish
 import com.example.qrbnb_superadmin.ui.style_14_21_400
@@ -41,7 +41,7 @@ import com.example.qrbnb_superadmin.ui.style_16_20_700
 
 @Composable
 fun OrderCard(
-    order: Order,
+    order: OrderListItem,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -62,19 +62,19 @@ fun OrderCard(
                 modifier = Modifier.weight(1f),
             ) {
                 Text(
-                    text = "Order ${order.id}",
+                    text = "Order #${order.orderId}",
                     style = style_14_21_400(),
                     color = soft_reddish,
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "${order.timeElapsed} • ${order.placementLocation}",
+                    text = "${order.timeAgo} • ${order.table}",
                     style = style_16_20_700(),
                     color = Black_color,
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Guest: ${order.guestIdentifier} • ${order.itemsSummary.take(10)}",
+                    text = "Guest: ${order.guest.name} • ${order.items.summary.take(5)}",
                     style = style_14_21_400(),
                     color = soft_reddish,
                 )
@@ -113,32 +113,15 @@ fun OrderCard(
                 }
             }
 
-            order.visualContextUrl?.let { imageUrl ->
-                AsyncImage(
-                    model = imageUrl,
-                    contentDescription = "Order image",
-                    modifier =
-                        Modifier
-                            .size(100.dp)
-                            .clip(RoundedCornerShape(12.dp)),
-                    contentScale = ContentScale.Crop,
-                )
-            } ?: run {
-                Box(
-                    modifier =
-                        Modifier
-                            .size(100.dp)
-                            .clip(RoundedCornerShape(12.dp))
-                            .background(Color(0xFFE0E0E0)),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Text(
-                        text = "No Image",
-                        fontSize = 12.sp,
-                        color = Color.Gray,
-                    )
-                }
-            }
+            AsyncImage(
+                model = order.thumbnail,
+                contentDescription = "Order image",
+                modifier =
+                    Modifier
+                        .size(100.dp)
+                        .clip(RoundedCornerShape(12.dp)),
+                contentScale = ContentScale.Crop,
+            )
         }
     }
 }

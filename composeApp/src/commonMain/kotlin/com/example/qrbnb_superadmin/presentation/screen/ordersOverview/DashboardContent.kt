@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.dp
 import com.example.qrbnb_superadmin.domain.entity.OrdersOverviewData
 
 @Composable
-fun DashboardContent(data: OrdersOverviewData) {
+fun DashboardContent(data: OrdersOverviewData, onClientClick: (String) -> Unit) {
     OrderStatsSection(keyMetrics = data.summary)
 
     Spacer(Modifier.height(32.dp))
@@ -17,7 +17,7 @@ fun DashboardContent(data: OrdersOverviewData) {
 
     Spacer(Modifier.height(32.dp))
 
-    ClientPerformanceSection(clientPerformance = data.clientPerformance)
+    ClientPerformanceSection(clientPerformance = data.clientPerformance,onClientClick = onClientClick)
 
     Spacer(Modifier.height(100.dp))
 }
