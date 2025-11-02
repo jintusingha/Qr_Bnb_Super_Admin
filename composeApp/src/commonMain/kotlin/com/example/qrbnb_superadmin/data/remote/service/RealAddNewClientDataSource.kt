@@ -22,12 +22,12 @@ import kotlinx.serialization.json.JsonPrimitive
 
 class RealAddNewClientDataSource(
     private val httpClient: HttpClient,
+    val baseUrl: String,
 ) : AddNewClientDataSource {
-    private val BASE_URL = "https://qrbnb.onrender.com/superadmin"
     private val TAG = "RealAddNewClientDataSource"
 
     override suspend fun getAddClientFormSchema(): FormSchemaResponse {
-        val formSchemaUrl = "$BASE_URL/forms/add-client"
+        val formSchemaUrl = "$baseUrl/forms/add-client"
         Logger.d(TAG, "Making GET request for client form schema to: $formSchemaUrl")
         return try {
             val response = httpClient.get(formSchemaUrl)
@@ -48,7 +48,7 @@ class RealAddNewClientDataSource(
     }
 
     override suspend fun submitAddClientForm(formValues: Map<String, Any>): AddClientResponseDto {
-        val submitUrl = "$BASE_URL/forms/submit"
+        val submitUrl = "$baseUrl/forms/submit"
         Logger.d(TAG, "Making POST request to submit client form to: $submitUrl")
 
         return try {

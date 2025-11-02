@@ -8,7 +8,7 @@ import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.Paginat
 import com.example.qrbnb_superadmin.data.remote.model.clientsoverviewDto.SummaryDto
 import kotlinx.coroutines.delay
 
-class FakeClientDataSource : ClientDataSource {
+class FakeClientDataSource : ClientOverviewDataSource {
 
     override suspend fun getClients(): ClientsResponseDto {
         delay(1000)

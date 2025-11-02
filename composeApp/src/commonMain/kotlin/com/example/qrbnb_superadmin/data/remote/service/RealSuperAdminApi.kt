@@ -12,43 +12,38 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 
 class RealSuperadminApi(
-    private val httpClient: HttpClient
+    private val httpClient: HttpClient,
+    val baseUrl: String,
 ) : SuperadminApi {
-
-    private val BASE_URL = "https://qrbnb.onrender.com/superadmin"
-
-    override suspend fun login(request: LoginRequest): ApiResponse<LoginDataDto> {
-        return try {
-            val loginUrl = "$BASE_URL/login"
+    override suspend fun login(request: LoginRequest): ApiResponse<LoginDataDto> =
+        try {
+            val loginUrl = "$baseUrl/login"
             Logger.d("RealSuperadminApi", "Making login request to: $loginUrl")
             Logger.d("RealSuperadminApi", "Request: email=${request.email}")
 
-            val response = httpClient.post(loginUrl) {
-                contentType(ContentType.Application.Json)
-                setBody(request)
-            }
+            val response =
+                httpClient.post(loginUrl) {
+                    contentType(ContentType.Application.Json)
+                    setBody(request)
+                }
 
             Logger.d("RealSuperadminApi", "Response status: ${response.status}")
 
             val bodyText = response.bodyAsText()
             Logger.d("RealSuperadminApi", "Response body: $bodyText")
 
-
             val apiResponse = response.body<ApiResponse<LoginDataDto>>()
             Logger.d("RealSuperadminApi", "Parsed response - success: ${apiResponse.success}")
 
             apiResponse
-
         } catch (e: Exception) {
             Logger.e("RealSuperadminApi", "Login API call failed: ${e.message}")
-
 
             ApiResponse(
                 success = false,
                 message = "Network error: ${e.message ?: "Unknown error"}",
                 errorCode = "NETWORK_ERROR",
-                data = null
+                data = null,
             )
         }
-    }
 }

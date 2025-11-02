@@ -15,13 +15,6 @@ class OrderDetailsViewModel(
     private val _uiState = MutableStateFlow(OrderDetailsUiState())
     val uiState: StateFlow<OrderDetailsUiState> = _uiState.asStateFlow()
 
-    private val TEST_ORDER_ID = "123"
-
-    init {
-
-        loadOrderDetails(TEST_ORDER_ID)
-    }
-
     fun loadOrderDetails(orderId: String) {
         if (_uiState.value.isLoading) return
 

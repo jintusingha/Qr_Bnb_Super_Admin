@@ -1,5 +1,6 @@
 package com.example.qrbnb_superadmin.navigation
 
+import OrderDetailsScreen
 import OrdersOverviewScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
@@ -90,9 +91,27 @@ fun AppNavHost(authStatusChecker: AuthStatusChecker) {
                     clientId = clientId,
                     onBackClick = {
                         navController.navigate(ScreenRoutes.OrdersOverview.route)
+                    },onOrderClick = { orderId ->
+                        navController.navigate(ScreenRoutes.OrderDetails(orderId).route)
                     }
                 )
             }
         }
+        composable(
+            route = ScreenRoutes.OrderDetails.ROUTE_WITH_ARGS,
+            arguments = listOf(
+                navArgument("orderId") { type = NavType.StringType },
+            ),
+        ) { backStackEntry ->
+            val orderId = backStackEntry.arguments?.getString("orderId")
+
+            if (orderId != null) {
+                OrderDetailsScreen(
+                    orderId = orderId,
+                    onBackClick = { navController.popBackStack() }
+                )
+            }
+        }
+
     }
 }

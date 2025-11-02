@@ -3,38 +3,34 @@ package com.example.qrbnb_superadmin.di
 import com.example.qrbnb_superadmin.data.remote.service.AddNewClientDataSource
 import com.example.qrbnb_superadmin.data.remote.service.FakeAddClientDataSource
 import com.example.qrbnb_superadmin.data.remote.service.RealAddNewClientDataSource
-
 import com.example.qrbnb_superadmin.data.repository.NewClientRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.NewClientRepository
 import com.example.qrbnb_superadmin.domain.usecase.GetAddClientFormUseCase
 import com.example.qrbnb_superadmin.domain.usecase.SubmitAddClientFormUseCase
 import com.example.qrbnb_superadmin.presentation.viewmodel.ClientFormViewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
+val AddNewClientScreenModule =
+    module {
 
-val AddNewClientScreenModule= module {
-
-    single<AddNewClientDataSource> {
+        single<AddNewClientDataSource> {
 //        FakeAddClientDataSource()
-        RealAddNewClientDataSource(httpClient = get(POST_LOGIN_CLIENT))
+            RealAddNewClientDataSource(httpClient = get(POST_LOGIN_CLIENT), baseUrl = get(named("BASE_URL")))
+        }
+
+        single<NewClientRepository> {
+            NewClientRepositoryImpl(get())
+        }
+
+        factory { GetAddClientFormUseCase(get()) }
+
+        factory { SubmitAddClientFormUseCase(get()) }
+
+        factory {
+            ClientFormViewModel(
+                getAddClientFormUseCase = get(),
+                submitAddClientFormUseCase = get(),
+            )
+        }
     }
-
-    single<NewClientRepository> {
-        NewClientRepositoryImpl(get())
-    }
-
-    factory { GetAddClientFormUseCase(get()) }
-
-    factory { SubmitAddClientFormUseCase(get()) }
-
-    factory {
-        ClientFormViewModel(
-            getAddClientFormUseCase = get(),
-            submitAddClientFormUseCase = get()
-        )
-    }
-
-
-
-
-}

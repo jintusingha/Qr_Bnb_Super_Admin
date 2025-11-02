@@ -43,6 +43,7 @@ fun OrdersScreen(
     clientId: String,
     onBackClick: () -> Unit,
     viewModel: OrderListViewModel = koinInject(),
+    onOrderClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -125,6 +126,9 @@ fun OrdersScreen(
                         orders = currentState.ordersRes.orders,
                         selectedTab = selectedTab,
                         onTabSelected = { selectedTab = it },
+                        onOrderClick = { orderId ->
+                            onOrderClick(orderId)
+                        },
                     )
                 }
             }

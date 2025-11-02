@@ -9,13 +9,14 @@ import com.example.qrbnb_superadmin.domain.repository.ClientDetailsRepository
 import com.example.qrbnb_superadmin.domain.usecase.GetClientDetailsUseCase
 import com.example.qrbnb_superadmin.presentation.viewmodel.ClientDetailsViewModel
 import io.ktor.http.parameters
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val ClientDetailsScreenModule =
     module {
         single<ClientDetailsDataSource> {
 //            FakeClientDetailsDataSource()
-            RealClientDetailsDataSource(httpClient = get(POST_LOGIN_CLIENT))
+            RealClientDetailsDataSource(httpClient = get(POST_LOGIN_CLIENT), baseUrl = get(named("BASE_URL")))
         }
 
         single<ClientDetailsRepository> { ClientDetailsRepositoryImpl(get()) }

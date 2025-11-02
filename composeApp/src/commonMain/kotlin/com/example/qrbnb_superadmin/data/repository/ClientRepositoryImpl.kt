@@ -2,14 +2,14 @@ package com.example.qrbnb_superadmin.data.repository
 
 import com.example.qrbnb_superadmin.data.mapper.toClient
 import com.example.qrbnb_superadmin.data.mapper.toClientOverview
-import com.example.qrbnb_superadmin.data.remote.service.ClientDataSource
+import com.example.qrbnb_superadmin.data.remote.service.ClientOverviewDataSource
 import com.example.qrbnb_superadmin.domain.entity.Client
 import com.example.qrbnb_superadmin.domain.entity.ClientOverview
 import com.example.qrbnb_superadmin.domain.repository.ClientRepository
 
 
 class ClientRepositoryImpl(
-    private val dataSource: ClientDataSource
+    private val dataSource: ClientOverviewDataSource
 ) : ClientRepository {
 
     override suspend fun getAllClients(): List<Client> {

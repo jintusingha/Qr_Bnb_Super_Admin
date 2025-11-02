@@ -10,8 +10,8 @@ import io.ktor.client.statement.bodyAsText
 
 class RealOrderListDataSource(
     private val httpClient: HttpClient,
+    private val baseUrl: String,
 ) : OrderListDataSource {
-    private val BASE_URL = "https://qrbnb.onrender.com"
     private val TAG = "RealOrderListDataSource"
 
     override suspend fun getOrderListData(
@@ -19,8 +19,8 @@ class RealOrderListDataSource(
         status: String?,
     ): OrderListResponseDto =
         try {
-            val ordersUrl = "$BASE_URL/orders"
-            // eityu point ot ahim le log tu ami agot kio logaisu pisot kio nai
+            val ordersUrl = "$baseUrl/orders"
+
             Logger.d(TAG, "Making GET request to: $ordersUrl with clientId=$clientId, status=$status")
             val response =
                 httpClient.get(ordersUrl) {

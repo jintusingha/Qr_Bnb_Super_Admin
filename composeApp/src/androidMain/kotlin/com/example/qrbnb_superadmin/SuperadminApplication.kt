@@ -8,6 +8,7 @@ import com.example.qrbnb_superadmin.di.OrdersModule
 import com.example.qrbnb_superadmin.di.OrdersOverviewModule
 import com.example.qrbnb_superadmin.di.appModule
 import com.example.qrbnb_superadmin.di.clientModule
+import com.example.qrbnb_superadmin.di.networkConfigModule
 import com.example.qrbnb_superadmin.di.platformModule
 // The imports for the Koin Android extensions are critical:
 import org.koin.core.context.startKoin
@@ -33,7 +34,8 @@ class SuperadminApplication : Application() {
             modules(appModule, platformModule, clientModule, ClientDetailsScreenModule,AddNewClientScreenModule,
                 OrderDetailsScreenModule,
                 OrdersOverviewModule,
-                OrdersModule
+                OrdersModule,
+                networkConfigModule
             )
         }
     }

@@ -1,6 +1,7 @@
 package com.example.qrbnb_superadmin.presentation.screen.orders
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -43,9 +44,13 @@ import com.example.qrbnb_superadmin.ui.style_16_20_700
 fun OrderCard(
     order: OrderListItem,
     modifier: Modifier = Modifier,
+    onClick: (String) -> Unit,
 ) {
     Card(
-        modifier = modifier.fillMaxWidth(),
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .clickable { onClick(order.orderId) },
         shape = RoundedCornerShape(12.dp),
         colors =
             CardDefaults.cardColors(

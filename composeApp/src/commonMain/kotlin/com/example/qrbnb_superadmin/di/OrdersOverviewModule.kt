@@ -8,6 +8,7 @@ import com.example.qrbnb_superadmin.data.repository.OrdersOverviewRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.OrdersOverviewRepository
 import com.example.qrbnb_superadmin.domain.usecase.GetOrdersOverviewUseCase
 import com.example.qrbnb_superadmin.presentation.viewmodel.OrdersOverviewViewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val OrdersOverviewModule =
@@ -15,7 +16,7 @@ val OrdersOverviewModule =
 
         single<OrdersOverviewDataSource> {
 //            OrdersOverviewDummyDataSource()
-            RealOrdersOverviewDataSource(httpClient = get(POST_LOGIN_CLIENT))
+            RealOrdersOverviewDataSource(httpClient = get(POST_LOGIN_CLIENT), baseUrl = get(named("BASE_URL")))
         }
 
         single<OrdersOverviewRepository> {

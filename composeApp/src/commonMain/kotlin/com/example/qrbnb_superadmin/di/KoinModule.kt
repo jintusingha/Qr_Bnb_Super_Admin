@@ -76,7 +76,7 @@ val appModule =
         single<SuperadminApi> {
 
 //        FakeSuperadminApi()
-            RealSuperadminApi(httpClient = get(PRE_LOGIN_CLIENT))
+            RealSuperadminApi(httpClient = get(PRE_LOGIN_CLIENT), baseUrl = get(named("BASE_URL")))
         }
 
         single<SuperadminRepository> {
@@ -113,6 +113,7 @@ fun initKoin() =
             AddNewClientScreenModule,
             OrderDetailsScreenModule,
             OrdersOverviewModule,
-            OrdersModule
+            OrdersModule,
+            networkConfigModule,
         )
     }

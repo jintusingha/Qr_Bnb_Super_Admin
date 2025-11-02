@@ -7,13 +7,13 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 
-class RealClientDataSource (private val httpClient: HttpClient): ClientDataSource {
+class RealClientOverviewDataSource (private val httpClient: HttpClient,val baseUrl:String): ClientOverviewDataSource {
 
-    private val BASE_URL="https://qrbnb.onrender.com/superadmin"
+
     private val TAG = "RealClientDataSource"
     override suspend fun getClients(): ClientsResponseDto {
         return try{
-            val clientsUrl="$BASE_URL/dashboard"
+            val clientsUrl="$baseUrl/dashboard"
             Logger.d(TAG, "Making GET request to: $clientsUrl")
             val response=httpClient.get(clientsUrl)
             Logger.d(TAG, "Response status: ${response.status}")

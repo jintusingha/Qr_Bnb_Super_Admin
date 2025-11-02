@@ -11,12 +11,12 @@ import io.ktor.http.isSuccess
 
 class RealOrdersOverviewDataSource(
     private val httpClient: HttpClient,
+    val baseUrl: String,
 ) : OrdersOverviewDataSource {
-    private val BASE_URL = "https://qrbnb.onrender.com/superadmin"
     private val TAG = "RealOrdersOverviewDataSource"
 
     override suspend fun getOrdersOverviewData(): OrdersOverviewResponseDto {
-        val ordersOverviewUrl = "$BASE_URL/orders/overview"
+        val ordersOverviewUrl = "$baseUrl/orders/overview"
 
         Logger.d(TAG, "Making GET request for Orders Overview to: $ordersOverviewUrl")
 
@@ -31,9 +31,9 @@ class RealOrdersOverviewDataSource(
             if (response.status.isSuccess()) {
                 val ordersOverviewResponse = response.body<OrdersOverviewResponseDto>()
                 // <<<<-------the below is to check the client id ------>>>>>
-                val clientlist=ordersOverviewResponse.data.clientPerformance
+                val clientlist = ordersOverviewResponse.data.clientPerformance
                 clientlist.forEach { client ->
-                    Logger.d("JUST CHECKING","CLIENT ID:${client.id},Name:${client.name}")
+                    Logger.d("JUST CHECKING", "CLIENT ID:${client.id},Name:${client.name}")
                 }
                 Logger.d(TAG, "Successfully parsed Orders Overview data")
                 ordersOverviewResponse

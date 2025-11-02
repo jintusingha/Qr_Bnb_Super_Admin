@@ -11,12 +11,12 @@ import io.ktor.http.isSuccess
 
 class RealClientDetailsDataSource(
     private val httpClient: HttpClient,
+    val baseUrl: String,
 ) : ClientDetailsDataSource {
-    private val BASE_URL = "https://qrbnb.onrender.com/superadmin"
     private val TAG = "RealClientDetailsDataSource"
 
     override suspend fun getClientDetails(clientId: String): ClientDetailsDto {
-        val clientDetailsUrl = "$BASE_URL/clients/$clientId"
+        val clientDetailsUrl = "$baseUrl/clients/$clientId"
 
         Logger.d(TAG, "Making GET request for client details to: $clientDetailsUrl")
 
