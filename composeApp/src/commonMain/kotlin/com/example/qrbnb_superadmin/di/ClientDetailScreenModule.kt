@@ -4,13 +4,17 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.qrbnb_superadmin.data.remote.service.ActivateClientRemoteDataSource
 import com.example.qrbnb_superadmin.data.remote.service.ActivateClientRemoteDataSourceImpl
 import com.example.qrbnb_superadmin.data.remote.service.ClientDetailsDataSource
-
+import com.example.qrbnb_superadmin.data.remote.service.DeleteClientRemoteDataSource
+import com.example.qrbnb_superadmin.data.remote.service.DeleteClientRemoteDataSourceImpl
 import com.example.qrbnb_superadmin.data.remote.service.RealClientDetailsDataSource
 import com.example.qrbnb_superadmin.data.repository.ActivateClientImpl
 import com.example.qrbnb_superadmin.data.repository.ClientDetailsRepositoryImpl
+import com.example.qrbnb_superadmin.data.repository.DeleteClientImpl
 import com.example.qrbnb_superadmin.domain.repository.ActivateClientRepository
 import com.example.qrbnb_superadmin.domain.repository.ClientDetailsRepository
+import com.example.qrbnb_superadmin.domain.repository.DeleteClientRepository
 import com.example.qrbnb_superadmin.domain.usecase.ActivateClientUseCase
+import com.example.qrbnb_superadmin.domain.usecase.DeleteClientUseCase
 import com.example.qrbnb_superadmin.domain.usecase.GetClientDetailsUseCase
 import com.example.qrbnb_superadmin.presentation.viewmodel.ClientDetailsViewModel
 import io.ktor.http.parameters
@@ -30,12 +34,17 @@ val ClientDetailsScreenModule =
         single<ActivateClientRemoteDataSource> {
             ActivateClientRemoteDataSourceImpl(
                 httpClient = get(POST_LOGIN_CLIENT),
-                baseUrl = get(named("BASE_URL"))
+                baseUrl = get(named("BASE_URL")),
             )
         }
-
         single<ActivateClientRepository> { ActivateClientImpl(get()) }
         factory { ActivateClientUseCase(repository = get()) }
 
-        factory { parameters -> ClientDetailsViewModel(parameters.get(),get(),get()) }
+        single<DeleteClientRemoteDataSource> {
+            DeleteClientRemoteDataSourceImpl(httpClient = get(POST_LOGIN_CLIENT), baseUrl = get(named("BASE_URL")))
+        }
+        single<DeleteClientRepository> { DeleteClientImpl(get()) }
+        factory{ DeleteClientUseCase(repository = get()) }
+
+        factory { parameters -> ClientDetailsViewModel(parameters.get(), get(), get(), get()) }
     }

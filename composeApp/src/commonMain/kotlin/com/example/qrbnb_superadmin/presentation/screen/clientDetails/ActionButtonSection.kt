@@ -22,8 +22,8 @@ import com.example.qrbnb_superadmin.ui.client_details_btn_color
 
 
 @Composable
-fun ActionButtonsSection(actions: List<ClientAction>, onActivateClick: () -> Unit) {
-    // Add logging to verify actions list
+fun ActionButtonsSection(actions: List<ClientAction>, onActivateClick: () -> Unit,onDeleteClick:()->Unit) {
+
     Logger.d("ActionButtonsSection", "Actions count: ${actions.size}")
 
     Column(
@@ -31,10 +31,10 @@ fun ActionButtonsSection(actions: List<ClientAction>, onActivateClick: () -> Uni
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         actions.forEachIndexed { index, clientAction ->
-            // Log each action
+
             Logger.d("ActionButtonsSection", "Action: ${clientAction.action}, Label: ${clientAction.label}")
 
-            // Add spacer AFTER first item, not before
+
             if (index > 0) {
                 Spacer(Modifier.height(16.dp))
             }
@@ -46,7 +46,7 @@ fun ActionButtonsSection(actions: List<ClientAction>, onActivateClick: () -> Uni
                         text = clientAction.label,
                         onClick = {
                             Logger.d("ActionButtonsSection", "Activate button clicked")
-                            println("DEBUG: Activate button clicked") // Additional debug
+                            println("DEBUG: Activate button clicked")
                             onActivateClick()
                         },
                         backgroundColor = Color.Red,
@@ -58,6 +58,8 @@ fun ActionButtonsSection(actions: List<ClientAction>, onActivateClick: () -> Uni
                     text = clientAction.label,
                     onClick = {
                         Logger.d("ActionButtonsSection", "Delete button clicked")
+                        onDeleteClick()
+
                     },
                     backgroundColor = Color.Red,
                     textColor = Color.White

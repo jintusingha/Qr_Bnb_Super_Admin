@@ -3,6 +3,7 @@ package com.example.qrbnb_superadmin.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.qrbnb_superadmin.domain.usecase.ActivateClientUseCase
+import com.example.qrbnb_superadmin.domain.usecase.DeleteClientUseCase
 import com.example.qrbnb_superadmin.domain.usecase.GetClientDetailsUseCase
 import com.example.qrbnb_superadmin.logging.Logger
 import com.example.qrbnb_superadmin.presentation.state.ClientDetailsState
@@ -14,6 +15,7 @@ class ClientDetailsViewModel(
     private val clientId: String,
     private val getClientDetailsUseCase: GetClientDetailsUseCase,
     private val activateClientUseCase: ActivateClientUseCase,
+    private val deleteClientUseCase: DeleteClientUseCase,
 ) : ViewModel() {
     private val _state = MutableStateFlow(ClientDetailsState())
     val state: StateFlow<ClientDetailsState> = _state
@@ -40,6 +42,20 @@ class ClientDetailsViewModel(
                 _state.value = _state.value.copy(successMessage = "Client activated successfully!")
             } catch (e: Exception) {
                 _state.value = _state.value.copy(actionError = e.message ?: "Activation failed")
+            } finally {
+                _state.value = _state.value.copy(isActionLoading = false)
+            }
+        }
+    }
+
+    fun deleteClient() {
+        viewModelScope.launch {
+            _state.value = _state.value.copy(isActionLoading = true, actionError = null)
+            try {
+                val response = deleteClientUseCase(clientId)
+                _state.value = _state.value.copy(successMessage = "client deleted successfully!")
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(actionError = e.message ?: "Deletion Failed")
             } finally {
                 _state.value = _state.value.copy(isActionLoading = false)
             }

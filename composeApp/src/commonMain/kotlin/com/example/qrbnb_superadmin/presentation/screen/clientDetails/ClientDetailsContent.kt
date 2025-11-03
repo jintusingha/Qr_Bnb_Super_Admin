@@ -15,7 +15,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.qrbnb_superadmin.domain.entity.ClientDetails
 
 @Composable
-fun ClientDetailsContent(details: ClientDetails, paddingValues: PaddingValues,onActivateClick: () -> Unit) {
+fun ClientDetailsContent(details: ClientDetails, paddingValues: PaddingValues,onActivateClick: () -> Unit,onDeleteClick:()->Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -47,7 +47,9 @@ fun ClientDetailsContent(details: ClientDetails, paddingValues: PaddingValues,on
 
         ActionButtonsSection(
             actions = details.actions,
-            onActivateClick = onActivateClick
+            onActivateClick = onActivateClick,
+            onDeleteClick = onDeleteClick
+
         )
 
         Spacer(Modifier.height(32.dp))
