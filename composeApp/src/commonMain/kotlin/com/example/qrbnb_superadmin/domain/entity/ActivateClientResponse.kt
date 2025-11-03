@@ -1,6 +1,6 @@
 package com.example.qrbnb_superadmin.domain.entity
 
-data class ActivateClient(
+data class ActivateClientResponse(
     val clientId: String,
     val isActive: Boolean
 )

@@ -87,7 +87,8 @@ fun ClientDetailsScreen(
                     details = state.clientDetails!!,
                     paddingValues = paddingValues,
                     onActivateClick = { viewModel.activateClient() },
-                    onDeleteClick = {viewModel.deleteClient()}
+                    onDeleteClick = { viewModel.deleteClient() },
+                    onExportClick = { viewModel.exportClient() },
                 )
             }
 

@@ -6,15 +6,20 @@ import com.example.qrbnb_superadmin.data.remote.service.ActivateClientRemoteData
 import com.example.qrbnb_superadmin.data.remote.service.ClientDetailsDataSource
 import com.example.qrbnb_superadmin.data.remote.service.DeleteClientRemoteDataSource
 import com.example.qrbnb_superadmin.data.remote.service.DeleteClientRemoteDataSourceImpl
+import com.example.qrbnb_superadmin.data.remote.service.ExportClientRemoteDataSource
+import com.example.qrbnb_superadmin.data.remote.service.ExportClientRemoteDataSourceImpl
 import com.example.qrbnb_superadmin.data.remote.service.RealClientDetailsDataSource
 import com.example.qrbnb_superadmin.data.repository.ActivateClientImpl
 import com.example.qrbnb_superadmin.data.repository.ClientDetailsRepositoryImpl
 import com.example.qrbnb_superadmin.data.repository.DeleteClientImpl
+import com.example.qrbnb_superadmin.data.repository.ExportClientImpl
 import com.example.qrbnb_superadmin.domain.repository.ActivateClientRepository
 import com.example.qrbnb_superadmin.domain.repository.ClientDetailsRepository
 import com.example.qrbnb_superadmin.domain.repository.DeleteClientRepository
+import com.example.qrbnb_superadmin.domain.repository.ExportClientRepository
 import com.example.qrbnb_superadmin.domain.usecase.ActivateClientUseCase
 import com.example.qrbnb_superadmin.domain.usecase.DeleteClientUseCase
+import com.example.qrbnb_superadmin.domain.usecase.ExportClientUseCase
 import com.example.qrbnb_superadmin.domain.usecase.GetClientDetailsUseCase
 import com.example.qrbnb_superadmin.presentation.viewmodel.ClientDetailsViewModel
 import io.ktor.http.parameters
@@ -31,6 +36,7 @@ val ClientDetailsScreenModule =
         single<ClientDetailsRepository> { ClientDetailsRepositoryImpl(get()) }
 
         factory { GetClientDetailsUseCase(repository = get()) }
+        // this is to Activate client
         single<ActivateClientRemoteDataSource> {
             ActivateClientRemoteDataSourceImpl(
                 httpClient = get(POST_LOGIN_CLIENT),
@@ -39,12 +45,16 @@ val ClientDetailsScreenModule =
         }
         single<ActivateClientRepository> { ActivateClientImpl(get()) }
         factory { ActivateClientUseCase(repository = get()) }
-
+        // this is for deleteclient
         single<DeleteClientRemoteDataSource> {
             DeleteClientRemoteDataSourceImpl(httpClient = get(POST_LOGIN_CLIENT), baseUrl = get(named("BASE_URL")))
         }
         single<DeleteClientRepository> { DeleteClientImpl(get()) }
-        factory{ DeleteClientUseCase(repository = get()) }
+        factory { DeleteClientUseCase(repository = get()) }
+        // this is for ExportClient
+        single<ExportClientRemoteDataSource> { ExportClientRemoteDataSourceImpl(get(POST_LOGIN_CLIENT), get(named("BASE_URL"))) }
+        single<ExportClientRepository> { ExportClientImpl(get()) }
+        factory { ExportClientUseCase(get()) }
 
-        factory { parameters -> ClientDetailsViewModel(parameters.get(), get(), get(), get()) }
+        factory { parameters -> ClientDetailsViewModel(parameters.get(), get(), get(), get(), get()) }
     }

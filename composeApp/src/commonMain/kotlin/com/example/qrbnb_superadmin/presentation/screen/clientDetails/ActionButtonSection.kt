@@ -20,20 +20,22 @@ import com.example.qrbnb_superadmin.presentation.reusable_composables.PrimaryAct
 import com.example.qrbnb_superadmin.ui.client_details_activate_delete_export_client_data_text_color
 import com.example.qrbnb_superadmin.ui.client_details_btn_color
 
-
 @Composable
-fun ActionButtonsSection(actions: List<ClientAction>, onActivateClick: () -> Unit,onDeleteClick:()->Unit) {
-
+fun ActionButtonsSection(
+    actions: List<ClientAction>,
+    onActivateClick: () -> Unit,
+    onDeleteClick: () -> Unit,
+    onExportClick: () -> Unit,
+) {
     Logger.d("ActionButtonsSection", "Actions count: ${actions.size}")
 
     Column(
         modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         actions.forEachIndexed { index, clientAction ->
 
             Logger.d("ActionButtonsSection", "Action: ${clientAction.action}, Label: ${clientAction.label}")
-
 
             if (index > 0) {
                 Spacer(Modifier.height(16.dp))
@@ -50,38 +52,41 @@ fun ActionButtonsSection(actions: List<ClientAction>, onActivateClick: () -> Uni
                             onActivateClick()
                         },
                         backgroundColor = Color.Red,
-                        textColor = Color.White
+                        textColor = Color.White,
                     )
                 }
 
-                "DELETE" -> PrimaryActionButton(
-                    text = clientAction.label,
-                    onClick = {
-                        Logger.d("ActionButtonsSection", "Delete button clicked")
-                        onDeleteClick()
+                "DELETE" ->
+                    PrimaryActionButton(
+                        text = clientAction.label,
+                        onClick = {
+                            Logger.d("ActionButtonsSection", "Delete button clicked")
+                            onDeleteClick()
+                        },
+                        backgroundColor = Color.Red,
+                        textColor = Color.White,
+                    )
 
-                    },
-                    backgroundColor = Color.Red,
-                    textColor = Color.White
-                )
+                "EXPORT" ->
+                    PrimaryActionButton(
+                        text = clientAction.label,
+                        onClick = {
+                            Logger.d("ActionButtonsSection", "Export button clicked")
+                            onExportClick()
+                        },
+                        backgroundColor = Color.Red,
+                        textColor = Color.White,
+                    )
 
-                "EXPORT" -> PrimaryActionButton(
-                    text = clientAction.label,
-                    onClick = {
-                        Logger.d("ActionButtonsSection", "Export button clicked")
-                    },
-                    backgroundColor = Color.Red,
-                    textColor = Color.White
-                )
-
-                else -> PrimaryActionButton(
-                    text = clientAction.label,
-                    onClick = {
-                        Logger.d("ActionButtonsSection", "Generic button clicked: ${clientAction.action}")
-                    },
-                    backgroundColor = client_details_btn_color,
-                    textColor = client_details_activate_delete_export_client_data_text_color
-                )
+                else ->
+                    PrimaryActionButton(
+                        text = clientAction.label,
+                        onClick = {
+                            Logger.d("ActionButtonsSection", "Generic button clicked: ${clientAction.action}")
+                        },
+                        backgroundColor = client_details_btn_color,
+                        textColor = client_details_activate_delete_export_client_data_text_color,
+                    )
             }
         }
 

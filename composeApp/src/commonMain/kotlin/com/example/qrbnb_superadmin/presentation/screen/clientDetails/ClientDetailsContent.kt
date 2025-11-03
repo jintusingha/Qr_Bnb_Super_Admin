@@ -15,41 +15,42 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.qrbnb_superadmin.domain.entity.ClientDetails
 
 @Composable
-fun ClientDetailsContent(details: ClientDetails, paddingValues: PaddingValues,onActivateClick: () -> Unit,onDeleteClick:()->Unit) {
+fun ClientDetailsContent(
+    details: ClientDetails,
+    paddingValues: PaddingValues,
+    onActivateClick: () -> Unit,
+    onDeleteClick: () -> Unit,
+    onExportClick: () -> Unit,
+) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues)
-            .padding(horizontal = 16.dp)
-            .verticalScroll(rememberScrollState())
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(horizontal = 16.dp)
+                .verticalScroll(rememberScrollState()),
     ) {
-
         ClientHeader(client = details.client)
 
         Spacer(Modifier.height(32.dp))
-
 
         ClientInfoSection(client = details.client)
 
         Spacer(Modifier.height(32.dp))
 
-
         ActivityOverviewSection(overview = details.activityOverview)
 
         Spacer(Modifier.height(32.dp))
 
-
         TimelineSection(timelineEvents = details.timeline)
 
-
         Spacer(Modifier.height(48.dp))
-
 
         ActionButtonsSection(
             actions = details.actions,
             onActivateClick = onActivateClick,
-            onDeleteClick = onDeleteClick
-
+            onDeleteClick = onDeleteClick,
+            onExportClick = onExportClick,
         )
 
         Spacer(Modifier.height(32.dp))
