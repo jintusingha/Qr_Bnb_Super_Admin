@@ -15,57 +15,74 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.qrbnb_superadmin.domain.entity.ClientAction
+import com.example.qrbnb_superadmin.logging.Logger
 import com.example.qrbnb_superadmin.presentation.reusable_composables.PrimaryActionButton
 import com.example.qrbnb_superadmin.ui.client_details_activate_delete_export_client_data_text_color
 import com.example.qrbnb_superadmin.ui.client_details_btn_color
 
 
 @Composable
-fun ActionButtonsSection(actions: List<ClientAction>) {
+fun ActionButtonsSection(actions: List<ClientAction>, onActivateClick: () -> Unit) {
+    // Add logging to verify actions list
+    Logger.d("ActionButtonsSection", "Actions count: ${actions.size}")
+
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        actions.forEach { clientAction ->
-            Spacer(Modifier.height(16.dp))
+        actions.forEachIndexed { index, clientAction ->
+            // Log each action
+            Logger.d("ActionButtonsSection", "Action: ${clientAction.action}, Label: ${clientAction.label}")
 
-            when (clientAction.action) {
+            // Add spacer AFTER first item, not before
+            if (index > 0) {
+                Spacer(Modifier.height(16.dp))
+            }
 
-
-                "ACTIVATE" -> PrimaryActionButton(
-                    text = clientAction.label,
-                    onClick = { /* Handle Activate click */ },
-                    backgroundColor = Color.Red,
-                    textColor = Color.White
-                )
-
+            when (clientAction.action.uppercase()) {
+                "ACTIVATE" -> {
+                    Logger.d("ActionButtonsSection", "Rendering ACTIVATE button")
+                    PrimaryActionButton(
+                        text = clientAction.label,
+                        onClick = {
+                            Logger.d("ActionButtonsSection", "Activate button clicked")
+                            println("DEBUG: Activate button clicked") // Additional debug
+                            onActivateClick()
+                        },
+                        backgroundColor = Color.Red,
+                        textColor = Color.White
+                    )
+                }
 
                 "DELETE" -> PrimaryActionButton(
                     text = clientAction.label,
-                    onClick = { /* Handle Delete */ },
+                    onClick = {
+                        Logger.d("ActionButtonsSection", "Delete button clicked")
+                    },
                     backgroundColor = Color.Red,
                     textColor = Color.White
-
-
                 )
-
 
                 "EXPORT" -> PrimaryActionButton(
                     text = clientAction.label,
-                    onClick = { /* Handle Export */ },
+                    onClick = {
+                        Logger.d("ActionButtonsSection", "Export button clicked")
+                    },
                     backgroundColor = Color.Red,
                     textColor = Color.White
-
                 )
-
 
                 else -> PrimaryActionButton(
                     text = clientAction.label,
-                    onClick = { /* Handle Generic click */ },
+                    onClick = {
+                        Logger.d("ActionButtonsSection", "Generic button clicked: ${clientAction.action}")
+                    },
                     backgroundColor = client_details_btn_color,
                     textColor = client_details_activate_delete_export_client_data_text_color
                 )
             }
         }
+
+        Spacer(Modifier.height(16.dp)) // Final spacer after all buttons
     }
 }

@@ -35,7 +35,10 @@ import com.example.qrbnb_superadmin.presentation.screen.orderDetails.OrderStatus
 import com.example.qrbnb_superadmin.presentation.screen.orderDetails.ProfileInfoRow
 import com.example.qrbnb_superadmin.presentation.screen.orderDetails.TotalsSummary
 import com.example.qrbnb_superadmin.presentation.viewmodel.OrderDetailsViewModel
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
+import qr_bnb_super_admin.composeapp.generated.resources.Res
+import qr_bnb_super_admin.composeapp.generated.resources.leftArrowIcon
 
 @Composable
 fun OrderDetailsScreen(
@@ -55,8 +58,9 @@ fun OrderDetailsScreen(
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            painter = painterResource(Res.drawable.leftArrowIcon),
+                            contentDescription = "LeftArrow",
+                            modifier = Modifier.size(24.dp),
                         )
                     }
                 },

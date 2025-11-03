@@ -11,10 +11,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.qrbnb_superadmin.domain.entity.ClientDetails
 
 @Composable
-fun ClientDetailsContent(details: ClientDetails, paddingValues: PaddingValues) {
+fun ClientDetailsContent(details: ClientDetails, paddingValues: PaddingValues,onActivateClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -44,7 +45,10 @@ fun ClientDetailsContent(details: ClientDetails, paddingValues: PaddingValues) {
         Spacer(Modifier.height(48.dp))
 
 
-        ActionButtonsSection(actions = details.actions)
+        ActionButtonsSection(
+            actions = details.actions,
+            onActivateClick = onActivateClick
+        )
 
         Spacer(Modifier.height(32.dp))
     }
