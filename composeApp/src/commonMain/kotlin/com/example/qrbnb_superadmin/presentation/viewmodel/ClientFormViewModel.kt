@@ -5,17 +5,17 @@ import androidx.lifecycle.viewModelScope
 import com.example.qrbnb_superadmin.domain.usecase.GetAddClientFormUseCase
 import com.example.qrbnb_superadmin.domain.usecase.SubmitAddClientFormUseCase
 import com.example.qrbnb_superadmin.presentation.state.ClientFormState
+import com.example.qrbnb_superadmin.toast.ToastManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-
 class ClientFormViewModel(
     private val getAddClientFormUseCase: GetAddClientFormUseCase,
-    private val submitAddClientFormUseCase: SubmitAddClientFormUseCase
+    private val submitAddClientFormUseCase: SubmitAddClientFormUseCase,
+    private val toastManager: ToastManager,
 ) : ViewModel() {
-
     private val _uiState = MutableStateFlow<ClientFormState>(ClientFormState.Loading)
     val uiState: StateFlow<ClientFormState> = _uiState.asStateFlow()
 
@@ -41,12 +41,23 @@ class ClientFormViewModel(
                 val response = submitAddClientFormUseCase(formValues)
 
                 if (response.success) {
-                    _uiState.value = ClientFormState.SubmissionSuccess(response.message)
+                    toastManager.show("Client added successfully!")
+
+                    loadForm()
                 } else {
-                    _uiState.value = ClientFormState.SubmissionError(response.errors ?: emptyList())
+                    toastManager.show(response.message ?: "Failed to add client")
                 }
             } catch (e: Exception) {
-                _uiState.value = ClientFormState.Error("Failed to submit form: ${e.message}")
+                val regex = """"message"\s*:\s*"([^"]+)"""".toRegex()
+                val extractedMessage =
+                    regex
+                        .find(e.message ?: "")
+                        ?.groups
+                        ?.get(1)
+                        ?.value
+                val finalMessage = extractedMessage ?: "Something went wrong"
+
+                toastManager.show(finalMessage)
             }
         }
     }

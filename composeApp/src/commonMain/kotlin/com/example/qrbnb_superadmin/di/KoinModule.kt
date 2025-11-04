@@ -1,19 +1,32 @@
 package com.example.qrbnb_superadmin.di
 
 import com.example.qrbnb_superadmin.data.TokenStorage
+import com.example.qrbnb_superadmin.data.remote.model.RefreshRequest
+import com.example.qrbnb_superadmin.data.remote.model.RefreshResponse
 import com.example.qrbnb_superadmin.data.remote.service.RealSuperadminApi
 import com.example.qrbnb_superadmin.data.remote.service.SuperadminApi
 import com.example.qrbnb_superadmin.data.repository.SuperadminRepositoryImpl
 import com.example.qrbnb_superadmin.domain.repository.SuperadminRepository
 import com.example.qrbnb_superadmin.domain.usecase.LoginUseCase
+import com.example.qrbnb_superadmin.logging.Logger
 import com.example.qrbnb_superadmin.navigation.AuthStatusChecker
 import com.example.qrbnb_superadmin.presentation.viewmodel.LoginViewModel
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
+import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.providers.BearerTokens
 import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
+import io.ktor.client.statement.HttpResponse
+import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -21,12 +34,12 @@ import org.koin.dsl.module
 val PRE_LOGIN_CLIENT = named("preLoginClient")
 val POST_LOGIN_CLIENT = named("postLoginClient")
 
-// This module groups all the definitions for the Login feature and its dependencies.
 val appModule =
     module {
-        single(POST_LOGIN_CLIENT) {
 
+        single(POST_LOGIN_CLIENT) {
             val tokenStorage: TokenStorage = get()
+            val baseUrl: String = get(named("BASE_URL"))
 
             HttpClient {
                 install(ContentNegotiation) {
@@ -40,15 +53,50 @@ val appModule =
                 install(Logging) { level = LogLevel.BODY }
                 expectSuccess = true
 
-                install(io.ktor.client.plugins.auth.Auth) {
-
+                install(Auth) {
                     bearer {
+
                         loadTokens {
+                            tokenStorage.getAccessToken()?.let { accessToken ->
+                                BearerTokens(accessToken, "")
+                            }
+                        }
 
-                            tokenStorage.getToken()?.let { accessToken ->
+                        refreshTokens {
+                            val refreshToken = tokenStorage.getRefreshToken()
+                            if (refreshToken != null) {
 
-                                io.ktor.client.plugins.auth.providers
-                                    .BearerTokens(accessToken, "")
+                                Logger.d("AuthDebug", "Refreshing token using: $refreshToken")
+                                Logger.d("AuthDebug", "Calling refresh endpoint: $baseUrl/refresh")
+                                val response: HttpResponse =
+                                    client.post("$baseUrl/refresh") {
+                                        markAsRefreshTokenRequest()
+                                        contentType(ContentType.Application.Json)
+                                        setBody(RefreshRequest(refreshToken))
+                                    }
+
+                                if (response.status == HttpStatusCode.OK) {
+                                    val body: RefreshResponse = response.body()
+
+                                    if (body.success) {
+                                        val newAccessToken = body.data.accessToken
+                                        val newRefreshToken = body.data.refreshToken
+
+                                        tokenStorage.saveTokens(newAccessToken, newRefreshToken)
+
+                                        BearerTokens(newAccessToken, newRefreshToken)
+                                    } else {
+
+                                        tokenStorage.clearTokens()
+                                        null
+                                    }
+                                } else {
+
+                                    tokenStorage.clearTokens()
+                                    null
+                                }
+                            } else {
+                                null
                             }
                         }
                     }
@@ -66,54 +114,28 @@ val appModule =
                         },
                     )
                 }
-                install(Logging) {
-                    level = LogLevel.BODY
-                }
+                install(Logging) { level = LogLevel.BODY }
                 expectSuccess = true
             }
         }
 
         single<SuperadminApi> {
-
-//        FakeSuperadminApi()
             RealSuperadminApi(httpClient = get(PRE_LOGIN_CLIENT), baseUrl = get(named("BASE_URL")))
         }
 
         single<SuperadminRepository> {
             SuperadminRepositoryImpl(api = get())
         }
+
         single {
             AuthStatusChecker(tokenStorage = get())
         }
 
         factory {
-            LoginUseCase(
-                repository = get(),
-                tokenStorage = get(),
-            ) // 'get()' automatically finds the SuperadminRepository
+            LoginUseCase(repository = get(), tokenStorage = get())
         }
 
         factory {
-            LoginViewModel(
-                loginUseCase = get(),
-                toastManager = get(),
-            )
+            LoginViewModel(loginUseCase = get(), toastManager = get())
         }
-    }
-
-// The core function to start Koin
-fun initKoin() =
-    org.koin.core.context.startKoin {
-        // Load all defined modules
-        modules(
-            appModule,
-            platformModule,
-            clientModule,
-            ClientDetailsScreenModule,
-            AddNewClientScreenModule,
-            OrderDetailsScreenModule,
-            OrdersOverviewModule,
-            OrdersModule,
-            networkConfigModule,
-        )
     }

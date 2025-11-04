@@ -5,6 +5,7 @@ import com.example.qrbnb_superadmin.data.remote.model.exportClientDto.ExportClie
 import com.example.qrbnb_superadmin.logging.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.isSuccess
@@ -20,7 +21,7 @@ class ExportClientRemoteDataSourceImpl(
         Logger.d(TAG, "Making post request to $url")
 
         return try {
-            val response = httpClient.post(url)
+            val response = httpClient.get(url)
             Logger.d(TAG, "Response status : ${response.status}")
             val bodyText = response.bodyAsText()
             Logger.d(TAG, "Response body snippet: ${bodyText.take(200)}..")

@@ -21,7 +21,8 @@ class SuperadminRepositoryImpl(
             return User(
                 id = response.data.userId,
                 email = response.data.email,
-                authToken = response.data.accessToken
+                authToken = response.data.accessToken,
+                refreshToken = response.data.refreshToken
 
             )
         } else {

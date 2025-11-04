@@ -4,6 +4,7 @@ import com.example.qrbnb_superadmin.data.remote.model.DeleteClientResponseDto.De
 import com.example.qrbnb_superadmin.logging.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.request.delete
 import io.ktor.client.request.post
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.isSuccess
@@ -16,7 +17,7 @@ class DeleteClientRemoteDataSourceImpl (private val httpClient: HttpClient,priva
         Logger.d(TAG,"Making post request to :$url")
 
         return try{
-            val response=httpClient.post(url)
+            val response=httpClient.delete (url)
             Logger.d(TAG,"Response status:${response.status}")
             val bodyText=response.bodyAsText()
             Logger.d(TAG,"Response body snipper:${bodyText.take(200)}..")

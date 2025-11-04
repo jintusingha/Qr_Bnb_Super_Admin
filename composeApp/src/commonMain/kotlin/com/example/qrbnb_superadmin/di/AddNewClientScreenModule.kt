@@ -31,6 +31,7 @@ val AddNewClientScreenModule =
             ClientFormViewModel(
                 getAddClientFormUseCase = get(),
                 submitAddClientFormUseCase = get(),
+                get(),
             )
         }
     }

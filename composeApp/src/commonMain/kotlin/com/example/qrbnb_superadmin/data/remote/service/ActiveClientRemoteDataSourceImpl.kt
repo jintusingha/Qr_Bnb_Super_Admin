@@ -4,6 +4,7 @@ import com.example.qrbnb_superadmin.data.remote.model.ActivateClientResponseDto.
 import com.example.qrbnb_superadmin.logging.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.request.patch
 import io.ktor.client.request.post
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.isSuccess
@@ -19,7 +20,7 @@ class ActivateClientRemoteDataSourceImpl(
         Logger.d(TAG, "Making POST request to: $url")
 
         return try {
-            val response = httpClient.post(url)
+            val response = httpClient.patch(url)
             Logger.d(TAG, "Response status: ${response.status}")
 
             val bodyText = response.bodyAsText()

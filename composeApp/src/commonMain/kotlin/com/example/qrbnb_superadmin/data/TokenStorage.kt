@@ -2,8 +2,9 @@ package com.example.qrbnb_superadmin.data
 
 
 
-interface TokenStorage{
-    fun saveToken(token:String)
-    fun getToken():String?
-    fun clearToken()
+interface TokenStorage {
+    fun saveTokens(accessToken: String, refreshToken: String)
+    fun getAccessToken(): String?
+    fun getRefreshToken(): String?
+    fun clearTokens()
 }

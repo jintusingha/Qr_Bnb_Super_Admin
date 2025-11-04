@@ -34,10 +34,11 @@ fun AddClientScreen(
 
     Scaffold(
         topBar = {
-            val title = when (uiState) {
-                is ClientFormState.Success -> (uiState as ClientFormState.Success).formSchema.title
-                else -> "Add New Client"
-            }
+            val title =
+                when (uiState) {
+                    is ClientFormState.Success -> (uiState as ClientFormState.Success).formSchema.title
+                    else -> "Add New Client"
+                }
 
             CustomTopAppBar(
                 title = title,
@@ -46,18 +47,19 @@ fun AddClientScreen(
                         Icon(
                             painter = painterResource(Res.drawable.leftArrowIcon),
                             contentDescription = "LeftArrow",
-                            modifier = Modifier.size(24.dp)
+                            modifier = Modifier.size(24.dp),
                         )
                     }
                 },
-                actions = {}
+                actions = {},
             )
-        }
+        },
     ) { paddingValues ->
         Box(
-            modifier = Modifier
-                .padding(paddingValues)
-                .fillMaxSize()
+            modifier =
+                Modifier
+                    .padding(paddingValues)
+                    .fillMaxSize(),
         ) {
             when (uiState) {
                 is ClientFormState.Loading -> {
@@ -71,27 +73,7 @@ fun AddClientScreen(
                         onSaveClick = { formValues ->
                             viewModel.submitForm(formValues)
                         },
-                        onCancelClick = onBackClick
-                    )
-                }
-
-                is ClientFormState.SubmissionSuccess -> {
-                    val message = (uiState as ClientFormState.SubmissionSuccess).message
-                    SuccessDialog(
-                        message = message,
-                        onDismiss = {
-                            onBackClick()
-                        }
-                    )
-                }
-
-                is ClientFormState.SubmissionError -> {
-                    val errors = (uiState as ClientFormState.SubmissionError).errors
-                    SubmissionErrorDialog(
-                        errors = errors,
-                        onDismiss = {
-                            viewModel.resetForm()
-                        }
+                        onCancelClick = onBackClick,
                     )
                 }
 

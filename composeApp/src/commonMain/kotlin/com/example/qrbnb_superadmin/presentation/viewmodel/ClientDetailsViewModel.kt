@@ -7,6 +7,7 @@ import com.example.qrbnb_superadmin.domain.usecase.DeleteClientUseCase
 import com.example.qrbnb_superadmin.domain.usecase.ExportClientUseCase
 import com.example.qrbnb_superadmin.domain.usecase.GetClientDetailsUseCase
 import com.example.qrbnb_superadmin.logging.Logger
+import com.example.qrbnb_superadmin.logging.Logger.e
 import com.example.qrbnb_superadmin.presentation.state.ClientDetailsState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +18,7 @@ class ClientDetailsViewModel(
     private val getClientDetailsUseCase: GetClientDetailsUseCase,
     private val activateClientUseCase: ActivateClientUseCase,
     private val deleteClientUseCase: DeleteClientUseCase,
-    private val exportClientUseCase: ExportClientUseCase
+    private val exportClientUseCase: ExportClientUseCase,
 ) : ViewModel() {
     private val _state = MutableStateFlow(ClientDetailsState())
     val state: StateFlow<ClientDetailsState> = _state
@@ -63,17 +64,17 @@ class ClientDetailsViewModel(
             }
         }
     }
-    fun exportClient(){
-        viewModelScope.launch {
-            _state.value=_state.value.copy(isActionLoading = true, actionError = null)
-            try{
-                val reponse=exportClientUseCase(clientId)
-                _state.value=_state.value.copy(successMessage = "client data exported successfully")
 
-            }catch (e: Exception){
-                _state.value=_state.value.copy(actionError = e.message?:"export failed")
-            }finally {
-                _state.value=_state.value.copy(isActionLoading = false)
+    fun exportClient() {
+        viewModelScope.launch {
+            _state.value = _state.value.copy(isActionLoading = true, actionError = null)
+            try {
+                val response = exportClientUseCase(clientId)
+                _state.value = _state.value.copy(successMessage = "client data exported successfully")
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(actionError = e.message ?: "export failed")
+            } finally {
+                _state.value = _state.value.copy(isActionLoading = false)
             }
         }
     }
