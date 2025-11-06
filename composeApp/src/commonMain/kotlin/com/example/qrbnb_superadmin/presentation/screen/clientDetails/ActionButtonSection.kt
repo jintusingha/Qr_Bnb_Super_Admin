@@ -19,6 +19,8 @@ import com.example.qrbnb_superadmin.logging.Logger
 import com.example.qrbnb_superadmin.presentation.reusable_composables.PrimaryActionButton
 import com.example.qrbnb_superadmin.ui.client_details_activate_delete_export_client_data_text_color
 import com.example.qrbnb_superadmin.ui.client_details_btn_color
+import com.example.qrbnb_superadmin.ui.customButtonBackground
+import com.example.qrbnb_superadmin.ui.customButtonText
 
 @Composable
 fun ActionButtonsSection(
@@ -51,8 +53,8 @@ fun ActionButtonsSection(
                             println("DEBUG: Activate button clicked")
                             onActivateClick()
                         },
-                        backgroundColor = Color.Red,
-                        textColor = Color.White,
+                        backgroundColor = customButtonBackground,
+                        textColor = customButtonText,
                     )
                 }
 
@@ -63,8 +65,8 @@ fun ActionButtonsSection(
                             Logger.d("ActionButtonsSection", "Delete button clicked")
                             onDeleteClick()
                         },
-                        backgroundColor = Color.Red,
-                        textColor = Color.White,
+                        backgroundColor = customButtonBackground,
+                        textColor = customButtonText,
                     )
 
                 "EXPORT" ->
@@ -74,11 +76,12 @@ fun ActionButtonsSection(
                             Logger.d("ActionButtonsSection", "Export button clicked")
                             onExportClick()
                         },
-                        backgroundColor = Color.Red,
-                        textColor = Color.White,
+                        backgroundColor = customButtonBackground,
+                        textColor = customButtonText,
                     )
 
                 else ->
+
                     PrimaryActionButton(
                         text = clientAction.label,
                         onClick = {
@@ -90,6 +93,6 @@ fun ActionButtonsSection(
             }
         }
 
-        Spacer(Modifier.height(16.dp)) // Final spacer after all buttons
+
     }
 }

@@ -75,12 +75,15 @@ val appModule =
                                         setBody(RefreshRequest(refreshToken))
                                     }
 
-                                if (response.status == HttpStatusCode.OK) {
+                                if (response.status == HttpStatusCode.OK || response.status == HttpStatusCode.Created) {
                                     val body: RefreshResponse = response.body()
 
                                     if (body.success) {
                                         val newAccessToken = body.data.accessToken
                                         val newRefreshToken = body.data.refreshToken
+                                        Logger.d("AuthDebug", "Token refreshed successfully!")
+                                        Logger.d("AuthDebug", "New access token: $newAccessToken")
+                                        Logger.d("AuthDebug", "New refresh token: $newRefreshToken")
 
                                         tokenStorage.saveTokens(newAccessToken, newRefreshToken)
 

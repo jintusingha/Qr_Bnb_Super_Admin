@@ -14,21 +14,25 @@ import com.example.qrbnb_superadmin.ui.textstyle_14_size_21_lineheight
 import com.example.qrbnb_superadmin.ui.title_reddish_brown
 
 @Composable
-fun TimelineItem(status: String, time: String) {
+fun TimelineItem(
+    status: String,
+    time: String,
+) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 6.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(bottom = 17.dp),
     ) {
         Text(
             text = status,
             style = textstyle_14_size_21_lineheight(),
-            color = title_reddish_brown
+            color = title_reddish_brown,
         )
         Text(
             text = time,
             style = textstyle_14_size_21_lineheight(),
-            color = title_reddish_brown
+            color = title_reddish_brown,
         )
     }
 }

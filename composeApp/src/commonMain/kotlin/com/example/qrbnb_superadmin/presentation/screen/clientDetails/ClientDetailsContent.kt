@@ -40,11 +40,11 @@ fun ClientDetailsContent(
 
         ActivityOverviewSection(overview = details.activityOverview)
 
-        Spacer(Modifier.height(32.dp))
+        Spacer(Modifier.height(12.dp))
 
         TimelineSection(timelineEvents = details.timeline)
 
-        Spacer(Modifier.height(48.dp))
+        Spacer(Modifier.height(12.dp))
 
         ActionButtonsSection(
             actions = details.actions,
@@ -53,6 +53,6 @@ fun ClientDetailsContent(
             onExportClick = onExportClick,
         )
 
-        Spacer(Modifier.height(32.dp))
+
     }
 }

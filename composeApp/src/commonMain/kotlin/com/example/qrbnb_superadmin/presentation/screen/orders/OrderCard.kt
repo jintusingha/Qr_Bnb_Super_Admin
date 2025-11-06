@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
@@ -71,19 +72,20 @@ fun OrderCard(
                     style = style_14_21_400(),
                     color = soft_reddish,
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(5.dp))
                 Text(
                     text = "${order.timeAgo} • ${order.table}",
                     style = style_16_20_700(),
                     color = Black_color,
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(5.dp))
                 Text(
-                    text = "Guest: ${order.guest.name} • ${order.items.summary.take(5)}",
+                    text = "Guest: ${order.guest.name} • ${order.items.summary.take(n=5)}",
                     style = style_14_21_400(),
                     color = soft_reddish,
+
                 )
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(30.dp))
 
                 Button(
                     onClick = { /* Handle accept */ },
@@ -123,7 +125,8 @@ fun OrderCard(
                 contentDescription = "Order image",
                 modifier =
                     Modifier
-                        .size(100.dp)
+                        .width(130.dp)
+                        .height(130.dp)
                         .clip(RoundedCornerShape(12.dp)),
                 contentScale = ContentScale.Crop,
             )

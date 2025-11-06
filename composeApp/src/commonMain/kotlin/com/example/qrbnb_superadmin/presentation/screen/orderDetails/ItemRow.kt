@@ -21,7 +21,7 @@ import com.example.qrbnb_superadmin.ui.title_reddish_brown
 @Composable
 fun ItemRow(item: Item) {
     Row(
-        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
+        modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Column(modifier = Modifier.weight(1f)) {

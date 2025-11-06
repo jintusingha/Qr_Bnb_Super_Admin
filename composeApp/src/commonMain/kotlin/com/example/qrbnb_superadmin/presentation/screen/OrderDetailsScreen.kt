@@ -102,10 +102,14 @@ fun SuccessContent(details: OrderDetails) {
                 subtitle = "Phone: ${details.customer.phone}, ${details.customer.table}",
             )
         }
-
-        item { Divider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f)) }
+        item {
+            Spacer(modifier = Modifier.height(8.dp))
+        }
 
         item { ItemsSection(items = details.items) }
+        item {
+            Spacer(modifier = Modifier.height(8.dp))
+        }
 
         item { TotalsSummary(details = details) }
 

@@ -16,12 +16,12 @@ import com.example.qrbnb_superadmin.domain.entity.OrderDetails
 @Composable
 fun TotalsSummary(details: OrderDetails) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(18.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier.fillMaxWidth(),
     ) {
         SummaryRow(label = "Subtotal", value = details.summary.subtotal)
         SummaryRow(label = "Taxes", value = details.summary.taxes)
         TotalRow(label = "Total", value = details.summary.total)
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }

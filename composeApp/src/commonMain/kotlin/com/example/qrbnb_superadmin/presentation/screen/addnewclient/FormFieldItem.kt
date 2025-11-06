@@ -27,7 +27,7 @@ fun FormFieldItem(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .paddingBottom(16.dp),
+                .paddingBottom(20.dp),
     ) {
         if (field.type != "switch") {
             Text(

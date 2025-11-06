@@ -3,8 +3,10 @@ package com.example.qrbnb_superadmin.presentation.screen.orderDetails
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -45,6 +47,7 @@ fun ProfileInfoRow(
 
         Column {
             Text(text = title, style = textstyle_16_size_24_lineheight(), color=title_header_black)
+
             Text(
                 text = subtitle,
                 style = textstyle_14_size_21_lineheight(),

@@ -20,13 +20,13 @@ fun OrderHeaderSection(
     id: String,
     date: String,
 ) {
-    Column(modifier = Modifier.fillMaxWidth().padding(top = 8.dp, bottom = 8.dp)) {
+    Column(modifier = Modifier.fillMaxWidth().padding(top = 8.dp, bottom = 12.dp)) {
         Text(
             text = "Order ID: #$id",
             style = style_18_23_w700(),
             color = title_header_black,
         )
-        Spacer(Modifier.height(4.dp))
+        Spacer(Modifier.height(8.dp))
         Text(
             text = "Created At: $date",
             style = textstyle_14_size_21_lineheight(),

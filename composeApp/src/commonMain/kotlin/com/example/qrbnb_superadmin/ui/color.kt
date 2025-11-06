@@ -27,6 +27,8 @@ val title_reddish_brown= Color(0xFF8C5E5E)
 val sortBackground = Color(0xFFF5F0F0)
 val soft_reddish=Color(0xFF9E474A)
 val Black_color = Color(0xFF1C0D0D)
+val customButtonBackground = Color(0xFFF5F2F2) // #F5F2F2
+val customButtonText = Color(0xFF171212)
 
 
 

@@ -22,7 +22,7 @@ fun SummaryRow(
         modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        Text(text = label, style = style_16_24_w400())
+        Text(text = label, style = style_16_24_w500())
         Text(
             text = "$%.2f".format(value),
             style = style_16_24_w500(),
