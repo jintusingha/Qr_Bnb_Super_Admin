@@ -55,7 +55,7 @@ fun OrderCard(
         shape = RoundedCornerShape(12.dp),
         colors =
             CardDefaults.cardColors(
-                containerColor = androidx.compose.material3.MaterialTheme.colorScheme.surface,
+                containerColor = Color.White,
             ),
     ) {
         Row(

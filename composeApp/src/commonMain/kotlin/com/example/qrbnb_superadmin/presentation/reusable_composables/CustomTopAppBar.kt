@@ -23,8 +23,12 @@ fun CustomTopAppBar(
             )
         },
         navigationIcon = { navigationIcon?.invoke() },
-        actions = { actions?.invoke() }
-
+        actions = { actions?.invoke() },
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            containerColor = Color.White,
+            titleContentColor = Color.Black,
+            navigationIconContentColor = Color.Black,
+            actionIconContentColor = Color.Black
         )
-
+    )
 }

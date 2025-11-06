@@ -15,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.qrbnb_superadmin.presentation.reusable_composables.AppTopBar
@@ -40,6 +41,7 @@ fun QRBnBSuperadminLoginScreen(
     }
 
     Scaffold(
+        containerColor = Color.White,
         topBar = {
             AppTopBar(title = "QRBnB Superadmin")
         },

@@ -42,6 +42,8 @@ import com.example.qrbnb_superadmin.ui.floating_add_icon_color
 import com.example.qrbnb_superadmin.ui.floating_add_new_client_background_color
 import com.example.qrbnb_superadmin.ui.floating_add_new_client_text_color
 import com.example.qrbnb_superadmin.ui.headline22Bold
+import com.example.qrbnb_superadmin.ui.white_color
+import com.example.qrbnb_superadmin.ui.white_text_color
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
 import qr_bnb_super_admin.composeapp.generated.resources.Res
@@ -98,14 +100,14 @@ fun ClientsOverviewScreen(
                         painter = painterResource(Res.drawable.addicon),
                         contentDescription = "Add New Client",
                         modifier = Modifier.size(24.dp),
-                        tint = floating_add_icon_color,
+                        tint = white_color,
                     )
                 },
                 text = {
                     Text(
                         "Add New Client",
                         style = add_new_client_floating_btn_text(),
-                        color = floating_add_new_client_text_color,
+                        color = white_text_color,
                     )
                 },
             )
@@ -116,7 +118,7 @@ fun ClientsOverviewScreen(
             modifier =
                 Modifier
                     .fillMaxSize()
-
+                    .background(Color.White)
                     .padding(paddingValues),
         ) {
             Text(

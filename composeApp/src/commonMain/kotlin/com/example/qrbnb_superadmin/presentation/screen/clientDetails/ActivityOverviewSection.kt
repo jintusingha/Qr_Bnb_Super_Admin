@@ -96,7 +96,7 @@ fun ActivityStatCard(
             ),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.background
+            containerColor = Color.White
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {

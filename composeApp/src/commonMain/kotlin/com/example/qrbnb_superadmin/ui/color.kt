@@ -10,7 +10,7 @@ val search_icon_placeholdertext=Color(0xFF856666)
 val status_btn_field_color=Color(0xFFF5F2F2)
 val status_Color=Color(0xFF171212)
 val client_id_text_color=Color(0xFF856666)
-val floating_add_new_client_background_color=Color(0xFFF5F2F2)
+val floating_add_new_client_background_color=Color(0xFFFF5757)
 val floating_add_icon_color=Color(0xFF171212)
 val floating_add_new_client_text_color=Color(0xFF171212)
 val client_email_text_color=Color(0xFF856666)
@@ -29,6 +29,8 @@ val soft_reddish=Color(0xFF9E474A)
 val Black_color = Color(0xFF1C0D0D)
 val customButtonBackground = Color(0xFFF5F2F2) // #F5F2F2
 val customButtonText = Color(0xFF171212)
+val white_text_color=Color(0xFFFFFFFF)
+val white_color=Color(0xFFFFFFFF)
 
 
 

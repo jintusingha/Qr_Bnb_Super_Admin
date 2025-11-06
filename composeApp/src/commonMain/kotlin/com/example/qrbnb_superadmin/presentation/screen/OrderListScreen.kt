@@ -57,6 +57,7 @@ fun OrdersScreen(
     }
 
     Scaffold(
+        containerColor = Color.White,
         topBar = {
             CustomTopAppBar(
                 title = "Orders",

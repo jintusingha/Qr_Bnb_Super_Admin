@@ -23,6 +23,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.qrbnb_superadmin.presentation.reusable_composables.CustomTopAppBar
 import com.example.qrbnb_superadmin.presentation.screen.clientDetails.ClientDetailsContent
@@ -56,6 +57,7 @@ fun ClientDetailsScreen(
         state.actionError?.let { toastManager.show("Action failed: $it") }
     }
     Scaffold(
+        containerColor = Color.White,
         topBar = {
             CustomTopAppBar(
                 title = "Client Details",

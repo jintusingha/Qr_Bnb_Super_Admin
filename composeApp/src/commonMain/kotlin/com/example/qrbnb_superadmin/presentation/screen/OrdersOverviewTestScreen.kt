@@ -3,6 +3,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -46,6 +47,7 @@ fun OrdersOverviewScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val scrollState = rememberScrollState()
     Scaffold(
+        containerColor = Color.White,
         topBar = {
             CustomTopAppBar(
                 title = "Orders Overview",
@@ -87,38 +89,55 @@ fun OrdersOverviewScreen(
             }
         },
     ) { paddingValues ->
-        Column(modifier = Modifier.fillMaxSize().padding(paddingValues).verticalScroll(scrollState)) {
-            Text(
-                text = "Key Metrics",
-                style = style_18_23_w700(),
-                modifier = Modifier.padding(16.dp),
-            )
-            Spacer(Modifier.height(8.dp))
-
-            when (state) {
-                is OrdersOverviewState.Loading -> {
+        when (state) {
+            is OrdersOverviewState.Loading -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues),
+                    contentAlignment = Alignment.Center
+                ) {
                     Column(
-                        modifier = Modifier.fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center,
+                        verticalArrangement = Arrangement.Center
                     ) {
-                        CircularProgressIndicator()
+                        CircularProgressIndicator(modifier = Modifier.size(48.dp))
+                        Spacer(modifier = Modifier.height(8.dp))
                         Text("Loading Dashboard Data...")
                     }
                 }
+            }
 
-                is OrdersOverviewState.Error -> {
-                    Column(Modifier.padding(16.dp)) {
-                        Text(
-                            text = "Error: ${(state as OrdersOverviewState.Error).message}",
-                            color = Color.Red,
-                        )
-                    }
+            is OrdersOverviewState.Error -> {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues)
+                        .padding(16.dp)
+                ) {
+                    Text(
+                        text = "Error: ${(state as OrdersOverviewState.Error).message}",
+                        color = Color.Red,
+                    )
                 }
+            }
 
-                is OrdersOverviewState.Success -> {
+            is OrdersOverviewState.Success -> {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues)
+                        .verticalScroll(scrollState)
+                ) {
+                    Text(
+                        text = "Key Metrics",
+                        style = style_18_23_w700(),
+                        modifier = Modifier.padding(16.dp),
+                    )
+                    Spacer(Modifier.height(8.dp))
+
                     val data = (state as OrdersOverviewState.Success).data.data
-                    DashboardContent(data,onClientClick = onClientClick)
+                    DashboardContent(data, onClientClick = onClientClick)
                 }
             }
         }

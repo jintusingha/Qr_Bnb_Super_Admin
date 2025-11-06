@@ -6,6 +6,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,36 +24,41 @@ import com.example.qrbnb_superadmin.ui.client_list_text_style
 fun ClientListItem(
     client: Client,
     onClick: (clientId: String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     ListItem(
-        modifier = modifier
-            .clickable { onClick(client.id) },
-
+        modifier =
+            modifier
+                .clickable { onClick(client.id) },
+        colors =
+            ListItemDefaults.colors(
+                containerColor = Color.White,
+            ),
         headlineContent = {
             Text(
                 text = "Client Name: ${client.name}",
                 style = client_list_text_style(),
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.SemiBold,
             )
         },
         supportingContent = {
-            val shortId = if (client.id.length > 6) {
-                client.id.takeLast(6)
-            } else {
-                client.id
-            }
+            val shortId =
+                if (client.id.length > 6) {
+                    client.id.takeLast(6)
+                } else {
+                    client.id
+                }
 
             Text(
                 text = "Client ID: $shortId",
                 style = client_id_style(),
                 color = client_id_text_color,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
             )
         },
         trailingContent = {
             Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = "Details")
-        }
+        },
     )
 }
