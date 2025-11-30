@@ -10,17 +10,14 @@ import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.SummaryDto
 import com.example.qrbnb_superadmin.data.remote.model.orderdetailsdto.TimelineDto
 import com.example.qrbnb_superadmin.domain.entity.*
 
-fun OrderDetailsDto.toDomain(): OrderDetails =
-    OrderDetails(
-        orderId = orderId,
-        createdAt = createdAt,
-        client = client.toDomain(),
-        customer = customer.toDomain(),
-        items = items.map { it.toDomain() },
-        summary = summary.toDomain(),
-        timeline = timeline.map { it.toDomain() },
-        metadata = metadata.toDomain()
-    )
+fun OrderDetailsDto.toDomain() = OrderDetails(
+    orderId = orderId,
+    createdAt = createdAt,
+    customer = customer.toDomain(),
+    items = items.map { it.toDomain() },
+    summary = summary.toDomain(),
+    timeline = timeline.map { it.toDomain() },
+)
 
 fun ClientDto.toDomain(): ClientOrderDetails =
     ClientOrderDetails(
@@ -28,12 +25,12 @@ fun ClientDto.toDomain(): ClientOrderDetails =
         address = address
     )
 
-fun CustomerDto.toDomain(): Customer =
-    Customer(
-        name = name,
-        phone = phone,
-        table = table
-    )
+fun CustomerDto.toDomain() = Customer(
+    name = name,
+    phone = phone,
+    seatingName = seatingArea.name
+)
+
 
 fun ItemDto.toDomain(): Item =
     Item(

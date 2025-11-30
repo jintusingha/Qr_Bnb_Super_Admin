@@ -10,6 +10,7 @@ import org.jetbrains.compose.resources.Font
 
 import qr_bnb_super_admin.composeapp.generated.resources.Res
 import qr_bnb_super_admin.composeapp.generated.resources.plusjakartasans_bold
+
 import qr_bnb_super_admin.composeapp.generated.resources.plusjakartasans_medium
 import qr_bnb_super_admin.composeapp.generated.resources.plusjakartasans_regular
 

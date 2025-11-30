@@ -28,7 +28,7 @@ data class OrderListItemDto(
     val orderNumber: String,
     val status: String,
     val timeAgo: String,
-    val table: String,
+    val seatingArea: SeatingAreaDto? = null,
     val guest: OrderGuestDto,
     val items: OrderItemsDto,
     val thumbnail: String,
@@ -44,4 +44,9 @@ data class OrderGuestDto(
 data class OrderItemsDto(
     val summary: String,
     val count: Int
+)
+@Serializable
+data class SeatingAreaDto(
+    val type: String,
+    val name: String
 )

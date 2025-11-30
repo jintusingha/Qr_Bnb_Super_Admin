@@ -23,7 +23,7 @@ data class OrderListItem(
     val orderNumber: String,
     val status: String,
     val timeAgo: String,
-    val table: String,
+    val seatingArea: SeatingArea?,
     val guest: OrderGuest,
     val items: OrderItems,
     val thumbnail: String,
@@ -38,4 +38,8 @@ data class OrderGuest(
 data class OrderItems(
     val summary: String,
     val count: Int,
+)
+data class SeatingArea(
+    val type: String,
+    val name: String
 )

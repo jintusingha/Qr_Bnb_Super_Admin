@@ -1,6 +1,6 @@
 package com.example.qrbnb_superadmin.navigation
 
-import OrderDetailsScreen
+
 import OrdersOverviewScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
@@ -14,6 +14,7 @@ import com.example.qrbnb_superadmin.presentation.screen.ClientDetailsScreen
 import com.example.qrbnb_superadmin.presentation.screen.ClientsOverviewScreen
 import com.example.qrbnb_superadmin.presentation.screen.OrdersScreen
 import com.example.qrbnb_superadmin.presentation.screen.QRBnBSuperadminLoginScreen
+import com.example.qrbnb_superadmin.presentation.screen.orderDetails.OrderDetailsScreen
 
 @Composable
 fun AppNavHost(authStatusChecker: AuthStatusChecker) {

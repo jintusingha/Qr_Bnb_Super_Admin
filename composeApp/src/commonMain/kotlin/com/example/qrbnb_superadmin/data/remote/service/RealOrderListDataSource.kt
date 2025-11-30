@@ -29,7 +29,7 @@ class RealOrderListDataSource(
                 }
             val bodyText = response.bodyAsText()
             Logger.d(TAG, "Response status: ${response.status}")
-            Logger.d(TAG, "Response body snippet: ${bodyText.take(200)}")
+            Logger.d(TAG, "Response body snippet: ${bodyText}")
             val apiResponse = response.body<OrderListResponseDto>()
             Logger.d(TAG, "Parsed response - success: ${apiResponse.success}")
             Logger.d(TAG, "THE ID IS ${apiResponse.data.orders.first().clientId}")

@@ -12,12 +12,10 @@ data class OrderResponseDto(
 data class OrderDetailsDto(
     val orderId: String,
     val createdAt: String,
-    val client: ClientDto,
     val customer: CustomerDto,
     val items: List<ItemDto>,
     val summary: SummaryDto,
     val timeline: List<TimelineDto>,
-    val metadata: MetadataDto
 )
 @Serializable
 data class ClientDto(
@@ -28,7 +26,7 @@ data class ClientDto(
 data class CustomerDto(
     val name: String,
     val phone: String,
-    val table: String
+    val seatingArea: SeatingAreaDto
 )
 @Serializable
 data class ItemDto(
@@ -54,4 +52,9 @@ data class MetadataDto(
     val creator: String,
     val paymentMethod: String,
     val platform: String
+)
+@Serializable
+data class SeatingAreaDto(
+    val type: String,
+    val name: String
 )

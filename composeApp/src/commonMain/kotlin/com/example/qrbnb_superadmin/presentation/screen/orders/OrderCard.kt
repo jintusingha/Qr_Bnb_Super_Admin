@@ -74,7 +74,7 @@ fun OrderCard(
                 )
                 Spacer(modifier = Modifier.height(5.dp))
                 Text(
-                    text = "${order.timeAgo} • ${order.table}",
+                    text = "${order.timeAgo} • ${order.seatingArea?.name ?: "Unknown"}",
                     style = style_16_20_700(),
                     color = Black_color,
                 )

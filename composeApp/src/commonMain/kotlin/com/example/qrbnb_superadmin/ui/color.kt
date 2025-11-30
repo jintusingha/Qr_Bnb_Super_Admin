@@ -31,6 +31,6 @@ val customButtonBackground = Color(0xFFF5F2F2) // #F5F2F2
 val customButtonText = Color(0xFF171212)
 val white_text_color=Color(0xFFFFFFFF)
 val white_color=Color(0xFFFFFFFF)
-
+val SoftBrown = Color(0xFF856666)
 
 

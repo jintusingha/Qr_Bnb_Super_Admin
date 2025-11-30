@@ -5,12 +5,15 @@ package com.example.qrbnb_superadmin.domain.entity
 data class OrderDetails(
     val orderId: String,
     val createdAt: String,
-    val client: ClientOrderDetails,
     val customer: Customer,
     val items: List<Item>,
     val summary: SummaryDomain,
     val timeline: List<TimelineEventOrderDetails>,
-    val metadata: Metadata
+)
+data class Customer(
+    val name: String,
+    val phone: String,
+    val seatingName: String
 )
 
 data class ClientOrderDetails(
@@ -18,11 +21,7 @@ data class ClientOrderDetails(
     val address: String
 )
 
-data class Customer(
-    val name: String,
-    val phone: String,
-    val table: String
-)
+
 
 data class Item(
     val name: String,

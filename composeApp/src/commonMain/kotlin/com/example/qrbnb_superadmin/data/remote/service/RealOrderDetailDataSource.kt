@@ -12,21 +12,30 @@ class RealOrderDetailDataSource(
     private val httpClient: HttpClient,
     private val baseUrl: String,
 ) : OrderDataSource {
+
     override suspend fun fetchOrderDetails(orderId: String): OrderDetailsDto {
-        val orderdetailsurl = "$baseUrl/orders/$orderId"
+        val url = "$baseUrl/orders/$orderId"
+
+        println("Requesting: $url")
 
         return try {
-            val response = httpClient.get(orderdetailsurl)
+            val response = httpClient.get(url)
+
+            println("Status: ${response.status}")
+
             val bodyText = response.bodyAsText()
+            println("Response body: $bodyText")
+
             if (response.status.isSuccess()) {
-                val orderdetailsResponse = response.body<OrderResponseDto>()
-                val orderdetailsDto = orderdetailsResponse.data
-                orderdetailsDto
+                val dto = response.body<OrderResponseDto>()
+                println("Parsed DTO: $dto")
+                dto.data
             } else {
-                val errorMessage = "api call failed with status ${response.status} and body:$bodyText"
-                throw Exception(errorMessage)
+                throw Exception("API failed with status ${response.status}")
             }
+
         } catch (e: Exception) {
+            println("Error: ${e.message}")
             throw e
         }
     }

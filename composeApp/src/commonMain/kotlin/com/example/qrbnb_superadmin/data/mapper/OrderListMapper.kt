@@ -6,12 +6,14 @@ import com.example.qrbnb_superadmin.data.remote.model.orderListDto.OrderListData
 import com.example.qrbnb_superadmin.data.remote.model.orderListDto.OrderListItemDto
 import com.example.qrbnb_superadmin.data.remote.model.orderListDto.OrderListResponseDto
 import com.example.qrbnb_superadmin.data.remote.model.orderListDto.OrderListSummaryDto
+import com.example.qrbnb_superadmin.data.remote.model.orderListDto.SeatingAreaDto
 import com.example.qrbnb_superadmin.domain.entity.OrderGuest
 import com.example.qrbnb_superadmin.domain.entity.OrderItems
 import com.example.qrbnb_superadmin.domain.entity.OrderListData
 import com.example.qrbnb_superadmin.domain.entity.OrderListItem
 import com.example.qrbnb_superadmin.domain.entity.OrderListSummary
 import com.example.qrbnb_superadmin.domain.entity.OrdersListResponse
+import com.example.qrbnb_superadmin.domain.entity.SeatingArea
 
 
 fun OrderListResponseDto.toDomain()= OrdersListResponse(
@@ -36,7 +38,7 @@ fun OrderListItemDto.toDomain() = OrderListItem(
     orderNumber = orderNumber,
     status = status,
     timeAgo = timeAgo,
-    table = table,
+    seatingArea = seatingArea?.toDomain(),
     guest = guest.toDomain(),
     items = items.toDomain(),
     thumbnail = thumbnail,
@@ -51,4 +53,8 @@ fun OrderGuestDto.toDomain() = OrderGuest(
 fun OrderItemsDto.toDomain() = OrderItems(
     summary = summary,
     count = count
+)
+fun SeatingAreaDto.toDomain() = SeatingArea(
+    type = type,
+    name = name
 )
